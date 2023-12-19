@@ -1,5 +1,5 @@
 import { getCurrentUserInfo } from "@/api/login";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/components/Sidebar/Sidebar";
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarContent } from "@/router";
 import { User } from "@/types/user";

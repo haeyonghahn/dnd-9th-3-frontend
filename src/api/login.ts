@@ -1,3 +1,4 @@
+import { saveAccessTokenToLocalStorage } from "@/utils/accessTokenHandler";
 import { User } from "../types/user";
 import { BASE_URL } from "./const";
 
@@ -44,4 +45,19 @@ export const getCurrentUserInfo = async (): Promise<User | null> => {
     console.error(e);
     return null;
   }
+};
+
+export const socialLogin = async (code: string): Promise<LoginResult> => {
+  const loginRes = await fetch(`${BASE_URL}/oauth/kakao?accessToken=${code}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (loginRes.ok) {
+    const oAuthResponseData = await loginRes.json();
+    saveAccessTokenToLocalStorage(oAuthResponseData.accessToken);
+    return "success";
+  }
+  return "fail";
 };

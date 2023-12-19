@@ -1,9 +1,9 @@
 import { fontWeight } from "@/_shared/typography";
-import { login } from "@/api/login";
 import { social } from "@/_shared/icons";
 import IconSocial from "@/foundations/IconSocial/IconSocial";
-import { useRouter } from "@/hooks/useRouter";
 import styled from "styled-components";
+import { KAKAO_CLIENT_ID, KAKAO_REDIRECT_URI } from "@/api/const";
+import { Link } from "react-router-dom";
 
 const ButtonBox = styled.div`
   display: flex;
@@ -23,24 +23,7 @@ const LoginDescription = styled.p`
 `;
 
 const Login = () => {
-  const { routeTo } = useRouter();
-  // const loginSubmitHandler = async (
-  //   event: React.FormEvent<HTMLFormElement>
-  // ) => {
-  //   const formData = new FormData(event.currentTarget);
-
-  //   const loginResult = await login({
-  //     username: formData.get("username") as string,
-  //     password: formData.get("password") as string,
-  //   });
-
-  //   if (loginResult === "fail") {
-  //     alert("로그인 실패");
-  //     return;
-  //   }
-  //   routeTo("/page-a");
-  // };
-
+  const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
   return (
     <div className="non-logged-in-body">
       <LoginTitle>Gooding</LoginTitle>
@@ -49,7 +32,9 @@ const Login = () => {
       </LoginDescription>
       <ButtonBox>
         <IconSocial icon={social.google} />
-        <IconSocial icon={social.kakao} />
+        <Link to={kakaoUrl}>
+          <IconSocial icon={social.kakao} />
+        </Link>
       </ButtonBox>
     </div>
   );

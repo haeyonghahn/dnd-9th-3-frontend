@@ -3,6 +3,8 @@ import { Router as RemixRouter } from "@remix-run/router/dist/router";
 import { Home, Login, PageA, PageB, PageC } from "./pages";
 import { SidebarElement } from "./types/sidebar";
 import GeneralLayout from "./layout/GeneralLayoutProps";
+import SocialLogin from "./pages/Login/SocialLogin";
+import Layout from "./layout/LayoutProps";
 
 interface RouterElement {
   id: number; // 페이지 아이디 (반복문용 고유값)
@@ -13,7 +15,7 @@ interface RouterElement {
 }
 
 const routerData: RouterElement[] = [
-  // TODO 3-1: 로그인 페이지 라우터 등록하기 ('login', withAuth: false)
+  // 로그인 페이지 라우터 등록하기 ('login', withAuth: false)
   {
     id: 0,
     path: "/",
@@ -28,23 +30,29 @@ const routerData: RouterElement[] = [
     element: <Login />,
     withAuth: false,
   },
-  // TODO 3-2: page a, b, c 등록하기
   {
     id: 2,
+    path: "/oauth/kakao",
+    label: "소셜로그인",
+    element: <SocialLogin />,
+    withAuth: false,
+  },
+  {
+    id: 3,
     path: "/page-a",
     label: "페이지 A",
     element: <PageA />,
     withAuth: true,
   },
   {
-    id: 3,
+    id: 4,
     path: "/page-b",
     label: "페이지 B",
     element: <PageB />,
     withAuth: true,
   },
   {
-    id: 4,
+    id: 5,
     path: "/page-c",
     label: "페이지 C",
     element: <PageC />,
@@ -53,18 +61,27 @@ const routerData: RouterElement[] = [
 ];
 
 export const routers: RemixRouter = createBrowserRouter(
-  // TODO 3-1: 인증이 필요한 페이지는 GeneralLayout 으로 감싸기
   // GeneralLayout 에는 페이지 컴포넌트를 children 으로 전달
   routerData.map((router) => {
     if (router.withAuth) {
       return {
         path: router.path,
-        element: <GeneralLayout>{router.element}</GeneralLayout>,
+        element: (
+          <Layout>
+            {router.withAuth}
+            {router.element}
+          </Layout>
+        ),
       };
     } else {
       return {
         path: router.path,
-        element: router.element,
+        element: (
+          <Layout>
+            {router.withAuth}
+            {router.element}
+          </Layout>
+        ),
       };
     }
   })
@@ -72,7 +89,7 @@ export const routers: RemixRouter = createBrowserRouter(
 
 export const SidebarContent: SidebarElement[] = routerData.reduce(
   (prev, router) => {
-    // TODO 3-2: 인증이 필요한 페이지만 사이드바에 표시하기
+    // 인증이 필요한 페이지만 사이드바에 표시하기
     if (!router.withAuth) return prev;
 
     return [
