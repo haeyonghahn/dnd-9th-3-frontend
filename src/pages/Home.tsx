@@ -2,6 +2,7 @@ import Logo from "@/foundations/Logo/Logo";
 import { useRouter } from "../hooks/useRouter";
 import styled from "styled-components";
 import { fontSize, fontWeight } from "@/_shared/typography";
+import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 
 const HomeTitle = styled.h1`
   text-align: center;
@@ -32,9 +33,15 @@ const Home = () => {
         남겨보세요!
       </HomeDescription>
       <div className="center">
-        <HomeButton onClick={() => routeTo("login")}>
-          로그인 하러 가기
-        </HomeButton>
+        {getAccessTokenFromLocalStorage() ? (
+          <HomeButton onClick={() => routeTo("page-a")}>
+            페이지로 이동
+          </HomeButton>
+        ) : (
+          <HomeButton onClick={() => routeTo("login")}>
+            로그인 하러 가기
+          </HomeButton>
+        )}
       </div>
     </div>
   );

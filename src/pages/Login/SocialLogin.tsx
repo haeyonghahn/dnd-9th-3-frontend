@@ -1,9 +1,10 @@
 import { socialLogin } from "@/api/login";
+import Spinner from "@/components/Spinner/Spinner";
 import { useRouter } from "@/hooks/useRouter";
 import { useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const OAuth = () => {
+const SocialLogin = () => {
   const { routeTo } = useRouter();
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code") as string;
@@ -20,7 +21,11 @@ const OAuth = () => {
   useEffect(() => {
     fetchLogin();
   }, []);
-  return <div>Loading</div>;
+  return (
+    <>
+      <Spinner />
+    </>
+  );
 };
 
-export default OAuth;
+export default SocialLogin;

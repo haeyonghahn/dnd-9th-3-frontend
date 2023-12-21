@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     margin: 0;
-    height: 100vh;
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};
   }
@@ -31,7 +30,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: ${fontSize.h0};
     font-weight: ${fontWeight.semiBold};
     padding: 0.5em;
-    background-color: ${colors.secondaryGreen50};
+    background-color: ${colors.green50};
     border-radius: 8px;
     border: none;
     width: 100%;

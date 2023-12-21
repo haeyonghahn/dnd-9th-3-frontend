@@ -4,6 +4,10 @@ import IconSocial from "@/foundations/IconSocial/IconSocial";
 import styled from "styled-components";
 import { KAKAO_CLIENT_ID, KAKAO_REDIRECT_URI } from "@/api/const";
 import { Link } from "react-router-dom";
+import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
+import { useRouter } from "@/hooks/useRouter";
+import { useEffect } from "react";
+import Spinner from "@/components/Spinner/Spinner";
 
 const ButtonBox = styled.div`
   display: flex;
@@ -23,20 +27,34 @@ const LoginDescription = styled.p`
 `;
 
 const Login = () => {
+  const { routeTo } = useRouter();
   const kakaoUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_CLIENT_ID}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
+
+  useEffect(() => {
+    if (getAccessTokenFromLocalStorage()) {
+      routeTo("/page-a");
+    }
+  }, []);
+
   return (
-    <div className="non-logged-in-body">
-      <LoginTitle>Gooding</LoginTitle>
-      <LoginDescription>
-        로그인하고 나만의 굳이데이 기록을 남겨보세요!
-      </LoginDescription>
-      <ButtonBox>
-        <IconSocial icon={social.google} />
-        <Link to={kakaoUrl}>
-          <IconSocial icon={social.kakao} />
-        </Link>
-      </ButtonBox>
-    </div>
+    <>
+      {getAccessTokenFromLocalStorage() ? (
+        <Spinner />
+      ) : (
+        <div className="non-logged-in-body">
+          <LoginTitle>Gooding</LoginTitle>
+          <LoginDescription>
+            로그인하고 나만의 굳이데이 기록을 남겨보세요!
+          </LoginDescription>
+          <ButtonBox>
+            <IconSocial icon={social.google} />
+            <Link to={kakaoUrl}>
+              <IconSocial icon={social.kakao} />
+            </Link>
+          </ButtonBox>
+        </div>
+      )}
+    </>
   );
 };
 

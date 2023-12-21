@@ -2,14 +2,17 @@ import Switch from "@/components/Switch/Switch";
 import GeneralLayout from "./GeneralLayoutProps";
 
 interface LayoutProps {
-  withAuth?: boolean;
-  children: React.ReactNode;
+  children: RouterElement;
 }
 
-const Layout: React.FC<LayoutProps> = ({ withAuth, children }) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
-      {withAuth ? <GeneralLayout>{children}</GeneralLayout> : children}
+      {children.withAuth ? (
+        <GeneralLayout>{children.element}</GeneralLayout>
+      ) : (
+        children.element
+      )}
       <Switch />
     </>
   );

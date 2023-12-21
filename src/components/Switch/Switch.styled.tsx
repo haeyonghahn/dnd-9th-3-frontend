@@ -16,7 +16,7 @@ export const Container = styled.div`
   cursor: pointer;
   &[data-isOn="true"] {
     justify-content: flex-end;
-    background-color: ${colors.secondaryGreen50};
+    background-color: ${colors.green50};
   }
 `;
 

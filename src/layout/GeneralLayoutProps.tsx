@@ -1,20 +1,25 @@
-import { getCurrentUserInfo } from "@/api/login";
+import { getCurrentUserInfoWithToken } from "@/api/login";
+import { userAtom } from "@/atoms/user";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import Spinner from "@/components/Spinner/Spinner";
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarContent } from "@/router";
-import { User } from "@/types/user";
-import { useCallback, useEffect, useState } from "react";
+import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
+import { useCallback, useEffect } from "react";
+import { useRecoilState } from "recoil";
 
 interface GeneralLayoutProps {
   children: React.ReactNode;
 }
 
 const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
-  const [userProfile, setUserProfile] = useState<User | null>(null);
+  const [userProfile, setUserProfile] = useRecoilState(userAtom);
   const { routeTo } = useRouter();
 
   const fetchUserProfile = useCallback(async () => {
-    const userProfileResponse = await getCurrentUserInfo();
+    const userProfileResponse = await getCurrentUserInfoWithToken(
+      getAccessTokenFromLocalStorage()
+    );
 
     if (userProfileResponse === null) {
       routeTo("/login");
@@ -29,7 +34,7 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
     fetchUserProfile();
   }, [children]);
 
-  if (!userProfile) return <div>loading...</div>;
+  if (!userProfile) return <Spinner />;
 
   return (
     <div className="general-layout">

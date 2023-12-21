@@ -9,12 +9,6 @@ export interface LoginRequest {
   password: string;
 }
 
-/* options 예시:
-const option: RequestInit = {
-  method: 'POST',
-  body: JSON.stringify({ username, password })
-} */
-
 const fetchClient = async (url: string, options: RequestInit) => {
   return fetch(url, {
     headers: {
@@ -34,10 +28,16 @@ export const login = async (args: LoginRequest): Promise<LoginResult> => {
   return loginRes.ok ? "success" : "fail";
 };
 
-export const getCurrentUserInfo = async (): Promise<User | null> => {
+export const getCurrentUserInfoWithToken = async (
+  token: string
+): Promise<User | null> => {
   try {
-    const userInfoRes = await fetchClient(`${BASE_URL}/profile`, {
+    const userInfoRes = await fetch(`${BASE_URL}/api/v1/user/2942669632`, {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     return userInfoRes.ok ? userInfoRes.json() : null;

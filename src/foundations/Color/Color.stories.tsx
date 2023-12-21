@@ -30,6 +30,7 @@ const Layout = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 2rem;
+  flex-basis: 0;
 `;
 
 const ColorBox = styled.div`
@@ -45,11 +46,12 @@ const Color = styled.div`
 `;
 
 const Name = styled.div`
-  color: ${colors.titleLine};
-  font-size: ${fontSize.h3};
+  color: black;
+  font-weight: bold;
+  font-size: 0.875rem;
 `;
 
 const Meta = styled.div`
-  color: ${colors.titleLine};
-  font-size: ${fontSize.h3};
+  color: gray;
+  font-size: 0.75rem;
 `;
