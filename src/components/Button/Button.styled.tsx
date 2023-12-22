@@ -1,11 +1,14 @@
 import loadings from "@/_shared/animations/loadings";
 import { colors } from "@/_shared/colors";
+import { fontSize } from "@/_shared/typography";
 import styled, { css } from "styled-components";
 
 interface ILayoutProps {
   width: string;
   disabled?: boolean;
   isloading?: string;
+  cancel?: string;
+  theme?: string;
 }
 
 export const Layout = styled.button<ILayoutProps>`
@@ -25,7 +28,7 @@ export const Layout = styled.button<ILayoutProps>`
   font-family: "Pretendard";
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
+  font-size: ${fontSize.h3};
   text-align: center;
   text-decoration: none;
 
@@ -40,14 +43,47 @@ export const Layout = styled.button<ILayoutProps>`
           color: #a4a6aa;
           cursor: not-allowed;
         `
-      : null};
+      : css`
+          &:hover {
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.25),
+                rgba(0, 0, 0, 0.25)
+              ),
+              ${colors.green50};
+          }
+          &:active {
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.25),
+                rgba(0, 0, 0, 0.25)
+              ),
+              ${colors.green150};
+          }
+        `};
 
   ${(props) =>
     props.isloading === "true"
       ? css`
           backdrop-filter: blur(4px);
           cursor: progress;
-          ${loadings.dark}
+          ${props.theme === "dark" ? loadings.dark : loadings.light}
         `
       : null}
+  ${(props) =>
+    props.cancel === "true"
+      ? css`
+          border: 1px solid ${colors.gray200};
+          color: ${colors.white};
+          background-color: ${colors.gray500};
+          &:hover {
+            background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.25),
+              rgba(0, 0, 0, 0.25)
+            );
+            background-color: ${colors.gray500};
+          }
+        `
+      : null};
 `;

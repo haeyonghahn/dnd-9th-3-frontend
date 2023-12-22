@@ -5,7 +5,7 @@ const logoVariants = {
     opacity: 1,
   },
   active: {
-    opacity: [1, 0, 1],
+    opacity: [1, 0.7, 1],
     transition: {
       repeat: Infinity,
     },
@@ -16,7 +16,7 @@ const Logo = () => {
   return (
     <Svg
       variants={logoVariants}
-      whileHover="active"
+      animate="active"
       width="159"
       height="178"
       viewBox="0 0 159 178"

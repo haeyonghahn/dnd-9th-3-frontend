@@ -3,6 +3,7 @@ import { useRouter } from "../hooks/useRouter";
 import styled from "styled-components";
 import { fontSize, fontWeight } from "@/_shared/typography";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
+import Button from "@/components/Button";
 
 const HomeTitle = styled.h1`
   text-align: center;
@@ -11,10 +12,6 @@ const HomeTitle = styled.h1`
 const HomeDescription = styled.p`
   font-size: ${fontSize.body1};
   font-weight: ${fontWeight.regular};
-`;
-
-const HomeButton = styled.button`
-  margin-top: 12px;
 `;
 
 const Home = () => {
@@ -34,13 +31,17 @@ const Home = () => {
       </HomeDescription>
       <div className="center">
         {getAccessTokenFromLocalStorage() ? (
-          <HomeButton onClick={() => routeTo("page-a")}>
-            페이지로 이동
-          </HomeButton>
+          <Button
+            width="100%"
+            onClick={() => routeTo("page-a")}
+            text="페이지로 이동"
+          />
         ) : (
-          <HomeButton onClick={() => routeTo("login")}>
-            로그인 하러 가기
-          </HomeButton>
+          <Button
+            width="100%"
+            onClick={() => routeTo("page-a")}
+            text="로그인 하러 가기"
+          />
         )}
       </div>
     </div>

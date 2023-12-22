@@ -4,9 +4,7 @@ import { routers } from "./router";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { useRecoilValue } from "recoil";
 import { isDarkAtom } from "./atoms/theme";
-import { colors } from "@/_shared/colors";
 import { darkTheme, lightTheme } from "./theme";
-import { fontSize, fontWeight } from "./_shared/typography";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -24,21 +22,6 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 6px;
     width: 100%;
     margin-bottom: 24px;
-  }
-  button {
-    color: ${(props) => props.theme.bgColor};
-    font-size: ${fontSize.h0};
-    font-weight: ${fontWeight.semiBold};
-    padding: 0.5em;
-    background-color: ${colors.green50};
-    border-radius: 8px;
-    border: none;
-    width: 100%;
-    cursor: pointer;
-    &:hover {
-      border-radius: 8px;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), #3CEFA3;
-    }
   }
   ul {
     margin: 0;
