@@ -1,5 +1,5 @@
 import { socialLogin } from "@/api/login";
-import Spinner from "@/components/Spinner/Spinner";
+import Spinner from "@/components/Spinner";
 import { useRouter } from "@/hooks/useRouter";
 import { useCallback, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";

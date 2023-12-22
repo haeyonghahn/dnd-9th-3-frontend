@@ -1,11 +1,12 @@
 import { DefaultTheme } from "styled-components";
+import { colors } from "./_shared/colors";
 
 export const darkTheme: DefaultTheme = {
-  bgColor: "#1C1D27",
-  textColor: "#FFFFFF",
+  bgColor: colors.black,
+  textColor: colors.white,
 };
 
 export const lightTheme: DefaultTheme = {
-  bgColor: "#FFFFFF",
-  textColor: "#1C1D27",
+  bgColor: colors.white,
+  textColor: colors.black,
 };

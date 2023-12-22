@@ -1,7 +1,7 @@
 import { getCurrentUserInfoWithToken } from "@/api/login";
 import { userAtom } from "@/atoms/user";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import Spinner from "@/components/Spinner/Spinner";
+import Sidebar from "@/components/Sidebar";
+import Spinner from "@/components/Spinner";
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarContent } from "@/router";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";

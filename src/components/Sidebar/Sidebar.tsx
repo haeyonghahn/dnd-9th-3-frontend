@@ -36,9 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarContent, userProfile }) => {
       </ul>
       <div>
         {userProfile ? (
-          <div className="sidebar-footer">
-            {userProfile.userInfo?.name}님 환영합니다.
-          </div>
+          <div className="sidebar-footer">님 환영합니다.</div>
         ) : (
           <div>로그인이 필요합니다.</div>
         )}

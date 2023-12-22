@@ -20,6 +20,21 @@ const colors = {
   green150: "#BCF8D9",
   green200: "#E3FDF0",
 
+  gray25: "#F8F9FA",
+  gray50: "#F1F3F5",
+  gray100: "#E9ECEF",
+  gray200: "#DEE2E6",
+  gray300: "#CED4DA",
+  gray400: "#ADB5BD",
+  gray500: "#868E96",
+  gray600: "#4A5056",
+  gray700: "#3D4248",
+  gray800: "#31363B",
+  gray900: "#292D32",
+
+  white: "#FFFFFF",
+  black: "#1C1D27",
+
   fieldBG: "#F9F9FA",
   tableLine: "#F2F3F4",
   listLine: "#E8E9EA",

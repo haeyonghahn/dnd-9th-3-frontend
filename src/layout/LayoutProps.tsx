@@ -1,4 +1,4 @@
-import Switch from "@/components/Switch/Switch";
+import Switch from "@/components/Switch";
 import GeneralLayout from "./GeneralLayoutProps";
 
 interface LayoutProps {
