@@ -30,18 +30,17 @@ const colors = {
   gray600: "#4A5056",
   gray700: "#3D4248",
   gray800: "#31363B",
+  gray850: "#282932",
   gray900: "#292D32",
 
   white: "#FFFFFF",
   black: "#1C1D27",
 
-  fieldBG: "#F9F9FA",
-  tableLine: "#F2F3F4",
-  listLine: "#E8E9EA",
-  buttonLine: "#CBCDCF",
-  checkRadio: "#A4A6AA",
-  titleLine: "#75777B",
-  solidButton: "#33353C",
+  error: "#FF5A6E",
+  errorOpacity100: "#F8736A33",
+  errorOpacity200: "#F04438CF",
+
+  inputTextClor: "#75777b",
 };
 
 export default colors;
