@@ -27,7 +27,7 @@ export const AllTypes = () => (
         />
         <Input
           status="error"
-          title="라벨"
+          title="닉네임"
           theme="dark"
           placeholder="닉네임 입력 (15자 이내)"
           message="This is error message."
@@ -39,6 +39,14 @@ export const AllTypes = () => (
           placeholder="이메일"
           message="가입한 이메일 주소를 입력해주세요."
           icon="email"
+        />
+        <Input
+          status="error"
+          title="닉네임"
+          theme="dark"
+          icon="isDarkCancel"
+          icondirection="right"
+          message="15자 이내로 입력해주세요."
         />
       </TypeBox>
     </Background>
@@ -55,7 +63,7 @@ export const AllTypes = () => (
         <Input
           status="error"
           placeholder="닉네임 입력 (15자 이내)"
-          title="라벨"
+          title="닉네임"
           message="This is error message."
         />
         <Input
@@ -65,6 +73,14 @@ export const AllTypes = () => (
           placeholder="이메일"
           message="가입한 이메일 주소를 입력해주세요."
           icon="email"
+        />
+        <Input
+          status="error"
+          title="닉네임"
+          theme="white"
+          icon="isWhiteCancel"
+          icondirection="right"
+          message="15자 이내로 입력해주세요."
         />
       </TypeBox>
     </Background>

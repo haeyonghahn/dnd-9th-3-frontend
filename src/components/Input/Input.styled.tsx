@@ -3,10 +3,12 @@ import { fontSize, fontWeight } from "@/_shared/typography";
 import styled from "styled-components";
 
 type Status = "default" | "error" | "success";
+type IconDirection = "left" | "right";
 
 interface IInputBoxProps {
   theme?: string;
   status: string;
+  icondirection?: IconDirection;
 }
 
 interface ILabelProps {
@@ -55,6 +57,8 @@ export const Layout = styled.div`
 export const InputBox = styled.div<IInputBoxProps>`
   display: flex;
   align-items: center;
+  flex-direction: ${(props) =>
+    props.icondirection === "right" ? "row-reverse" : ""};
   box-sizing: border-box;
   height: 42px;
   padding: 0 16px;
@@ -102,6 +106,13 @@ export const Label = styled.label<ILabelProps>`
   font-size: ${fontSize.h2};
   font-weight: ${fontWeight.semiBold};
   color: ${(props) => props.theme.textColor};
+`;
+
+export const MessageBox = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 6px;
 `;
 
 export const Message = styled.div<IMessageProps>`
