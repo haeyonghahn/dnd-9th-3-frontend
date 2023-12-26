@@ -1,9 +1,7 @@
 name: "Chromatic"
 
-on:
-  push:
-    branches:
-      - master
+on: push
+
 jobs:
   chromatic:
     runs-on: ubuntu-latest
