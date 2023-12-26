@@ -44,7 +44,5 @@
     "storybook": "^7.5.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  },
-  "readme": "ERROR: No README data found!",
-  "_id": "gooding-frontend@0.0.0"
+  }
 }
