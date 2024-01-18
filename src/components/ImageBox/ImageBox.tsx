@@ -1,4 +1,3 @@
-import Logo from "@/foundations/Logo/Logo";
 import { ImageBoxWrapper } from "./ImageBox.styled";
 import Icon from "@/foundations/Icon";
 
