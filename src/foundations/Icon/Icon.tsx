@@ -4,12 +4,24 @@ import { Svg } from "./Icon.styled";
 interface IIconProps {
   icon: string;
   block?: string;
+  minX: string;
+  minY: string;
+  viewBoxWidth: string;
+  viewBoxHeight: string;
 }
 
-const Icon = ({ icon, block, ...props }: IIconProps) => {
+const Icon = ({
+  icon,
+  block,
+  minX,
+  minY,
+  viewBoxWidth,
+  viewBoxHeight,
+  ...props
+}: IIconProps) => {
   return (
     <Svg
-      viewBox="0 0 24 24"
+      viewBox={`${minX} ${minY} ${viewBoxWidth} ${viewBoxHeight}`}
       width="24"
       height="24"
       xmlns="http://www.w3.org/2000/svg"

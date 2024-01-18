@@ -1,11 +1,24 @@
 import Logo from "@/foundations/Logo/Logo";
 import { ImageBoxWrapper } from "./ImageBox.styled";
+import Icon from "@/foundations/Icon";
 
 interface IImageBoxProps {
-  isLoading: string;
+  icon: string;
+  theme: string;
+  size: string;
 }
 
-const ImageBox = ({ isLoading, ...props }: IImageBoxProps) => {
-  let imageContent = <Logo />;
-  return <ImageBoxWrapper>{imageContent}</ImageBoxWrapper>;
+const ImageBox = ({ icon, theme, size }: IImageBoxProps) => {
+  let imageContent = (
+    <Icon icon={icon} minX="0" minY="0" viewBoxWidth="48" viewBoxHeight="48" />
+  );
+  return (
+    <>
+      <ImageBoxWrapper theme={theme} size={size}>
+        {imageContent}
+      </ImageBoxWrapper>
+    </>
+  );
 };
+
+export default ImageBox;
