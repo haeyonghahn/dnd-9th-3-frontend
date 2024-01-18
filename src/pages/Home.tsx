@@ -33,13 +33,13 @@ const Home = () => {
         {getAccessTokenFromLocalStorage() ? (
           <Button
             width="100%"
-            onClick={() => routeTo("page-a")}
+            onClick={() => routeTo("/onboarding")}
             text="페이지로 이동"
           />
         ) : (
           <Button
             width="100%"
-            onClick={() => routeTo("page-a")}
+            onClick={() => routeTo("/login")}
             text="로그인 하러 가기"
           />
         )}

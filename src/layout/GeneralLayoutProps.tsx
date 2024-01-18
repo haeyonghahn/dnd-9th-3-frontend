@@ -1,6 +1,6 @@
 import { getCurrentUserInfoWithToken } from "@/api/login";
 import { userAtom } from "@/atoms/user";
-import Sidebar from "@/components/Sidebar";
+import Sidebar from "@/layout";
 import Spinner from "@/components/Spinner";
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarContent } from "@/router";
@@ -21,7 +21,7 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
       getAccessTokenFromLocalStorage()
     );
 
-    if (userProfileResponse === null) {
+    if (!userProfileResponse) {
       routeTo("/login");
       return;
     }

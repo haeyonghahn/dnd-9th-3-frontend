@@ -1,4 +1,7 @@
-import { saveAccessTokenToLocalStorage } from "@/utils/accessTokenHandler";
+import {
+  removeAccessTokenFromLocalStorage,
+  saveAccessTokenToLocalStorage,
+} from "@/utils/accessTokenHandler";
 import { User } from "../types/user";
 import { BASE_URL } from "./const";
 
@@ -32,7 +35,7 @@ export const getCurrentUserInfoWithToken = async (
   token: string
 ): Promise<User | null> => {
   try {
-    const userInfoRes = await fetch(`${BASE_URL}/api/v1/user/2942669632`, {
+    const userInfoRes = await fetch(`${BASE_URL}/api/v1/my/member`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -40,7 +43,9 @@ export const getCurrentUserInfoWithToken = async (
       },
     });
 
-    return userInfoRes.ok ? userInfoRes.json() : null;
+    return userInfoRes.ok
+      ? userInfoRes.json()
+      : removeAccessTokenFromLocalStorage();
   } catch (e) {
     console.error(e);
     return null;
@@ -48,7 +53,7 @@ export const getCurrentUserInfoWithToken = async (
 };
 
 export const socialLogin = async (code: string): Promise<LoginResult> => {
-  const loginRes = await fetch(`${BASE_URL}/oauth/kakao?accessToken=${code}`, {
+  const loginRes = await fetch(`${BASE_URL}/api/v1/oauth/login/${code}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

@@ -15,14 +15,6 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.textColor};
   }
-  input {
-    font-size: 1.5em;
-    padding: 0.25em;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    width: 100%;
-    margin-bottom: 24px;
-  }
   ul {
     margin: 0;
     padding: 0;

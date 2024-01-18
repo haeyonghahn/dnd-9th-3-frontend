@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Router as RemixRouter } from "@remix-run/router/dist/router";
-import { Home, Login, PageA, PageB, PageC } from "./pages";
+import { Home, Login, Onboarding, PageB, PageC } from "./pages";
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/LayoutProps";
@@ -30,9 +30,9 @@ const routerData: RouterElement[] = [
   },
   {
     id: 3,
-    path: "/page-a",
-    label: "페이지 A",
-    element: <PageA />,
+    path: "/onboarding",
+    label: "온보딩",
+    element: <Onboarding />,
     withAuth: true,
   },
   {

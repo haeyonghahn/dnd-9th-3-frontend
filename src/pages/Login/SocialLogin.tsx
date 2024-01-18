@@ -12,7 +12,7 @@ const SocialLogin = () => {
   const fetchLogin = useCallback(async () => {
     const userProfileResponse = await socialLogin(code);
     if (userProfileResponse) {
-      routeTo("/page-a");
+      routeTo("/onboarding");
     } else {
       routeTo("/login");
     }

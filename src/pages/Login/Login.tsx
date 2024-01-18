@@ -32,7 +32,7 @@ const Login = () => {
 
   useEffect(() => {
     if (getAccessTokenFromLocalStorage()) {
-      routeTo("/page-a");
+      routeTo("/onboarding");
     }
   }, []);
 
