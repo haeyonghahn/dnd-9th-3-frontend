@@ -4,19 +4,19 @@ import { Svg } from "./Icon.styled";
 interface IIconProps {
   icon: string;
   block?: string;
-  minX: string;
-  minY: string;
-  viewBoxWidth: string;
-  viewBoxHeight: string;
+  minX?: string;
+  minY?: string;
+  viewBoxWidth?: string;
+  viewBoxHeight?: string;
 }
 
 const Icon = ({
   icon,
   block,
-  minX,
-  minY,
-  viewBoxWidth,
-  viewBoxHeight,
+  minX = "0",
+  minY = "0",
+  viewBoxWidth = "24",
+  viewBoxHeight = "24",
   ...props
 }: IIconProps) => {
   return (

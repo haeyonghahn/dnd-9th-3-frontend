@@ -1,15 +1,20 @@
 import { ImageBoxWrapper } from "./ImageBox.styled";
 import Icon from "@/foundations/Icon";
 
-interface IImageBoxProps {
-  icon: string;
-  theme: string;
-  size: string;
-}
+const ImageBox = ({ icon, 
+  theme, 
+  size = "large", 
+  minX, 
+  minY, 
+  viewBoxWidth, 
+  viewBoxHeight }: ImageBoxElement) => {
 
-const ImageBox = ({ icon, theme, size }: IImageBoxProps) => {
   let imageContent = (
-    <Icon icon={icon} minX="0" minY="0" viewBoxWidth="48" viewBoxHeight="48" />
+    <Icon icon={icon} 
+      minX={minX} 
+      minY={minY} 
+      viewBoxWidth={viewBoxWidth} 
+      viewBoxHeight={viewBoxHeight} />
   );
   return (
     <>

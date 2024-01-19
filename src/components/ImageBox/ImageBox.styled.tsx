@@ -11,7 +11,7 @@ interface IImageBoxProps {
 }
 
 const bgColor: IImageBoxWrapperProps = {
-  dark: colors.black,
+  dark: colors.gray850,
   light: colors.gray50,
 };
 
@@ -33,7 +33,7 @@ const borderRadius: IImageBoxWrapperProps = {
   small: "8px",
 };
 
-export const ImageBoxWrapper = styled.figure<IImageBoxProps>`
+export const ImageBoxWrapper = styled.div<IImageBoxProps>`
   display: flex;
   width: ${(props) => imageWidth[props.size]};
   height: ${(props) => imageHeight[props.size]};
