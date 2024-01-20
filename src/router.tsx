@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Router as RemixRouter } from "@remix-run/router/dist/router";
-import { Home, Login, Onboarding, PageB, PageC } from "./pages";
+import { Home, Login, Onboarding, PageC, Welcome } from "./pages";
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/LayoutProps";
@@ -33,14 +33,14 @@ const routerData: RouterElement[] = [
     path: "/onboarding",
     label: "온보딩",
     element: <Onboarding />,
-    withAuth: true,
+    withAuth: false,
   },
   {
     id: 4,
-    path: "/page-b",
-    label: "페이지 B",
-    element: <PageB />,
-    withAuth: true,
+    path: "/welcome",
+    label: "환영",
+    element: <Welcome />,
+    withAuth: false,
   },
   {
     id: 5,
@@ -65,7 +65,6 @@ export const SidebarContent: SidebarElement[] = routerData.reduce(
   (prev, router) => {
     // 인증이 필요한 페이지만 사이드바에 표시하기
     if (!router.withAuth) return prev;
-
     return [
       ...prev,
       {

@@ -1,5 +1,4 @@
 import { RouterProvider } from "react-router-dom";
-import "./App.css";
 import { routers } from "./router";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { useRecoilValue } from "recoil";
@@ -26,9 +25,19 @@ const GlobalStyle = createGlobalStyle`
   }
   .non-logged-in-body {
     margin: 0 auto;
-    width: 480px;
+    width: 800px;
     padding: 150px 20px;
   }
+  .general-layout {
+  height: 100vh;
+  display: flex;
+}
+
+.general-layout__body {
+  margin: 0 auto;
+  width: 800px;
+  padding: 80px 20px;
+}
 `;
 
 function App() {
