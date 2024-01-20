@@ -12,7 +12,14 @@ export const AllTypes = () => (
     <List>
       {Object.keys(icons).map((key) => (
         <Item key={key}>
-          <Icon icon={key} minX="0" minY="0" viewBoxHeight="24" viewBoxWidth="24" aria-hidden />
+          <Icon
+            icon={key}
+            minX="0"
+            minY="0"
+            viewBoxHeight="24"
+            viewBoxWidth="24"
+            aria-hidden
+          />
           <Meta>{key}</Meta>
         </Item>
       ))}

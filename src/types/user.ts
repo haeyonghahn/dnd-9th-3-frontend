@@ -1,5 +1,12 @@
 export interface User {
-  id: string;
+  id?: string;
   name: string;
-  oauthId: string;
+  password?: string;
+  emailSet?: string[];
+  interestSet?: InterestElement[];
+}
+
+export interface InterestElement {
+  interestCode: string;
+  interestName: string;
 }

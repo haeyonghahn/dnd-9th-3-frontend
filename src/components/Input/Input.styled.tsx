@@ -113,6 +113,7 @@ export const MessageBox = styled.div`
   align-items: center;
   flex-direction: row;
   gap: 6px;
+  height: 30px;
 `;
 
 export const Message = styled.div<IMessageProps>`

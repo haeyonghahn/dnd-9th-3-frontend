@@ -21,6 +21,7 @@ interface IInputProps {
   icondirection?: IconDirection;
   number?: number;
   theme?: string;
+  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = forwardRef(
@@ -34,6 +35,7 @@ const Input = forwardRef(
       icondirection,
       number,
       theme,
+      handleChange,
     }: IInputProps,
     inputRef: React.ForwardedRef<HTMLInputElement>
   ) => {
@@ -46,10 +48,15 @@ const Input = forwardRef(
             placeholder={placeholder}
             type={number ? "number" : "text"}
             ref={inputRef}
+            onChange={(event) => handleChange(event)}
           ></InputText>
         </InputBox>
         <MessageBox>
-          {status === "error" ? <Icon icon="warning" /> : null}
+          {status === "error" ? (
+            <Icon icon="warning" />
+          ) : (
+            <Message status={status}></Message>
+          )}
           <Message status={status}>{message}</Message>
         </MessageBox>
       </Layout>

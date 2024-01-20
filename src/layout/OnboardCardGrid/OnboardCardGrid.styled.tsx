@@ -4,6 +4,7 @@ export const Layout = styled.section`
   display: grid;
   width: 100%;
   max-width: 940px;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
+  justify-items: center;
 `;

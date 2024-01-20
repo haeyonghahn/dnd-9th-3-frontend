@@ -32,7 +32,7 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
   useEffect(() => {
     console.log("page changed!");
     fetchUserProfile();
-  }, [children]);
+  }, []);
 
   if (!userProfile) return <Spinner />;
 

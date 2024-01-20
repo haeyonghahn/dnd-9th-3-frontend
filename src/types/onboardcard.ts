@@ -1,4 +1,5 @@
-interface CardElement {
+interface OnbardCardElement {
+  interestCode: string;
   icon: string;
   theme: string;
   size?: string;

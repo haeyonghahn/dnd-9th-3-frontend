@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { fontSize, fontWeight } from "@/_shared/typography";
 import { colors } from "@/_shared/colors";
 
@@ -8,6 +8,7 @@ interface CardProps {
 
 interface IILayoutProps {
   theme: string;
+  disabled?: boolean;
 }
 
 interface ITitleProps {
@@ -24,6 +25,11 @@ const textColor: CardProps = {
   light: colors.black,
 };
 
+const hoverColor: CardProps = {
+  dark: colors.gray900,
+  light: colors.gray50,
+};
+
 export const Layout = styled.div<IILayoutProps>`
   position: relative;
   width: fit-content;
@@ -33,6 +39,29 @@ export const Layout = styled.div<IILayoutProps>`
   background: ${(props) => bgColor[props.theme]};
   border-radius: 8px;
   display: flex;
+  user-select: none;
+  cursor: pointer;
+  height: 100px;
+  justify-content: center;
+  ${(props) =>
+    props.disabled
+      ? css`
+          cursor: not-allowed;
+        `
+      : css`
+          &:hover {
+            outline: ${colors.green50} solid 1px;
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.25),
+                rgba(0, 0, 0, 0.25)
+              ),
+              ${hoverColor[props.theme]};
+          }
+        `};
+  &.selected {
+    outline: ${colors.green50} solid 1px;
+  }
 `;
 
 export const Title = styled.div<ITitleProps>`
@@ -41,5 +70,5 @@ export const Title = styled.div<ITitleProps>`
   font-weight: ${fontWeight.semiBold};
   font-size: ${fontSize.h1};
   color: ${(props) => textColor[props.theme]};
-  margin-bottom: 20px;
+  margin-top: 5px;
 `;
