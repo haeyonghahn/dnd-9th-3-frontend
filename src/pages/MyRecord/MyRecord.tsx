@@ -1,10 +1,11 @@
-import { userAtom } from "@/atoms/user";
+import { interestAtom, userAtom } from "@/atoms/user";
 import { User } from "@/types/user";
 import { useRecoilValue } from "recoil";
 
 const MyRecord = () => {
   const userProfile = useRecoilValue<User | null>(userAtom);
-  console.log(userProfile);
+  const interestSet = useRecoilValue(interestAtom);
+  console.log(userProfile, interestSet);
   return (
     <div>
       <h1>Page C</h1>

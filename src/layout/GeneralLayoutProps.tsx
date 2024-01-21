@@ -1,12 +1,12 @@
 import { getCurrentUserInfoWithToken } from "@/api/login";
-import { userAtom } from "@/atoms/user";
+import { interestAtom, userAtom } from "@/atoms/user";
 import Sidebar from "@/layout";
 import Spinner from "@/components/Spinner";
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarContent } from "@/router";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import { useCallback, useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 interface GeneralLayoutProps {
   children: React.ReactNode;
@@ -18,6 +18,7 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   withSidebar,
 }) => {
   const [userProfile, setUserProfile] = useRecoilState(userAtom);
+  const setInterests = useSetRecoilState(interestAtom);
   const { routeTo } = useRouter();
 
   const fetchUserProfile = useCallback(async () => {
@@ -31,6 +32,9 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
     }
 
     setUserProfile(userProfileResponse);
+    if (userProfileResponse.interestSet) {
+      setInterests(userProfileResponse.interestSet);
+    }
   }, []);
 
   useEffect(() => {
