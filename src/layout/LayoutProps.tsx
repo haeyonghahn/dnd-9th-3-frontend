@@ -9,7 +9,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       {children.withAuth ? (
-        <GeneralLayout>{children.element}</GeneralLayout>
+        <GeneralLayout withSidebar={children.withSidebar}>
+          {children.element}
+        </GeneralLayout>
       ) : (
         children.element
       )}

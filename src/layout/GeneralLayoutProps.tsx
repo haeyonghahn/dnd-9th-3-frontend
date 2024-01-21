@@ -10,9 +10,13 @@ import { useRecoilState } from "recoil";
 
 interface GeneralLayoutProps {
   children: React.ReactNode;
+  withSidebar?: boolean;
 }
 
-const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
+const GeneralLayout: React.FC<GeneralLayoutProps> = ({
+  children,
+  withSidebar,
+}) => {
   const [userProfile, setUserProfile] = useRecoilState(userAtom);
   const { routeTo } = useRouter();
 
@@ -34,11 +38,13 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({ children }) => {
     fetchUserProfile();
   }, []);
 
-  if (!userProfile) return <Spinner />;
+  if (!userProfile?.id) return <Spinner />;
 
   return (
     <div className="general-layout">
-      <Sidebar sidebarContent={SidebarContent} userProfile={userProfile} />
+      {withSidebar ? (
+        <Sidebar sidebarContent={SidebarContent} userProfile={userProfile} />
+      ) : null}
       <div className="general-layout__body">{children}</div>
     </div>
   );

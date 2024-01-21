@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Router as RemixRouter } from "@remix-run/router/dist/router";
-import { Home, Login, Onboarding, PageC, Welcome } from "./pages";
+import { Home, Login, MyRecord, Onboarding, Welcome } from "./pages";
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/LayoutProps";
@@ -13,6 +13,7 @@ const routerData: RouterElement[] = [
     label: "Home",
     element: <Home />,
     withAuth: false,
+    withSidebar: false,
   },
   {
     id: 1,
@@ -20,6 +21,7 @@ const routerData: RouterElement[] = [
     label: "로그인",
     element: <Login />,
     withAuth: false,
+    withSidebar: false,
   },
   {
     id: 2,
@@ -27,27 +29,31 @@ const routerData: RouterElement[] = [
     label: "소셜로그인",
     element: <SocialLogin />,
     withAuth: false,
+    withSidebar: false,
   },
   {
     id: 3,
     path: "/onboarding",
     label: "온보딩",
     element: <Onboarding />,
-    withAuth: false,
+    withAuth: true,
+    withSidebar: false,
   },
   {
     id: 4,
     path: "/welcome",
     label: "환영",
     element: <Welcome />,
-    withAuth: false,
+    withAuth: true,
+    withSidebar: false,
   },
   {
     id: 5,
-    path: "/page-c",
-    label: "페이지 C",
-    element: <PageC />,
+    path: "/my/record",
+    label: "나의 굳잉",
+    element: <MyRecord />,
     withAuth: true,
+    withSidebar: true,
   },
 ];
 
@@ -71,6 +77,7 @@ export const SidebarContent: SidebarElement[] = routerData.reduce(
         id: router.id,
         path: router.path,
         label: router.label,
+        withSidebar: router.withSidebar,
       },
     ];
   },

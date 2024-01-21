@@ -26,15 +26,19 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarContent, userProfile }) => {
       <SideBarTitle>Gooding</SideBarTitle>
       <ul>
         {sidebarContent.map((element) => {
-          return (
-            <SideBarMenu
-              key={element.path}
-              className={currentPath === element.path ? "selected" : ""}
-              onClick={() => sidebarMenuClickHandler(element.path)}
-            >
-              <Typography text={element.label} type="h3" />
-            </SideBarMenu>
-          );
+          if (element.withSidebar) {
+            return (
+              <SideBarMenu
+                key={element.path}
+                className={currentPath === element.path ? "selected" : ""}
+                onClick={() => sidebarMenuClickHandler(element.path)}
+              >
+                <Typography text={element.label} type="h3" />
+              </SideBarMenu>
+            );
+          } else {
+            return null;
+          }
         })}
       </ul>
       <div>

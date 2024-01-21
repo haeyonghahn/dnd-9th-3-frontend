@@ -46,6 +46,14 @@ const Onboarding = () => {
         userProfile.name?.length < 15 &&
         interests.length >= 3
       ) {
+        const newUserProfile = userProfile;
+        setUserProfile({
+          id: newUserProfile?.id,
+          name: newUserProfile.name,
+          password: newUserProfile?.password,
+          emailSet: newUserProfile?.emailSet,
+          interestSet: interests,
+        });
         routeTo("/welcome");
       }
     }
