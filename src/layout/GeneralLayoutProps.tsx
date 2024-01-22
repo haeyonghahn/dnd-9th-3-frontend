@@ -32,8 +32,8 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
     }
 
     setUserProfile(userProfileResponse);
-    if (userProfileResponse.interestSet) {
-      setInterests(userProfileResponse.interestSet);
+    if (userProfileResponse.interests) {
+      setInterests(userProfileResponse.interests);
     }
   }, []);
 

@@ -26,7 +26,7 @@ const Welcome = () => {
   };
   const fetchUpdateMember = useCallback(async () => {
     if (userProfile) {
-      updateMember(getAccessTokenFromLocalStorage(), userProfile);
+      await updateMember(getAccessTokenFromLocalStorage(), userProfile);
       routeTo("/my/record");
     }
   }, []);
@@ -37,8 +37,8 @@ const Welcome = () => {
   useEffect(() => {
     if (
       !userProfile?.name ||
-      !userProfile?.interestSet ||
-      userProfile?.interestSet.length < 3
+      !userProfile?.interests ||
+      userProfile?.interests.length < 3
     ) {
       routeTo("/onboarding");
     }
@@ -46,8 +46,8 @@ const Welcome = () => {
   return (
     <>
       {!userProfile?.name ||
-      !userProfile?.interestSet ||
-      userProfile?.interestSet.length < 3 ? (
+      !userProfile?.interests ||
+      userProfile?.interests.length < 3 ? (
         <Spinner />
       ) : (
         <div className="non-logged-in-body">

@@ -35,8 +35,8 @@ const Onboarding = () => {
       id: newUserProfile?.id,
       name: value,
       password: newUserProfile?.password,
-      emailSet: newUserProfile?.emailSet,
-      interestSet: interests,
+      emails: newUserProfile?.emails,
+      interests: interests,
     });
   };
   const handleClick = () => {
@@ -51,8 +51,8 @@ const Onboarding = () => {
           id: newUserProfile?.id,
           name: newUserProfile.name,
           password: newUserProfile?.password,
-          emailSet: newUserProfile?.emailSet,
-          interestSet: interests,
+          emails: newUserProfile?.emails,
+          interests: interests,
         });
         routeTo("/welcome");
       }

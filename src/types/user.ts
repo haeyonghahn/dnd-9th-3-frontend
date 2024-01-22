@@ -2,8 +2,8 @@ export interface User {
   id?: string;
   name: string;
   password?: string;
-  emailSet?: string[];
-  interestSet?: InterestElement[];
+  emails?: string[];
+  interests?: InterestElement[];
 }
 
 export interface InterestElement {

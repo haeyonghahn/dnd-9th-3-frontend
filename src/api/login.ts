@@ -71,7 +71,7 @@ export const updateMember = async (
   token: string,
   memberRequest: User
 ): Promise<void> => {
-  const memberRes = await fetch(`${BASE_URL}/api/v1/member`, {
+  const memberRes = await fetch(`${BASE_URL}/api/v1/my/member`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -79,10 +79,8 @@ export const updateMember = async (
     },
     body: JSON.stringify(memberRequest),
   })
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(json);
-    })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
   console.log(memberRes);
 };
