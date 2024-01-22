@@ -7,8 +7,8 @@ export const userAtom = atom<User | null>({
     id: "",
     name: "",
     password: "",
-    emailSet: [],
-    interestSet: [],
+    emails: [],
+    interests: [],
   },
 });
 
