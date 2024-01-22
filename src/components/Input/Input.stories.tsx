@@ -17,6 +17,7 @@ export const AllTypes = () => (
           status="default"
           placeholder="닉네임 입력 (15자 이내)"
           theme="dark"
+          handleChange={() => console.log("handleChange")}
         />
         <Input
           status="default"
@@ -24,6 +25,7 @@ export const AllTypes = () => (
           theme="dark"
           placeholder="닉네임 입력 (15자 이내)"
           message="This is a hint text to help user."
+          handleChange={() => console.log("handleChange")}
         />
         <Input
           status="error"
@@ -31,6 +33,7 @@ export const AllTypes = () => (
           theme="dark"
           placeholder="닉네임 입력 (15자 이내)"
           message="This is error message."
+          handleChange={() => console.log("handleChange")}
         />
         <Input
           status="default"
@@ -39,6 +42,7 @@ export const AllTypes = () => (
           placeholder="이메일"
           message="가입한 이메일 주소를 입력해주세요."
           icon="email"
+          handleChange={() => console.log("handleChange")}
         />
         <Input
           status="error"
@@ -47,24 +51,31 @@ export const AllTypes = () => (
           icon="isDarkCancel"
           icondirection="right"
           message="15자 이내로 입력해주세요."
+          handleChange={() => console.log("handleChange")}
         />
       </TypeBox>
     </Background>
     <Background theme="white">
       <TypeBox>
         <Typography type="h3" text="Default" />
-        <Input status="default" placeholder="닉네임 입력 (15자 이내)" />
+        <Input
+          status="default"
+          placeholder="닉네임 입력 (15자 이내)"
+          handleChange={() => console.log("handleChange")}
+        />
         <Input
           status="default"
           placeholder="닉네임 입력 (15자 이내)"
           title="라벨"
           message="This is a hint text to help user."
+          handleChange={() => console.log("handleChange")}
         />
         <Input
           status="error"
           placeholder="닉네임 입력 (15자 이내)"
           title="닉네임"
           message="This is error message."
+          handleChange={() => console.log("handleChange")}
         />
         <Input
           status="default"
@@ -73,6 +84,7 @@ export const AllTypes = () => (
           placeholder="이메일"
           message="가입한 이메일 주소를 입력해주세요."
           icon="email"
+          handleChange={() => console.log("handleChange")}
         />
         <Input
           status="error"
@@ -81,6 +93,7 @@ export const AllTypes = () => (
           icon="isWhiteCancel"
           icondirection="right"
           message="15자 이내로 입력해주세요."
+          handleChange={() => console.log("handleChange")}
         />
       </TypeBox>
     </Background>

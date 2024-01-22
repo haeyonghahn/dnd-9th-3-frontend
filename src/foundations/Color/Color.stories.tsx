@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { colors } from "@/_shared/colors";
-import { fontSize } from "@/_shared/typography";
 
 export default {
   title: "Foundations/Color",
