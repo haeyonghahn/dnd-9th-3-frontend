@@ -4,6 +4,8 @@ export interface User {
   password?: string;
   emails?: string[];
   interests?: InterestElement[];
+  oAuthId?: string;
+  imageUrl?: string;
 }
 
 export interface InterestElement {

@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
   }
   .non-logged-in-body {
     margin: 0 auto;
-    width: 800px;
+    width: 60%;
     padding: 150px 20px;
   }
   .general-layout {
