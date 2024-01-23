@@ -22,14 +22,14 @@ export const AllTypes = () => (
       <AvatarBox>
         <Typography text="Images" type="h3" />
         <TypeBox>
-          <Avatar size="large" theme="dark" src="public\images\default.svg" />
-          <Avatar size="medium" theme="dark" src="public\images\default.svg" />
-          <Avatar size="small" theme="dark" src="public\images\default.svg" />
+          <Avatar size="large" theme="dark" src="/images/default.svg" />
+          <Avatar size="medium" theme="dark" src="/images/default.svg" />
+          <Avatar size="small" theme="dark" src="/images/default.svg" />
         </TypeBox>
         <TypeBox>
-          <Avatar size="large" theme="dark" src="public\images\puppy.jpg" />
-          <Avatar size="medium" theme="dark" src="public\images\puppy.jpg" />
-          <Avatar size="small" theme="dark" src="public\images\puppy.jpg" />
+          <Avatar size="large" theme="dark" src="/images/puppy.jpg" />
+          <Avatar size="medium" theme="dark" src="/images/puppy.jpg" />
+          <Avatar size="small" theme="dark" src="/images/puppy.jpg" />
         </TypeBox>
       </AvatarBox>
       <AvatarBox>
@@ -61,14 +61,14 @@ export const AllTypes = () => (
       <AvatarBox>
         <Typography text="Images" type="h3" />
         <TypeBox>
-          <Avatar size="large" theme="light" src="public\images\default.svg" />
-          <Avatar size="medium" theme="light" src="public\images\default.svg" />
-          <Avatar size="small" theme="light" src="public\images\default.svg" />
+          <Avatar size="large" theme="light" src="/images/default.svg" />
+          <Avatar size="medium" theme="light" src="/images/default.svg" />
+          <Avatar size="small" theme="light" src="/images/default.svg" />
         </TypeBox>
         <TypeBox>
-          <Avatar size="large" theme="light" src="public\images\puppy.jpg" />
-          <Avatar size="medium" theme="light" src="public\images\puppy.jpg" />
-          <Avatar size="small" theme="light" src="public\images\puppy.jpg" />
+          <Avatar size="large" theme="light" src="/images/puppy.jpg" />
+          <Avatar size="medium" theme="light" src="/images/puppy.jpg" />
+          <Avatar size="small" theme="light" src="/images/puppy.jpg" />
         </TypeBox>
       </AvatarBox>
       <AvatarBox>
