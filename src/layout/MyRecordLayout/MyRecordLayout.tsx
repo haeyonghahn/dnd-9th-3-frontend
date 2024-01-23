@@ -1,9 +1,11 @@
-const MyRecordLayout = ({}) => {
+import RecordCard from "@/components/RecordCard/RecordCard";
+
+const MyRecordLayout = () => {
   return (
-    <div className="feed-layout">
-      <h1>qweqwe</h1>
-    </div>
-  )
-}
+    <>
+      <RecordCard />
+    </>
+  );
+};
 
 export default MyRecordLayout;

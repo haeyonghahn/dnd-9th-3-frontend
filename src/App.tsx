@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
   .general-layout__body {
     margin: 0 auto;
     width: 800px;
-    padding: 20px 20px 0px 20px;
+    padding: 80px 20px;
   }
 `;
 
