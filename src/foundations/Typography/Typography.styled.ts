@@ -1,8 +1,14 @@
 import { fontSize, fontWeight } from "@/_shared/typography";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface ITextProps {
   [key: string]: string;
+}
+
+interface IText {
+  type: string;
+  textover?: string;
+  textoverwidth?: string;
 }
 
 const textSize: ITextProps = {
@@ -28,7 +34,13 @@ const textWeight: ITextProps = {
   caption3: fontWeight.semiBold,
 };
 
-export const Text = styled.div<{ type: string }>`
+export const Text = styled.div<IText>`
   font-weight: ${(props) => textWeight[props.type]};
   font-size: ${(props) => textSize[props.type]};
+  ${(props) => props.textover === "true" ? css`
+    width: ${props.textoverwidth};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  ` : ""}
 `;

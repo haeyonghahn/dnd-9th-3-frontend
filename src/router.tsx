@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Router as RemixRouter } from "@remix-run/router/dist/router";
-import { Home, Login, MyRecord, Onboarding, Welcome } from "./pages";
+import { Home, Login, Onboarding, Welcome } from "./pages";
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/LayoutProps";
@@ -47,14 +47,14 @@ const routerData: RouterElement[] = [
     withAuth: true,
     withSidebar: false,
   },
-  {
-    id: 5,
-    path: "/my/record",
-    label: "나의 굳잉",
-    element: <MyRecord />,
-    withAuth: true,
-    withSidebar: true,
-  },
+  // {
+  //   id: 5,
+  //   path: "/my/record",
+  //   label: "나의 굳잉",
+  //   element: <MyRecord />,
+  //   withAuth: true,
+  //   withSidebar: true,
+  // },
 ];
 
 export const routers: RemixRouter = createBrowserRouter(

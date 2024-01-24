@@ -20,6 +20,8 @@ export const AllTypes = () => (
       <br />
       <Button width="200px" text="취소" cancel="true" />
       <br />
+      <Button width="200px" text="삭제" theme="dark" none="true"/>
+      <br />
     </Background>
     <Background theme="white">
       <Typography text="Secondary Brand Color" type="h0" />
@@ -31,6 +33,8 @@ export const AllTypes = () => (
       <Button width="200px" isloading="true" theme="white" />
       <br />
       <Button width="200px" text="취소" cancel="true" />
+      <br />
+      <Button width="200px" text="삭제" theme="light" none="true"/>
       <br />
     </Background>
   </>
