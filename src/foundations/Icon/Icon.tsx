@@ -6,6 +6,8 @@ interface IIconProps {
   block?: string;
   minX?: string;
   minY?: string;
+  width?: string;
+  height?: string;
   viewBoxWidth?: string;
   viewBoxHeight?: string;
 }
@@ -15,6 +17,8 @@ const Icon = ({
   block,
   minX = "0",
   minY = "0",
+  width = "24",
+  height = "24",
   viewBoxWidth = "24",
   viewBoxHeight = "24",
   ...props
@@ -22,8 +26,8 @@ const Icon = ({
   return (
     <Svg
       viewBox={`${minX} ${minY} ${viewBoxWidth} ${viewBoxHeight}`}
-      width="24"
-      height="24"
+      width={width}
+      height={height}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       block={block}

@@ -8,6 +8,7 @@ interface IButtonProps {
   cancel?: string;
   onClick?: () => void;
   text?: string;
+  none?: string;
 }
 
 const Button = ({
@@ -18,6 +19,7 @@ const Button = ({
   cancel,
   onClick,
   text,
+  none
 }: IButtonProps): React.JSX.Element => {
   return (
     <Layout
@@ -27,6 +29,7 @@ const Button = ({
       theme={theme}
       cancel={cancel}
       onClick={onClick}
+      none={none}
     >
       {text}
     </Layout>

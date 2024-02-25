@@ -48,4 +48,5 @@ const List = styled.ul`
   display: flex;
   flex-flow: row wrap;
   list-style: none;
+  gap: 15px;
 `;

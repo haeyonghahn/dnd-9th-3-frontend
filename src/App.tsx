@@ -29,15 +29,15 @@ const GlobalStyle = createGlobalStyle`
     padding: 150px 20px;
   }
   .general-layout {
-  height: 100vh;
-  display: flex;
-}
+    height: 100vh;
+    display: flex;
+  }
 
-.general-layout__body {
-  margin: 0 auto;
-  width: 800px;
-  padding: 80px 20px;
-}
+  .general-layout__body {
+    margin: 0 auto;
+    width: 800px;
+    padding: 80px 20px;
+  }
 `;
 
 function App() {
