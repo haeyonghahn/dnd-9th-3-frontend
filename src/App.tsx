@@ -26,17 +26,42 @@ const GlobalStyle = createGlobalStyle`
   .non-logged-in-body {
     margin: 0 auto;
     width: 60%;
-    padding: 150px 20px;
+    padding: 40px 20px;
   }
   .general-layout {
     height: 100vh;
     display: flex;
+    align-items: center;
   }
 
   .general-layout__body {
     margin: 0 auto;
     width: 800px;
-    padding: 80px 20px;
+  }
+
+  @media (min-width: 500px) {
+    body {
+      background-color: #f0f0f0;
+    }
+
+    .non-logged-in-body {
+      margin: 0 auto;
+      width: 60%;
+      height: 100vh;
+      padding: 150px 20px;
+      background-color: ${(props) => props.theme.bgColor};
+    }
+
+    .general-layout {
+      margin: 0 auto;
+      width: 60%;
+      height: 100vh;
+      background-color: ${(props) => props.theme.bgColor};
+    }
+
+    .general-layout__body {
+      background-color: ${(props) => props.theme.bgColor};
+    }
   }
 `;
 

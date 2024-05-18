@@ -52,7 +52,7 @@ const routerData: RouterElement[] = [
     path: "/my/record",
     label: "나의 굳잉",
     element: <MyRecord />,
-    withAuth: true,
+    withAuth: false,
     withSidebar: true,
   },
 ];

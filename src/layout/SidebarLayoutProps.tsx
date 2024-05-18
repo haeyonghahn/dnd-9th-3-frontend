@@ -13,7 +13,7 @@ interface GeneralLayoutProps {
   withSidebar?: boolean;
 }
 
-const GeneralLayout: React.FC<GeneralLayoutProps> = ({
+const SidebarLayout: React.FC<GeneralLayoutProps> = ({
   children,
   withSidebar,
 }) => {
@@ -55,11 +55,14 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   return (
     <div className="general-layout">
       {withSidebar ? (
-        <Sidebar sidebarContent={SidebarContent} userProfile={userProfile} />
+        <Sidebar
+          children={children}
+          sidebarContent={SidebarContent}
+          userProfile={userProfile}
+        />
       ) : null}
-      <div className="general-layout__body">{children}</div>
     </div>
   );
 };
 
-export default GeneralLayout;
+export default SidebarLayout;
