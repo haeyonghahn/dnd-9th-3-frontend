@@ -5,6 +5,10 @@ interface ITextProps {
   [key: string]: string;
 }
 
+interface ITextWeightProps {
+  [key: string]: number;
+}
+
 const textSize: ITextProps = {
   h0: fontSize.h0,
   h1: fontSize.h1,
@@ -15,7 +19,7 @@ const textSize: ITextProps = {
   body2: fontSize.body2,
 };
 
-const textWeight: ITextProps = {
+const textWeight: ITextWeightProps = {
   h0: fontWeight.semiBold,
   h1: fontWeight.semiBold,
   h2: fontWeight.semiBold,

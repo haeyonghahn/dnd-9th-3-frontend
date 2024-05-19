@@ -3,7 +3,8 @@ import { Router as RemixRouter } from "@remix-run/router/dist/router";
 import { Home, Login, MyRecord, Onboarding, Welcome } from "./pages";
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
-import Layout from "./layout/LayoutProps";
+import Layout from "./layout/Layout";
+import { sidebar } from "./_shared/icons";
 
 const routerData: RouterElement[] = [
   // 로그인 페이지 라우터 등록하기 ('login', withAuth: false)
@@ -49,10 +50,29 @@ const routerData: RouterElement[] = [
   },
   {
     id: 5,
+    path: "/feed",
+    label: "피드",
+    image: <sidebar.feed />,
+    element: <></>,
+    withAuth: true,
+    withSidebar: true,
+  },
+  {
+    id: 6,
+    path: "/record",
+    label: "기록",
+    image: <sidebar.record />,
+    element: <></>,
+    withAuth: true,
+    withSidebar: true,
+  },
+  {
+    id: 7,
     path: "/my/record",
     label: "나의 굳잉",
+    image: <sidebar.mygooding />,
     element: <MyRecord />,
-    withAuth: false,
+    withAuth: true,
     withSidebar: true,
   },
 ];
@@ -77,6 +97,7 @@ export const SidebarContent: SidebarElement[] = routerData.reduce(
         id: router.id,
         path: router.path,
         label: router.label,
+        image: router.image,
         withSidebar: router.withSidebar,
       },
     ];

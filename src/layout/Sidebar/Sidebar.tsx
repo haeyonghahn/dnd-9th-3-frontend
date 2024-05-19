@@ -8,6 +8,8 @@ import {
   SideBarContent,
 } from "./Sidebar.styled";
 import Typography from "@/foundations/Typography/Typography";
+import styled from "styled-components";
+import React from "react";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -15,11 +17,13 @@ interface SidebarProps {
   userProfile: User | null;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
-  children,
-  sidebarContent,
-  userProfile,
-}) => {
+const SideBarList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {
   const { currentPath, routeTo } = useRouter();
 
   const sidebarMenuClickHandler = (path: string) => {
@@ -27,30 +31,31 @@ const Sidebar: React.FC<SidebarProps> = ({
   };
 
   return (
-    <SideBar>
-      <SideBarContent>
-        <div>{children}</div>
-      </SideBarContent>
-      <SideBarFooter>
-        <ul>
-          {sidebarContent.map((element) => {
-            if (element.withSidebar) {
-              return (
-                <SideBarMenu
-                  key={element.path}
-                  className={currentPath === element.path ? "selected" : ""}
-                  onClick={() => sidebarMenuClickHandler(element.path)}
-                >
-                  <Typography text={element.label} type="h3" />
-                </SideBarMenu>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </ul>
-      </SideBarFooter>
-    </SideBar>
+    <>
+      <SideBar>
+        <SideBarContent>{children}</SideBarContent>
+        <SideBarFooter>
+          <SideBarList>
+            {sidebarContent.map((element) => {
+              if (element.withSidebar) {
+                return (
+                  <SideBarMenu
+                    key={element.path}
+                    className={currentPath === element.path ? "selected" : ""}
+                    onClick={() => sidebarMenuClickHandler(element.path)}
+                  >
+                    {element.image}
+                    <Typography text={element.label} type="cpation3" />
+                  </SideBarMenu>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </SideBarList>
+        </SideBarFooter>
+      </SideBar>
+    </>
   );
 };
 

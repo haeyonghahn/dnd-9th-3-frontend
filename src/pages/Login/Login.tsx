@@ -1,4 +1,4 @@
-import { fontWeight } from "@/_shared/typography";
+import { fontSize, fontWeight } from "@/_shared/typography";
 import { social } from "@/_shared/icons";
 import IconSocial from "@/foundations/IconSocial/IconSocial";
 import styled from "styled-components";
@@ -16,13 +16,19 @@ const ButtonBox = styled.div`
   gap: 1rem;
 `;
 
+const LoginContent = styled.div`
+  padding-top: 60px;
+  height: 60%;
+`;
+
 const LoginTitle = styled.h1`
   text-align: center;
 `;
 
 const LoginDescription = styled.p`
   text-align: center;
-  font-weight: ${fontWeight.regular};
+  font-weight: ${fontWeight.semiBold};
+  font-size: ${fontSize.body1};
   color: #a4a6aa;
 `;
 
@@ -42,10 +48,12 @@ const Login = () => {
         <Spinner />
       ) : (
         <div className="non-logged-in-body">
-          <LoginTitle>Gooding</LoginTitle>
-          <LoginDescription>
-            로그인하고 나만의 굳이데이 기록을 남겨보세요!
-          </LoginDescription>
+          <LoginContent>
+            <LoginTitle>Gooding</LoginTitle>
+            <LoginDescription>
+              굳잉과 함께 나만의 굳이데이 기록을 남겨보세요!
+            </LoginDescription>
+          </LoginContent>
           <ButtonBox>
             <IconSocial icon={social.google} />
             <Link to={kakaoUrl}>

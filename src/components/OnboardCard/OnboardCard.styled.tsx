@@ -32,7 +32,7 @@ const hoverColor: CardProps = {
 
 export const Layout = styled.div<IILayoutProps>`
   position: relative;
-  width: fit-content;
+  width: 90%;
   text-align: center;
   flex-direction: column;
   align-items: center;
@@ -41,7 +41,6 @@ export const Layout = styled.div<IILayoutProps>`
   display: flex;
   user-select: none;
   cursor: pointer;
-  height: 100px;
   justify-content: center;
   ${(props) =>
     props.disabled
@@ -65,10 +64,9 @@ export const Layout = styled.div<IILayoutProps>`
 `;
 
 export const Title = styled.div<ITitleProps>`
-  min-width: 240px;
-  min-height: ${fontSize.h1};
+  width: 100%;
   font-weight: ${fontWeight.semiBold};
   font-size: ${fontSize.h1};
   color: ${(props) => textColor[props.theme]};
-  margin-top: 5px;
+  margin: 5px 10px 5px 10px;
 `;

@@ -1,6 +1,6 @@
 import loadings from "@/_shared/animations/loadings";
 import { colors } from "@/_shared/colors";
-import { fontSize } from "@/_shared/typography";
+import { fontSize, fontWeight } from "@/_shared/typography";
 import styled, { css } from "styled-components";
 
 interface ILayoutProps {
@@ -27,7 +27,7 @@ export const Layout = styled.button<ILayoutProps>`
   color: "#1C1D27";
   font-family: "Pretendard";
   font-style: normal;
-  font-weight: 700;
+  font-weight: ${fontWeight.bold};
   font-size: ${fontSize.h3};
   text-align: center;
   text-decoration: none;

@@ -13,7 +13,7 @@ interface GeneralLayoutProps {
   withSidebar?: boolean;
 }
 
-const SidebarLayout: React.FC<GeneralLayoutProps> = ({
+const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   children,
   withSidebar,
 }) => {
@@ -39,18 +39,18 @@ const SidebarLayout: React.FC<GeneralLayoutProps> = ({
 
   useEffect(() => {
     console.log("page changed!");
-    // fetchUserProfile();
+    fetchUserProfile();
   }, []);
 
-  // if (!userProfile?.id) {
-  //   return (
-  //     <div className="general-layout">
-  //       <div className="general-layout__body">
-  //         <Spinner />
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  if (!userProfile?.id) {
+    return (
+      <div className="general-layout">
+        <div className="general-layout__body">
+          <Spinner />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="general-layout">
@@ -60,9 +60,11 @@ const SidebarLayout: React.FC<GeneralLayoutProps> = ({
           sidebarContent={SidebarContent}
           userProfile={userProfile}
         />
-      ) : null}
+      ) : (
+        <div className="general-layout__body">{children}</div>
+      )}
     </div>
   );
 };
 
-export default SidebarLayout;
+export default GeneralLayout;

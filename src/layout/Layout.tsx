@@ -1,5 +1,4 @@
-import GeneralLayout from "./GeneralLayoutProps";
-import SidebarLayout from "./SidebarLayoutProps";
+import GeneralLayout from "./GeneralLayout";
 
 interface LayoutProps {
   children: RouterElement;
@@ -13,9 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           {children.element}
         </GeneralLayout>
       ) : (
-        <SidebarLayout withSidebar={children.withSidebar}>
-          {children.element}
-        </SidebarLayout>
+        children.element
       )}
       {/* <Switch /> */}
     </>

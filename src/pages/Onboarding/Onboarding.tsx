@@ -1,15 +1,33 @@
+import { fontSize, fontWeight } from "@/_shared/typography";
 import { isDarkAtom } from "@/atoms/theme";
 import { interestAtom, userAtom } from "@/atoms/user";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { useRouter } from "@/hooks/useRouter";
-import CardGrid from "@/layout/OnboardCardGrid/OnboardCardGrid";
+import OnboardCardGrid from "@/layout/OnboardCardGrid/OnboardCardGrid";
 import { InterestElement, User } from "@/types/user";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 
 type Status = "default" | "error" | "success";
+
+const OnboardingDescription = styled.div`
+  margin: 0px 10px;
+`;
+
+const OnboardingHeader = styled.p`
+  font-size: ${fontSize.h2};
+  font-weight: ${fontWeight.semiBold};
+`;
+
+const OnboardingCategory = styled.p`
+  font-size: ${fontSize.body1};
+`;
+
+const ButtonWarpper = styled.div`
+  margin: 0px 15px;
+`;
 
 const Onboarding = () => {
   const { routeTo } = useRouter();
@@ -60,21 +78,25 @@ const Onboarding = () => {
   };
   return (
     <>
-      <h3>
-        굳잉에서 사용할 닉네임과 관심있는 활동 카테고리를 <br></br>
-        선택해주세요.
-      </h3>
-      <p>관심있는 카테고리를 3가지 이상 선택해주세요.</p>
-      <Input
-        status={status}
-        message={errorMessage}
-        placeholder="닉네임 입력 (15자 이내)"
-        theme={theme}
-        handleChange={(event) => handleChange(event)}
-        value={userProfile?.name}
-      ></Input>
+      <OnboardingDescription>
+        <OnboardingHeader>
+          굳잉에서 사용할 닉네임과 <br></br> 관심있는 활동 카테고리를
+          선택해주세요.
+        </OnboardingHeader>
+        <OnboardingCategory>
+          관심있는 카테고리를 3가지 이상 선택해주세요.
+        </OnboardingCategory>
+        <Input
+          status={status}
+          message={errorMessage}
+          placeholder="닉네임 입력 (15자 이내)"
+          theme={theme}
+          handleChange={(event) => handleChange(event)}
+          value={userProfile?.name}
+        ></Input>
+      </OnboardingDescription>
       <CardGridWrapper>
-        <CardGrid
+        <OnboardCardGrid
           data={[
             {
               interestCode: "1",
@@ -133,18 +155,21 @@ const Onboarding = () => {
           ]}
         />
       </CardGridWrapper>
-      <Button
-        theme={isDark ? "dark" : "light"}
-        text="다음"
-        width="-webkit-fill-available"
-        onClick={() => handleClick()}
-      />
+      <ButtonWarpper>
+        <Button
+          theme={isDark ? "dark" : "light"}
+          text="다음"
+          width="-webkit-fill-available"
+          onClick={() => handleClick()}
+        />
+      </ButtonWarpper>
     </>
   );
 };
 
 const CardGridWrapper = styled.div`
-  margin-top: 5%;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-bottom: 5%;
 `;
 

@@ -53,7 +53,7 @@ export const getCurrentUserInfoWithToken = async (
 };
 
 export const socialLogin = async (code: string): Promise<LoginResult> => {
-  const loginRes = await fetch(`${BASE_URL}/api/v1/oauth/login/${code}`, {
+  const loginRes = await fetch(`${BASE_URL}/api/v1/oauth/login?code=${code}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -78,9 +78,8 @@ export const updateMember = async (
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(memberRequest),
-  })
-    .catch((err) => {
-      console.log(err);
-    });
+  }).catch((err) => {
+    console.log(err);
+  });
   console.log(memberRes);
 };
