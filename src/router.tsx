@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 import { Router as RemixRouter } from "@remix-run/router/dist/router";
 import { Home, Login, Onboarding, Welcome } from "./pages";
 import { SidebarElement } from "./types/sidebar";
@@ -6,6 +6,7 @@ import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/Layout";
 import { sidebar } from "./_shared/icons";
 import MyRecord from "./pages/MyRecord/MyRecord";
+import TimeLine from "./pages/TimeLine/TimeLine";
 
 const routerData: RouterElement[] = [
   // 로그인 페이지 라우터 등록하기 ('login', withAuth: false)
@@ -38,7 +39,7 @@ const routerData: RouterElement[] = [
     path: "/onboarding",
     label: "온보딩",
     element: <Onboarding />,
-    withAuth: false,
+    withAuth: true,
     withSidebar: false,
   },
   {
@@ -73,6 +74,15 @@ const routerData: RouterElement[] = [
     label: "나의 굳잉",
     image: <sidebar.mygooding />,
     element: <MyRecord />,
+    withAuth: true,
+    withSidebar: true,
+  },
+  {
+    id: 8,
+    path: "/my/record/timeline",
+    label: "타임라인",
+    image: <></>,
+    element: <TimeLine />,
     withAuth: true,
     withSidebar: true,
   },

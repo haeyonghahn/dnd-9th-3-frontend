@@ -6,4 +6,5 @@ interface RouterElement {
   element: React.ReactNode; // 페이지 엘리먼트
   withAuth?: boolean; // 인증이 필요한 페이지 여부
   withSidebar?: boolean; // 사이드바 필요한 페이지 여부
+  children?: RouterElement[];
 }

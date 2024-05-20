@@ -25,10 +25,10 @@ export const Layout = styled.button<ILayoutProps>`
   border: none;
   background: ${colors.green50};
 
-  color: "#1C1D27";
+  color: ${colors.black};
   font-family: "Pretendard";
   font-style: normal;
-  font-weight: ${fontWeight.bold};
+  font-weight: ${fontWeight.semiBold};
   font-size: ${fontSize.h3};
   text-align: center;
   text-decoration: none;
@@ -91,7 +91,9 @@ export const Layout = styled.button<ILayoutProps>`
     props.none === "true"
       ? css`
           border: 1px solid ${colors.gray200};
-          background-color: ${props.theme === "dark" ? colors.black : colors.green50};
+          background-color: ${props.theme === "dark"
+            ? colors.black
+            : colors.green50};
           color: ${colors.white};
           &:hover {
             background: linear-gradient(
