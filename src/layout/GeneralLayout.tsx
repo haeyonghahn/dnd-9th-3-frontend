@@ -1,12 +1,14 @@
-import { getCurrentUserInfoWithToken } from "@/api/login";
-import { interestAtom, userAtom } from "@/atoms/user";
+// import { getCurrentUserInfoWithToken } from "@/api/login";
+// import { interestAtom, userAtom } from "@/atoms/user";
 import Sidebar from "@/layout";
-import Spinner from "@/components/Spinner";
-import { useRouter } from "@/hooks/useRouter";
+// import Spinner from "@/components/Spinner";
+// import { useRouter } from "@/hooks/useRouter";
 import { SidebarContent } from "@/router";
-import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
-import { useCallback, useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
+// import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
+import { useEffect } from "react";
+import { userAtom } from "@/atoms/user";
+// import { useRecoilState, useSetRecoilState } from "recoil";
 
 interface GeneralLayoutProps {
   children: React.ReactNode;
