@@ -19,7 +19,7 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   children,
   withSidebar,
 }) => {
-  const [userProfile, setUserProfile] = useRecoilState(userAtom);
+  const [userProfile] = useRecoilState(userAtom);
   // const setInterests = useSetRecoilState(interestAtom);
   // const { routeTo } = useRouter();
 
