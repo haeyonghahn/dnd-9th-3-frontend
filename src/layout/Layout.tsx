@@ -12,7 +12,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           {children.element}
         </GeneralLayout>
       ) : (
-        children.element
+        <GeneralLayout withSidebar={children.withSidebar}>
+          {children.element}
+        </GeneralLayout>
       )}
       {/* <Switch /> */}
     </>
