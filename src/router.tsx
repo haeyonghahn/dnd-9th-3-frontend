@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Router as RemixRouter } from "@remix-run/router/dist/router";
-import { Home, Login, MyRecord, Onboarding, Welcome } from "./pages";
+import { Home, Login, Onboarding, Welcome } from "./pages";
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/Layout";
 import { sidebar } from "./_shared/icons";
+import MyRecord from "./pages/MyRecord/MyRecord";
 
 const routerData: RouterElement[] = [
   // 로그인 페이지 라우터 등록하기 ('login', withAuth: false)

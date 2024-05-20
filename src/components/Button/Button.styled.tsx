@@ -9,6 +9,7 @@ interface ILayoutProps {
   isloading?: string;
   cancel?: string;
   theme?: string;
+  none?: string;
 }
 
 export const Layout = styled.button<ILayoutProps>`
@@ -83,6 +84,22 @@ export const Layout = styled.button<ILayoutProps>`
               rgba(0, 0, 0, 0.25)
             );
             background-color: ${colors.gray500};
+          }
+        `
+      : null};
+  ${(props) =>
+    props.none === "true"
+      ? css`
+          border: 1px solid ${colors.gray200};
+          background-color: ${props.theme === "dark" ? colors.black : colors.green50};
+          color: ${colors.white};
+          &:hover {
+            background: linear-gradient(
+              0deg,
+              rgba(0, 0, 0, 0.25),
+              rgba(0, 0, 0, 0.25)
+            );
+            background-color: ${props.theme === "dark" ? "" : colors.green150};
           }
         `
       : null};
