@@ -4,8 +4,8 @@ import { rest } from "msw";
 
 export const handlers = [
   rest.get(`${BASE_URL}/api/v1/oauth/login`, (req, res, ctx) => {
-    const searchParams = req.url.searchParams;
-    const code = searchParams.get("code");
+    // const searchParams = req.url.searchParams;
+    // const code = searchParams.get("code");
     const oAuthResponseData =
       "eyJhbGciOiJIUzM4NCJ9.eyJpZCI6InlvdWcxMzIyQG5hdmVyLmNvbSIsImlhdCI6MTcxNjIwNDA2NiwiZXhwIjoxNzE2MzA0MDY2fQ.lRGeWk3L25XP2Z49COO0vmH5HqtMzNjPccPpJCy1wVYwrTp8-AcHkcQrBlUWCstf";
     saveAccessTokenToLocalStorage(oAuthResponseData);
