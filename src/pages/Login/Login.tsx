@@ -8,6 +8,7 @@ import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import { useRouter } from "@/hooks/useRouter";
 import { useEffect } from "react";
 import Spinner from "@/components/Spinner/Spinner";
+import { socialLogin } from "@/api/login";
 
 const ButtonBox = styled.div`
   display: flex;
@@ -56,9 +57,15 @@ const Login = () => {
           </LoginContent>
           <ButtonBox>
             <IconSocial icon={social.google} />
-            <Link to={kakaoUrl}>
-              <IconSocial icon={social.kakao} />
-            </Link>
+            {process.env.NODE_ENV === "development" ? (
+              <div onClick={() => socialLogin("code")}>
+                <IconSocial icon={social.kakao} />
+              </div>
+            ) : (
+              <Link to={kakaoUrl}>
+                <IconSocial icon={social.kakao} />
+              </Link>
+            )}
           </ButtonBox>
         </div>
       )}
