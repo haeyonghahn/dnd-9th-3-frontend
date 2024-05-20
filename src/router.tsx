@@ -38,7 +38,7 @@ const routerData: RouterElement[] = [
     path: "/onboarding",
     label: "온보딩",
     element: <Onboarding />,
-    withAuth: true,
+    withAuth: false,
     withSidebar: false,
   },
   {

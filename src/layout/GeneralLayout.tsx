@@ -18,39 +18,39 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   withSidebar,
 }) => {
   const [userProfile, setUserProfile] = useRecoilState(userAtom);
-  const setInterests = useSetRecoilState(interestAtom);
-  const { routeTo } = useRouter();
+  // const setInterests = useSetRecoilState(interestAtom);
+  // const { routeTo } = useRouter();
 
-  const fetchUserProfile = useCallback(async () => {
-    const userProfileResponse = await getCurrentUserInfoWithToken(
-      getAccessTokenFromLocalStorage()
-    );
+  // const fetchUserProfile = useCallback(async () => {
+  //   const userProfileResponse = await getCurrentUserInfoWithToken(
+  //     getAccessTokenFromLocalStorage()
+  //   );
 
-    if (!userProfileResponse) {
-      routeTo("/login");
-      return;
-    }
+  //   if (!userProfileResponse) {
+  //     routeTo("/login");
+  //     return;
+  //   }
 
-    setUserProfile(userProfileResponse);
-    if (userProfileResponse.interests) {
-      setInterests(userProfileResponse.interests);
-    }
-  }, []);
+  //   setUserProfile(userProfileResponse);
+  //   if (userProfileResponse.interests) {
+  //     setInterests(userProfileResponse.interests);
+  //   }
+  // }, []);
 
   useEffect(() => {
     console.log("page changed!");
-    fetchUserProfile();
+    // fetchUserProfile();
   }, []);
 
-  if (!userProfile?.id) {
-    return (
-      <div className="general-layout">
-        <div className="general-layout__body">
-          <Spinner />
-        </div>
-      </div>
-    );
-  }
+  // if (!userProfile?.id) {
+  //   return (
+  //     <div className="general-layout">
+  //       <div className="general-layout__body">
+  //         <Spinner />
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="general-layout">

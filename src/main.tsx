@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { RecoilRoot } from "recoil";
 
-if ("development" === "development") {
+if (process.env.NODE_ENV === "development") {
   import("./mocks/browser").then(({ worker }) => {
     worker.start();
   });
