@@ -5,6 +5,10 @@ interface ITextProps {
   [key: string]: string;
 }
 
+interface ITextWeightProps {
+  [key: string]: number;
+}
+
 interface IText {
   type: string;
   textover?: string;
@@ -21,7 +25,7 @@ const textSize: ITextProps = {
   body2: fontSize.body2,
 };
 
-const textWeight: ITextProps = {
+const textWeight: ITextWeightProps = {
   h0: fontWeight.semiBold,
   h1: fontWeight.semiBold,
   h2: fontWeight.semiBold,
@@ -37,10 +41,13 @@ const textWeight: ITextProps = {
 export const Text = styled.div<IText>`
   font-weight: ${(props) => textWeight[props.type]};
   font-size: ${(props) => textSize[props.type]};
-  ${(props) => props.textover === "true" ? css`
-    width: ${props.textoverwidth};
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  ` : ""}
+  ${(props) =>
+    props.textover === "true"
+      ? css`
+          width: ${props.textoverwidth};
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        `
+      : ""}
 `;

@@ -1,5 +1,4 @@
-import Switch from "@/components/Switch";
-import GeneralLayout from "./GeneralLayoutProps";
+import GeneralLayout from "./GeneralLayout";
 
 interface LayoutProps {
   children: RouterElement;
@@ -15,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       ) : (
         children.element
       )}
-      <Switch />
+      {/* <Switch /> */}
     </>
   );
 };

@@ -3,18 +3,27 @@ import { SidebarElement } from "@/types/sidebar";
 import { User } from "@/types/user";
 import {
   SideBar,
-  SideBarTitle,
   SideBarMenu,
   SideBarFooter,
+  SideBarContent,
 } from "./Sidebar.styled";
 import Typography from "@/foundations/Typography/Typography";
+import styled from "styled-components";
+import React from "react";
 
 interface SidebarProps {
+  children: React.ReactNode;
   sidebarContent: SidebarElement[];
   userProfile: User | null;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ sidebarContent, userProfile }) => {
+const SideBarList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {
   const { currentPath, routeTo } = useRouter();
 
   const sidebarMenuClickHandler = (path: string) => {
@@ -22,35 +31,31 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarContent, userProfile }) => {
   };
 
   return (
-    <SideBar>
-      <SideBarTitle>Gooding</SideBarTitle>
-      <ul>
-        {sidebarContent.map((element) => {
-          if (element.withSidebar) {
-            return (
-              <SideBarMenu
-                key={element.path}
-                className={currentPath === element.path ? "selected" : ""}
-                onClick={() => sidebarMenuClickHandler(element.path)}
-              >
-                <Typography text={element.label} type="h3" />
-              </SideBarMenu>
-            );
-          } else {
-            return null;
-          }
-        })}
-      </ul>
-      <div>
-        {userProfile ? (
-          <SideBarFooter className="sidebar-footer">
-            님 환영합니다.
-          </SideBarFooter>
-        ) : (
-          <SideBarFooter>로그인이 필요합니다.</SideBarFooter>
-        )}
-      </div>
-    </SideBar>
+    <>
+      <SideBar>
+        <SideBarContent>{children}</SideBarContent>
+        <SideBarFooter>
+          <SideBarList>
+            {sidebarContent.map((element) => {
+              if (element.withSidebar) {
+                return (
+                  <SideBarMenu
+                    key={element.path}
+                    className={currentPath === element.path ? "selected" : ""}
+                    onClick={() => sidebarMenuClickHandler(element.path)}
+                  >
+                    {element.image}
+                    <Typography text={element.label} type="cpation3" />
+                  </SideBarMenu>
+                );
+              } else {
+                return null;
+              }
+            })}
+          </SideBarList>
+        </SideBarFooter>
+      </SideBar>
+    </>
   );
 };
 

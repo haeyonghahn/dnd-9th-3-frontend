@@ -1,10 +1,22 @@
 import { colors } from "@/_shared/colors";
+import { fontSize, fontWeight } from "@/_shared/typography";
 import styled from "styled-components";
 
 export const SideBar = styled.div`
-  width: 240px;
+  width: 500px;
+  height: 100vh;
   background-color: ${(props) => props.theme.bgColor};
   box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SideBarContent = styled.div`
+  height: 100%;
+`;
+
+export const SideBarFooter = styled.div`
+  background-color: ${colors.gray900};
 `;
 
 export const SideBarTitle = styled.h3`
@@ -15,20 +27,16 @@ export const SideBarTitle = styled.h3`
 `;
 
 export const SideBarMenu = styled.li`
+  width: 110px;
+  color: ${colors.gray650};
+  font-size: ${fontSize.cpation3};
+  font-weight: ${fontWeight.semiBoldRegular};
+  text-align: center;
   list-style: none;
   padding: 18px;
   cursor: pointer;
   transition: 0.5s ease;
-  &:hover {
-    background-color: ${(props) => props.theme.hoverColor};
-  }
   &.selected {
-    color: ${colors.green200};
-    background-color: ${colors.green50};
+    color: ${colors.white};
   }
-`;
-
-export const SideBarFooter = styled.div`
-  padding: 36px 18px 24px;
-  font-size: 14px;
 `;

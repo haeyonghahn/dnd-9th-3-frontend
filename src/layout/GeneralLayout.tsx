@@ -42,14 +42,27 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
     fetchUserProfile();
   }, []);
 
-  if (!userProfile?.id) return <Spinner />;
+  if (!userProfile?.id) {
+    return (
+      <div className="general-layout">
+        <div className="general-layout__body">
+          <Spinner />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="general-layout">
       {withSidebar ? (
-        <Sidebar sidebarContent={SidebarContent} userProfile={userProfile} />
-      ) : null}
-      <div className="general-layout__body">{children}</div>
+        <Sidebar
+          children={children}
+          sidebarContent={SidebarContent}
+          userProfile={userProfile}
+        />
+      ) : (
+        <div className="general-layout__body">{children}</div>
+      )}
     </div>
   );
 };

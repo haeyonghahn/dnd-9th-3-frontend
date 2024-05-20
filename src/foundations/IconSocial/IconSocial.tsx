@@ -1,4 +1,5 @@
 import { Svg } from "./IconSocial.styled";
+
 interface IconSocialProps {
   icon: JSX.Element;
 }

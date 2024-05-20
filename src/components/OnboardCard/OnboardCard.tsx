@@ -4,12 +4,17 @@ import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { interestAtom } from "@/atoms/user";
 import { InterestElement } from "@/types/user";
+import styled from "styled-components";
 
 interface ICardProps extends ImageBoxElement {
   interestCode: string;
   title: string;
   disabled?: boolean;
 }
+
+const OnboardCardContent = styled.div`
+  /* padding-top: 5%; */
+`;
 
 const OnboardCard = ({
   interestCode,
@@ -63,6 +68,7 @@ const OnboardCard = ({
         className={className}
         disabled={disabled}
       >
+        {/* <OnboardCardContent> */}
         <Icon
           icon={icon}
           minX="10"
@@ -70,6 +76,7 @@ const OnboardCard = ({
           viewBoxWidth="30"
           viewBoxHeight="30"
         />
+        {/* </OnboardCardContent> */}
         <Title theme={theme}>{title}</Title>
       </Layout>
     </>
