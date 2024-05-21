@@ -1,33 +1,21 @@
-import { fontSize, fontWeight } from "@/_shared/typography";
 import { isDarkAtom } from "@/atoms/theme";
 import { interestAtom, userAtom } from "@/atoms/user";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import OnboardCardGrid from "@/components/OnboardCardGrid";
 import { useRouter } from "@/hooks/useRouter";
-import OnboardCardGrid from "@/layout/OnboardCardGrid/OnboardCardGrid";
 import { InterestElement, User } from "@/types/user";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import styled from "styled-components";
+import {
+  ButtonWarpper,
+  CardGridWrapper,
+  OnboardingCategory,
+  OnboardingDescription,
+  OnboardingHeader,
+} from "./Onboarding.styled";
 
 type Status = "default" | "error" | "success";
-
-const OnboardingDescription = styled.div`
-  margin: 0px 10px;
-`;
-
-const OnboardingHeader = styled.p`
-  font-size: ${fontSize.h2};
-  font-weight: ${fontWeight.semiBold};
-`;
-
-const OnboardingCategory = styled.p`
-  font-size: ${fontSize.body1};
-`;
-
-const ButtonWarpper = styled.div`
-  margin: 0px 15px;
-`;
 
 const Onboarding = () => {
   const { routeTo } = useRouter();
@@ -166,11 +154,5 @@ const Onboarding = () => {
     </>
   );
 };
-
-const CardGridWrapper = styled.div`
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 5%;
-`;
 
 export default Onboarding;

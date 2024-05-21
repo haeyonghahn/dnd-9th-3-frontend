@@ -1,6 +1,6 @@
 import { getCurrentUserInfoWithToken } from "@/api/login";
 import { interestAtom, userAtom } from "@/atoms/user";
-import Sidebar from "@/layout";
+import Sidebar from "@/components/Sidebar";
 import Spinner from "@/components/Spinner";
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarContent } from "@/router";
@@ -38,7 +38,6 @@ const GeneralLayout: React.FC<GeneralLayoutProps> = ({
   }, []);
 
   useEffect(() => {
-    console.log("page changed!");
     fetchUserProfile();
   }, []);
 

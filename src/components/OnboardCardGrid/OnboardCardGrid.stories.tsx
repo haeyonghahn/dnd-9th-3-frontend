@@ -2,7 +2,7 @@ import { RecoilRoot } from "recoil";
 import OnboardCardGrid from "./OnboardCardGrid";
 
 export default {
-  title: "Layout/OnboardCardGrid",
+  title: "Components/OnboardCardGrid",
   component: OnboardCardGrid,
 };
 

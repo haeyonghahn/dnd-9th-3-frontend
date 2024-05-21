@@ -1,4 +1,3 @@
-import { fontSize, fontWeight } from "@/_shared/typography";
 import { updateMember } from "@/api/login";
 import { userAtom } from "@/atoms/user";
 import Button from "@/components/Button";
@@ -8,30 +7,14 @@ import { User } from "@/types/user";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import { useCallback, useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import styled from "styled-components";
 import TypeIt from "typeit-react";
-
-const WelcomeWrapper = styled.div`
-  height: 100vh;
-`;
-
-const WelcomeMessageWrapper = styled.div`
-  margin-top: 10%;
-`;
-
-const WelcomeMessage = styled.p`
-  display: inline;
-  font-weight: ${fontWeight.semiBold};
-  font-size: ${fontSize.h2};
-`;
-
-const WelcomeSvgWrapper = styled.div`
-  text-align: center;
-`;
-
-const WelcomeButtonWrapper = styled.div`
-  margin: 20px 20px 0px 20px;
-`;
+import {
+  WelcomeButtonWrapper,
+  WelcomeMessage,
+  WelcomeMessageWrapper,
+  WelcomeSvgWrapper,
+  WelcomeWrapper,
+} from "./Welcome.styled";
 
 const Welcome = () => {
   const { routeTo } = useRouter();

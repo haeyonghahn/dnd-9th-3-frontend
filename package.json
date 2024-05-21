@@ -14,6 +14,7 @@
     "chromatic": "npx chromatic --project-token=chpt_edb4fc9efc5ed09"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.37.1",
     "framer-motion": "^10.16.16",
     "msw": "^0.39.2",
     "react": "^18.2.0",

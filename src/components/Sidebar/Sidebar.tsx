@@ -6,9 +6,9 @@ import {
   SideBarMenu,
   SideBarFooter,
   SideBarContent,
+  SideBarList,
 } from "./Sidebar.styled";
 import Typography from "@/foundations/Typography/Typography";
-import styled from "styled-components";
 import React from "react";
 
 interface SidebarProps {
@@ -16,12 +16,6 @@ interface SidebarProps {
   sidebarContent: SidebarElement[];
   userProfile: User | null;
 }
-
-const SideBarList = styled.ul`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-`;
 
 const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {
   const { currentPath, routeTo } = useRouter();

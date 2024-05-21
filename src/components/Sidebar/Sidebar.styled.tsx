@@ -19,6 +19,12 @@ export const SideBarFooter = styled.div`
   background-color: ${colors.gray900};
 `;
 
+export const SideBarList = styled.ul`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
 export const SideBarTitle = styled.h3`
   padding: 18px;
   background-color: ${(props) => props.theme.bgColor};
