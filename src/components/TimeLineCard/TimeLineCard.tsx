@@ -1,25 +1,43 @@
 import Icon from "@/foundations/Icon";
-import { RecordCardWrapper, RecordCardLine, RecordContent, RecordPlace, RecordContentHeader, RecordImageBox, RecordDescription, RecordDescriptionMore, RecordImageWrapper } from "./TimeLineCard.styled";
+import {
+  RecordCardWrapper,
+  RecordCardLine,
+  RecordContent,
+  RecordPlace,
+  RecordContentHeader,
+  RecordImageBox,
+  RecordDescription,
+  RecordDescriptionMore,
+  RecordImageWrapper,
+} from "./TimeLineCard.styled";
 import Typography from "@/foundations/Typography/Typography";
 import Button from "../Button";
 import RecordImage from "./TimeLineImage";
 import { useState } from "react";
 
 interface ITimeLineCardProps {
-  date: string,
+  date: string;
   placeName: string;
   title: string;
   description: string;
   src: string;
   theme?: string;
-  images: string[]
+  images: string[];
 }
 
-const TimeLineCard = ({date, placeName, title, description, src, theme, images}: ITimeLineCardProps) => {
+const TimeLineCard = ({
+  date,
+  placeName,
+  title,
+  description,
+  src,
+  theme,
+  images,
+}: ITimeLineCardProps) => {
   const [textOver, setTextOver] = useState(true);
   const handleTextOver = () => {
     setTextOver((prev) => !prev);
-  }
+  };
   return (
     <RecordCardWrapper>
       <RecordCardLine>
@@ -29,7 +47,7 @@ const TimeLineCard = ({date, placeName, title, description, src, theme, images}:
           width="2"
           height="504"
           minX="0"
-          minY="0"
+          minY="-10"
           viewBoxWidth="2"
           viewBoxHeight="504"
         />
@@ -37,7 +55,7 @@ const TimeLineCard = ({date, placeName, title, description, src, theme, images}:
       <RecordContent>
         <RecordContentHeader>
           <Typography text={date} type="h0" />
-          <Button width="" text="삭제" none="true" theme={theme}/>
+          <Button width="" text="삭제" none="true" theme={theme} />
         </RecordContentHeader>
         <RecordPlace>
           <Icon
@@ -55,13 +73,21 @@ const TimeLineCard = ({date, placeName, title, description, src, theme, images}:
           <RecordImageBox>
             <RecordImage src={src} />
           </RecordImageBox>
-          <Typography text={`${images.length > 1 ? '+' + (images.length - 1) : ''} `}  type="body2" />
+          <Typography
+            text={`${images.length > 1 ? "+" + (images.length - 1) : ""} `}
+            type="body2"
+          />
         </RecordImageWrapper>
         <Typography text={title} type="h3" />
         <RecordDescription>
-          <Typography text={description} type="body2" textover={String(textOver)} textoverwidth="268px" />
+          <Typography
+            text={description}
+            type="body2"
+            textover={String(textOver)}
+            textoverwidth="268px"
+          />
           <RecordDescriptionMore onClick={handleTextOver}>
-            <Typography text={`더보기 ${textOver ? '▼' : '▲'} `}  type="body2" />
+            <Typography text={`더보기 ${textOver ? "▼" : "▲"} `} type="body2" />
           </RecordDescriptionMore>
         </RecordDescription>
       </RecordContent>

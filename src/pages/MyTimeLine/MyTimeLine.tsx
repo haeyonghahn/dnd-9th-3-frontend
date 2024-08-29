@@ -21,7 +21,25 @@ const MyTimeLine = () => {
       {myRecordData && myRecordData.length > 0 ? (
         <TimeLineWrapper>
           <TimeLineCard
-            date="2024.08.24"
+            date="8월11일(금)"
+            description="설명"
+            placeName="ocean"
+            title="타이틀"
+            src="/images/desert.jpg"
+            images={["puppy.jpg", "desert.jpg", "ocean.jpg"]}
+            theme="dark"
+          ></TimeLineCard>
+          <TimeLineCard
+            date="8월12일(토)"
+            description="설명"
+            placeName="ocean"
+            title="타이틀"
+            src="/images/desert.jpg"
+            images={["puppy.jpg", "desert.jpg", "ocean.jpg"]}
+            theme="dark"
+          ></TimeLineCard>
+          <TimeLineCard
+            date="8월13일(일)"
             description="설명"
             placeName="ocean"
             title="타이틀"

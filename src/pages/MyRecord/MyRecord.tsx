@@ -4,11 +4,11 @@ import Button from "@/components/Button";
 import Typography from "@/foundations/Typography/Typography";
 import { useRouter } from "@/hooks/useRouter";
 import { Link, Outlet } from "react-router-dom";
-import { useRecoilValue } from "recoil";
 import {
   Divider,
   LevelTitle,
   LevelWrapper,
+  MyRecordContents,
   MyRecordProfile,
   MyRecordProfileButton,
   MyRecordProfileInfo,
@@ -23,18 +23,38 @@ import {
   TimeLineMonth,
   Wrapper,
 } from "./MyRecord.styled";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { useRecoilValue } from "recoil";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
   const { currentPath, routeTo } = useRouter();
+  const [tabSize, setTabSize] = useState(true);
+  const [mouseDownClientY, setMouseDownClientY] = useState(0);
+  const [mouseUpClientY, setMouseUpClientY] = useState(0);
+
+  const onMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setMouseDownClientY(e.clientY);
+  };
+  const onMouseUp = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setMouseUpClientY(e.clientY);
+  };
+  const onDoubleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setTabSize((prev) => !prev);
+  };
 
   useEffect(() => {
     routeTo("/my/record/timeline");
-  }, []);
+    if (mouseDownClientY - mouseUpClientY > 0) {
+      setTabSize(false);
+    } else if (mouseDownClientY - mouseUpClientY < 0) {
+      setTabSize(true);
+    }
+  }, [mouseUpClientY]);
 
   return (
-    <Wrapper>
+    <Wrapper onMouseUp={onMouseUp} onMouseDown={onMouseDown}>
       <MyRecordWrapper>
         <MyRecordWrapperTitle>
           <span>마이 굳잉</span>
@@ -62,29 +82,36 @@ const MyRecord = () => {
           <Button text="프로필 수정" width=""></Button>
         </MyRecordProfileButton>
       </MyRecordProfile>
-      <Tabs>
-        <TabTitle>
-          <Tab
-            className={
-              currentPath === "/my/record/timeline" ||
-              currentPath === "/my/record"
-                ? "selected"
-                : ""
-            }
-          >
-            <Link to="timeline">타임라인</Link>
-          </Tab>
-          <Tab className={currentPath === "/my/record/save" ? "selected" : ""}>
-            <Link to="save">저장</Link>
-          </Tab>
-        </TabTitle>
-        <Divider className="line"></Divider>
-        <TimeLineMonth>
-          2024.08
-          <TimeLineArrow src="/images/vector.svg" />
-        </TimeLineMonth>
-        <Outlet />
-      </Tabs>
+      <AnimatePresence>
+        <Tabs
+          onDoubleClick={onDoubleClick}
+          style={tabSize ? { position: "" } : { position: "absolute" }}
+        >
+          <TabTitle>
+            <Tab
+              className={
+                currentPath === "/my/record/timeline" ||
+                currentPath === "/my/record"
+                  ? "selected"
+                  : ""
+              }
+            >
+              <Link to="timeline">타임라인</Link>
+            </Tab>
+            <Tab
+              className={currentPath === "/my/record/save" ? "selected" : ""}
+            >
+              <Link to="save">저장</Link>
+            </Tab>
+          </TabTitle>
+          <Divider className="line"></Divider>
+          <TimeLineMonth>
+            2024.08
+            <TimeLineArrow src="/images/vector.svg" />
+          </TimeLineMonth>
+          <Outlet />
+        </Tabs>
+      </AnimatePresence>
     </Wrapper>
   );
 };

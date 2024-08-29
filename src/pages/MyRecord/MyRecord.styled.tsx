@@ -1,11 +1,33 @@
 import { colors } from "@/_shared/colors";
 import { fontWeight } from "@/_shared/typography";
+import { motion } from "framer-motion";
 import styled from "styled-components";
+
+interface IPositionProps {
+  position: string;
+}
+
+interface IVariantsProps {
+  initial: IPositionProps;
+  animate: IPositionProps;
+  exit: IPositionProps;
+}
+
+interface ITabsProps {
+  variants?: IVariantsProps;
+  initial?: string;
+  animate?: string;
+  exit?: string;
+  layoutid?: string | null;
+  style: IPositionProps;
+}
 
 export const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  position: relative;
+  user-select: none;
 `;
 
 export const MyRecordWrapper = styled.div`
@@ -64,8 +86,11 @@ export const MyRecordProfileName = styled.div`
 
 export const MyRecordProfileButton = styled.div``;
 
-export const Tabs = styled.div`
-  height: 30%;
+export const MyRecordContents = styled.div``;
+
+export const Tabs = styled(motion.div)<ITabsProps>`
+  height: 100%;
+  width: 100%;
   background-color: #282932;
   border-radius: 24px 24px 0px 0px;
   overflow: auto;

@@ -42,7 +42,6 @@ export const AllTypes = () => (
               theme="light"
               title="쇼핑"
             />
-            <Typography text="Default" type="h0" />
           </CardBox>
           <CardBox>
             <OnboardCard
@@ -68,4 +67,6 @@ const TypeBox = styled.div`
 const CardBox = styled.div`
   display: flex;
   gap: 2rem;
+  width: 50%;
+  height: 200px;
 `;

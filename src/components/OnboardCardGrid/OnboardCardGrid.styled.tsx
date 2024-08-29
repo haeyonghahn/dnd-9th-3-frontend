@@ -5,4 +5,5 @@ export const Layout = styled.section`
   grid-template-columns: repeat(2, 1fr);
   grid-row-gap: 10px;
   justify-items: center;
+  height: 500px;
 `;
