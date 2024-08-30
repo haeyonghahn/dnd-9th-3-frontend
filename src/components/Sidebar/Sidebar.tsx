@@ -35,11 +35,13 @@ const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {
                 return (
                   <SideBarMenu
                     key={element.path}
-                    className={currentPath === element.path ? "selected" : ""}
+                    className={
+                      currentPath.startsWith(element.path) ? "selected" : ""
+                    }
                     onClick={() => sidebarMenuClickHandler(element.path)}
                   >
                     {element.image}
-                    <Typography text={element.label} type="cpation3" />
+                    <Typography text={element.label} type="body2" />
                   </SideBarMenu>
                 );
               } else {

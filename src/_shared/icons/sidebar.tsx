@@ -12,21 +12,24 @@ const sidebar: IBasicProps = {
     const { currentPath } = useRouter();
 
     const handleColor = () => {
-      if (currentPath === "/my/record") {
+      if (
+        currentPath === "/my/record/timeline" ||
+        currentPath === "/my/record/save"
+      ) {
         setColor(colors.white);
       } else {
         setColor(colors.gray650);
       }
     };
     useEffect(() => {
-      console.log("/my/record");
       handleColor();
     });
     return (
       <>
         <svg
-          width="20"
-          height="21"
+          style={{ marginTop: "10%", marginBottom: "10%" }}
+          width="50"
+          height="50"
           viewBox="0 0 20 21"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -52,14 +55,14 @@ const sidebar: IBasicProps = {
       }
     };
     useEffect(() => {
-      console.log("/record");
       handleColor();
     });
     return (
       <>
         <svg
-          width="21"
-          height="20"
+          style={{ marginTop: "10%", marginBottom: "10%" }}
+          width="50"
+          height="50"
           viewBox="0 0 21 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -98,14 +101,14 @@ const sidebar: IBasicProps = {
       }
     };
     useEffect(() => {
-      console.log("/feed");
       handleColor();
     });
     return (
       <>
         <svg
-          width="19"
-          height="18"
+          style={{ marginTop: "10%", marginBottom: "10%" }}
+          width="50"
+          height="50"
           viewBox="0 0 19 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

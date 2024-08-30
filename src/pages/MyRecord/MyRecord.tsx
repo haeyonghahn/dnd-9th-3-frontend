@@ -7,6 +7,7 @@ import { Link, Outlet } from "react-router-dom";
 import {
   Divider,
   LevelTitle,
+  LevelTitleText,
   LevelWrapper,
   MyRecordContents,
   MyRecordProfile,
@@ -65,7 +66,9 @@ const MyRecord = () => {
       </MyRecordWrapper>
       <LevelWrapper>
         <img src="/images/level.svg" />
-        <LevelTitle>LV1. 초보 낭만러</LevelTitle>
+        <LevelTitle>
+          <LevelTitleText>LV1. 초보 낭만러</LevelTitleText>
+        </LevelTitle>
       </LevelWrapper>
       <MyRecordProfile>
         <MyRecordProfileInfo>

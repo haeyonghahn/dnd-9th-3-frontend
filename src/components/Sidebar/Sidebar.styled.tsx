@@ -12,14 +12,16 @@ export const SideBar = styled.div`
 `;
 
 export const SideBarContent = styled.div`
-  height: 100%;
+  height: 90vh;
 `;
 
 export const SideBarFooter = styled.div`
+  height: 10vh;
   background-color: ${colors.gray900};
 `;
 
 export const SideBarList = styled.ul`
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

@@ -42,12 +42,13 @@ export const MyRecordWrapper = styled.div`
 export const MyRecordWrapperTitle = styled.div`
   flex: 1;
   text-align: center;
-  margin-left: 30px;
+  margin-left: 50px;
 `;
 
 export const MyRecordWrapperImage = styled.div`
   float: right;
-  margin-right: 10px;
+  margin-right: 30px;
+  cursor: pointer;
 `;
 
 export const LevelWrapper = styled.div`
@@ -59,13 +60,21 @@ export const LevelWrapper = styled.div`
 `;
 
 export const LevelTitle = styled.div`
-  padding: 5px;
-  border: 2px solid;
+  padding: 1px;
+  border: 1px solid transparent; /* 기본 border를 투명하게 설정 */
   border-radius: 5px;
   margin: 20px 0px;
   width: fit-content;
   font-weight: 600;
   font-size: 12px;
+  background-image: linear-gradient(#1c1d27, #1c1d27),
+    /* 내부 배경 */ linear-gradient(to right, #ff59d0, #3cefa3); /* 그라데이션 색상 */
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+`;
+
+export const LevelTitleText = styled.div`
+  padding: 5px;
 `;
 
 export const MyRecordProfile = styled.div`
