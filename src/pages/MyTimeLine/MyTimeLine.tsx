@@ -9,6 +9,9 @@ import {
 } from "./MyTimeLine.styled";
 import TimeLineCard from "@/components/TimeLineCard";
 import { colors } from "@/_shared/colors";
+import { TimeLineArrow, TimeLineMonth } from "../MyRecord/MyRecord.styled";
+import { useSetRecoilState } from "recoil";
+import { chooseTimeLineMonthAtom } from "@/atoms/popup";
 
 const MyTimeLine = () => {
   const { data: myRecordData } = useQuery<Record[] | null>({
@@ -16,24 +19,33 @@ const MyTimeLine = () => {
     queryFn: getMyRecord,
     throwOnError: true,
   });
+  const setTimeLineMonth = useSetRecoilState(chooseTimeLineMonthAtom);
+
+  const handleTimeLineMonthPopUp = () => {
+    setTimeLineMonth((prev) => !prev);
+  };
 
   return (
     <>
+      <TimeLineMonth onClick={handleTimeLineMonthPopUp}>
+        2024.08
+        <TimeLineArrow src="/images/vector.svg" />
+      </TimeLineMonth>
       {myRecordData && myRecordData.length > 0 ? (
         <TimeLineWrapper>
           <TimeLineCard
             date="8월11일(금)"
             description="설명"
-            placeName="ocean"
+            placeName="바다"
             title="타이틀"
-            src="/images/desert.jpg"
+            src="/images/ocean.jpg"
             images={["puppy.jpg", "desert.jpg", "ocean.jpg"]}
             theme="dark"
           ></TimeLineCard>
           <TimeLineCard
             date="8월12일(토)"
             description="설명"
-            placeName="ocean"
+            placeName="사막"
             title="타이틀"
             src="/images/desert.jpg"
             images={["puppy.jpg", "desert.jpg", "ocean.jpg"]}

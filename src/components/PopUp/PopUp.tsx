@@ -18,18 +18,20 @@ const PopUp: React.FC<PopUpProps> = ({ children, height, state }) => {
         style={{
           position: "fixed",
           top: "0",
-          width: "500px",
+          width: "100%",
           height: "100%",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           borderRadius: "24px 24px 0px 0px",
           textAlign: "center",
+          maxWidth: "500px",
         }}
       />
       <div
         style={{
           position: "fixed",
           bottom: "0",
-          width: "500px",
+          width: "100%",
+          maxWidth: "500px",
           height: height ? height : "20%",
           backgroundColor: "#282932",
           borderRadius: "24px 24px 0px 0px",

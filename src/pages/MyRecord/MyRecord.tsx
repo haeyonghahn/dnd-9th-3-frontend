@@ -21,6 +21,7 @@ import {
   Tabs,
   TimeLineArrow,
   TimeLineMonth,
+  TimeLineMonthText,
   Wrapper,
 } from "./MyRecord.styled";
 import { useEffect, useState } from "react";
@@ -29,11 +30,15 @@ import { fontSize } from "@/_shared/typography";
 import Typography from "@/foundations/Typography";
 import { useRecoilValue } from "recoil";
 import PopUp from "@/components/PopUp";
-import { deleteRecordPopUpOverAtom } from "@/atoms/popup";
+import {
+  chooseTimeLineMonthAtom,
+  deleteRecordPopUpOverAtom,
+} from "@/atoms/popup";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
   const isDeleteRecord = useRecoilValue(deleteRecordPopUpOverAtom);
+  const timeLineMonth = useRecoilValue(chooseTimeLineMonthAtom);
   const { currentPath, routeTo } = useRouter();
   const [tabSize, setTabSize] = useState(true);
   const [mouseDownClientY, setMouseDownClientY] = useState(0);
@@ -122,16 +127,39 @@ const MyRecord = () => {
           </Tab>
         </TabTitle>
         <Divider className="line"></Divider>
-        <TimeLineMonth>
-          2024.08
-          <TimeLineArrow src="/images/vector.svg" />
-        </TimeLineMonth>
         <Outlet />
       </Tabs>
+      {timeLineMonth ? (
+        <PopUp
+          state={chooseTimeLineMonthAtom}
+          height="40%"
+          children={
+            <div style={{ marginLeft: "5%", marginRight: "5%" }}>
+              <div
+                style={{
+                  marginTop: "10%",
+                  textAlign: "left",
+                }}
+              >
+                <Typography text="월 선택하기" type="h2" />
+              </div>
+              <TimeLineMonthText className="selected">
+                <Typography text="2023.08" type="h2" />
+              </TimeLineMonthText>
+              <TimeLineMonthText>
+                <Typography text="2023.07" type="h2" />
+              </TimeLineMonthText>
+              <div>
+                <Button width="100%" text="선택 완료" />
+              </div>
+            </div>
+          }
+        />
+      ) : null}
       {isDeleteRecord ? (
         <PopUp
           state={deleteRecordPopUpOverAtom}
-          height="20%"
+          height="40%"
           children={
             <div style={{ marginLeft: "5%", marginRight: "5%" }}>
               <div

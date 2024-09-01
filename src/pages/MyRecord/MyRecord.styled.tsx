@@ -141,6 +141,15 @@ export const TimeLineMonth = styled.div`
   cursor: pointer;
 `;
 
+export const TimeLineMonthText = styled.div`
+  margin-top: 5%;
+  margin-bottom: 5%;
+  color: ${colors.gray500};
+  &.selected {
+    color: ${colors.green50};
+  }
+`;
+
 export const TimeLineArrow = styled.img`
   margin-left: 10px;
 `;
