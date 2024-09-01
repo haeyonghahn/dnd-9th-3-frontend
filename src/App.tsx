@@ -61,7 +61,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 3px;
   }
 
   ::-webkit-scrollbar-track {

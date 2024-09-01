@@ -102,6 +102,7 @@ export const Tabs = styled(motion.div)<ITabsProps>`
   width: 100%;
   background-color: #282932;
   border-radius: 24px 24px 0px 0px;
+  position: relative;
   overflow: auto;
 `;
 
@@ -137,6 +138,7 @@ export const TimeLineMonth = styled.div`
   margin: 20px;
   font-weight: 600;
   font-size: 18px;
+  cursor: pointer;
 `;
 
 export const TimeLineArrow = styled.img`

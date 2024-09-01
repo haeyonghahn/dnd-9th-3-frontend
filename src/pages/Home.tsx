@@ -1,9 +1,9 @@
 import Logo from "@/foundations/Logo/Logo";
-import { useRouter } from "../hooks/useRouter";
 import styled from "styled-components";
 import { fontSize, fontWeight } from "@/_shared/typography";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import Button from "@/components/Button";
+import { useRouter } from "@/hooks/useRouter";
 
 const HomeTitle = styled.h1`
   text-align: center;

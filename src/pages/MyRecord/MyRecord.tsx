@@ -1,7 +1,6 @@
 import { userAtom } from "@/atoms/user";
 import Avatar from "@/components/Avatar";
 import Button from "@/components/Button";
-import Typography from "@/foundations/Typography/Typography";
 import { useRouter } from "@/hooks/useRouter";
 import { Link, Outlet } from "react-router-dom";
 import {
@@ -25,11 +24,16 @@ import {
   Wrapper,
 } from "./MyRecord.styled";
 import { useEffect, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { colors } from "@/_shared/colors";
+import { fontSize } from "@/_shared/typography";
+import Typography from "@/foundations/Typography";
 import { useRecoilValue } from "recoil";
+import PopUp from "@/components/PopUp";
+import { deleteRecordPopUpOverAtom } from "@/atoms/popup";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
+  const isDeleteRecord = useRecoilValue(deleteRecordPopUpOverAtom);
   const { currentPath, routeTo } = useRouter();
   const [tabSize, setTabSize] = useState(true);
   const [mouseDownClientY, setMouseDownClientY] = useState(0);
@@ -40,9 +44,6 @@ const MyRecord = () => {
   };
   const onMouseUp = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setMouseUpClientY(e.clientY);
-  };
-  const onDoubleClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setTabSize((prev) => !prev);
   };
 
   useEffect(() => {
@@ -82,50 +83,84 @@ const MyRecord = () => {
           </MyRecordProfileName>
         </MyRecordProfileInfo>
         <MyRecordProfileButton>
-          <Button text="프로필 수정" width=""></Button>
+          <Button
+            text="프로필 수정"
+            width="100%"
+            fontSize={fontSize.body1}
+            color={colors.white}
+            bordercolor="#3E4049"
+            backgroundcolor="#3E4049"
+            none="true"
+          ></Button>
         </MyRecordProfileButton>
       </MyRecordProfile>
-      <AnimatePresence>
-        <Tabs
-          onDoubleClick={onDoubleClick}
-          style={tabSize ? { position: "" } : { position: "absolute" }}
-        >
-          <TabTitle>
-            <Tab
+      <Tabs style={tabSize ? { position: "" } : { position: "absolute" }}>
+        <TabTitle>
+          <Tab
+            className={
+              currentPath === "/my/record/timeline" ||
+              currentPath === "/my/record"
+                ? "selected"
+                : ""
+            }
+          >
+            <Link to="timeline">타임라인</Link>
+            <TabIndicator
               className={
                 currentPath === "/my/record/timeline" ||
                 currentPath === "/my/record"
                   ? "selected"
                   : ""
               }
-            >
-              <Link to="timeline">타임라인</Link>
-              <TabIndicator
-                className={
-                  currentPath === "/my/record/timeline" ||
-                  currentPath === "/my/record"
-                    ? "selected"
-                    : ""
-                }
-              />
-            </Tab>
-            <Tab
+            />
+          </Tab>
+          <Tab className={currentPath === "/my/record/save" ? "selected" : ""}>
+            <Link to="save">저장</Link>
+            <TabIndicator
               className={currentPath === "/my/record/save" ? "selected" : ""}
-            >
-              <Link to="save">저장</Link>
-              <TabIndicator
-                className={currentPath === "/my/record/save" ? "selected" : ""}
-              />
-            </Tab>
-          </TabTitle>
-          <Divider className="line"></Divider>
-          <TimeLineMonth>
-            2024.08
-            <TimeLineArrow src="/images/vector.svg" />
-          </TimeLineMonth>
-          <Outlet />
-        </Tabs>
-      </AnimatePresence>
+            />
+          </Tab>
+        </TabTitle>
+        <Divider className="line"></Divider>
+        <TimeLineMonth>
+          2024.08
+          <TimeLineArrow src="/images/vector.svg" />
+        </TimeLineMonth>
+        <Outlet />
+      </Tabs>
+      {isDeleteRecord ? (
+        <PopUp
+          state={deleteRecordPopUpOverAtom}
+          height="20%"
+          children={
+            <div style={{ marginLeft: "5%", marginRight: "5%" }}>
+              <div
+                style={{
+                  marginBottom: "7%",
+                  marginTop: "10%",
+                  textAlign: "left",
+                }}
+              >
+                <Typography text="삭제하시겠습니까?" type="h2" />
+                <Typography
+                  text="삭제된 이미지와 글은 복구가 불가능합니다."
+                  type="h2"
+                />
+              </div>
+              <div>
+                <Button
+                  width="100%"
+                  text="삭제하기"
+                  color={colors.white}
+                  bordercolor={colors.inputTextClor}
+                  backgroundcolor={colors.gray850}
+                  none="true"
+                />
+              </div>
+            </div>
+          }
+        />
+      ) : null}
     </Wrapper>
   );
 };

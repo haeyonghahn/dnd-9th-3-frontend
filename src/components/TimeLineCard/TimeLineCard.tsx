@@ -11,9 +11,11 @@ import {
   RecordImageWrapper,
 } from "./TimeLineCard.styled";
 import Typography from "@/foundations/Typography/Typography";
-import Button from "../Button";
 import RecordImage from "./TimeLineImage";
 import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { deleteRecordPopUpOverAtom } from "@/atoms/popup";
+import Button from "../Button";
 
 interface ITimeLineCardProps {
   date: string;
@@ -35,9 +37,15 @@ const TimeLineCard = ({
   images,
 }: ITimeLineCardProps) => {
   const [textOver, setTextOver] = useState(true);
+  const setPopUpOver = useSetRecoilState(deleteRecordPopUpOverAtom);
+
   const handleTextOver = () => {
     setTextOver((prev) => !prev);
   };
+  const handlePopUp = () => {
+    setPopUpOver((prev) => !prev);
+  };
+
   return (
     <RecordCardWrapper>
       <RecordCardLine>
@@ -55,7 +63,16 @@ const TimeLineCard = ({
       <RecordContent>
         <RecordContentHeader>
           <Typography text={date} type="h0" />
-          <Button width="" text="삭제" none="true" theme={theme} />
+          <Button
+            width="15%"
+            bordercolor="#A4A6AA"
+            color="#A4A6AA"
+            backgroundcolor="#282932"
+            text="삭제"
+            onClick={handlePopUp}
+            none="true"
+            theme={theme}
+          />
         </RecordContentHeader>
         <RecordPlace>
           <Icon

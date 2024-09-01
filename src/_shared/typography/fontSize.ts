@@ -8,7 +8,7 @@ const fontSize = {
   body2: "0.75rem",
   caption1: "0.75rem",
   caption2: "0.625rem",
-  cpation3: "0.625rem",
+  cpation3: "0.525rem",
 };
 
 export default fontSize;

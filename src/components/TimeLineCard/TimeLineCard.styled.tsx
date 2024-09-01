@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const RecordCardWrapper = styled.div`
   display: flex;
   gap: 20px;
+  margin-bottom: 5%;
 `;
 
 export const RecordCardLine = styled.div`
@@ -31,7 +32,7 @@ export const RecordPlace = styled.div`
   flex-direction: row;
   gap: 5px;
   align-items: center;
-  color: ${colors.green50}
+  color: ${colors.green50};
 `;
 
 export const RecordImageWrapper = styled.div`

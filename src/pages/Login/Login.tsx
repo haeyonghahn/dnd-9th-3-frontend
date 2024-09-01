@@ -1,17 +1,17 @@
 import { social } from "@/_shared/icons";
-import IconSocial from "@/foundations/IconSocial/IconSocial";
 import { KAKAO_CLIENT_ID, KAKAO_REDIRECT_URI } from "@/api/const";
 import { Link } from "react-router-dom";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import { useRouter } from "@/hooks/useRouter";
 import { useEffect } from "react";
-import Spinner from "@/components/Spinner/Spinner";
 import {
   ButtonBox,
   LoginContent,
   LoginDescription,
   LoginTitle,
 } from "./Login.styled";
+import Spinner from "@/components/Spinner";
+import IconSocial from "@/foundations/IconSocial";
 
 const Login = () => {
   const { routeTo } = useRouter();

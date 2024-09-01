@@ -9,6 +9,10 @@ interface IButtonProps {
   onClick?: () => void;
   text?: string;
   none?: string;
+  fontSize?: string;
+  bordercolor?: string;
+  color?: string;
+  backgroundcolor?: string;
 }
 
 const Button = ({
@@ -19,7 +23,11 @@ const Button = ({
   cancel,
   onClick,
   text,
-  none
+  none,
+  fontSize,
+  bordercolor,
+  color,
+  backgroundcolor,
 }: IButtonProps): React.JSX.Element => {
   return (
     <Layout
@@ -30,6 +38,10 @@ const Button = ({
       cancel={cancel}
       onClick={onClick}
       none={none}
+      fontSize={fontSize}
+      bordercolor={bordercolor}
+      color={color}
+      backgroundcolor={backgroundcolor}
     >
       {text}
     </Layout>
