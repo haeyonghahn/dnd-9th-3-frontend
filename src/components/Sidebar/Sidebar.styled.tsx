@@ -12,11 +12,10 @@ export const SideBar = styled.div`
 `;
 
 export const SideBarContent = styled.div`
-  height: 90vh;
+  height: 100vh;
 `;
 
 export const SideBarFooter = styled.div`
-  height: 10vh;
   background-color: ${colors.gray900};
 `;
 

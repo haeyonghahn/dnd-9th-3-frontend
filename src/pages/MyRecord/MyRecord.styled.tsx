@@ -111,11 +111,20 @@ export const TabTitle = styled.div`
 `;
 
 export const Tab = styled.div`
-  margin: 20px;
+  margin: 20px 20px 0px 20px;
   font-weight: 600;
   font-size: 16px;
   &.selected {
     color: ${colors.white};
+  }
+`;
+
+export const TabIndicator = styled.div`
+  height: 4px;
+  width: 100%;
+  margin-top: 20px;
+  &.selected {
+    background-color: ${colors.white};
   }
 `;
 

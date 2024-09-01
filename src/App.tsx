@@ -51,6 +51,8 @@ const GlobalStyle = createGlobalStyle`
     height: 100vh;
     width: 100%;
     max-width: 500px;
+    display: grid;
+    grid-row-gap: 3%;
   }
 
   a {

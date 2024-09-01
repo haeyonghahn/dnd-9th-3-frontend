@@ -9,7 +9,6 @@ import {
   LevelTitle,
   LevelTitleText,
   LevelWrapper,
-  MyRecordContents,
   MyRecordProfile,
   MyRecordProfileButton,
   MyRecordProfileInfo,
@@ -18,6 +17,7 @@ import {
   MyRecordWrapperImage,
   MyRecordWrapperTitle,
   Tab,
+  TabIndicator,
   TabTitle,
   Tabs,
   TimeLineArrow,
@@ -100,11 +100,22 @@ const MyRecord = () => {
               }
             >
               <Link to="timeline">타임라인</Link>
+              <TabIndicator
+                className={
+                  currentPath === "/my/record/timeline" ||
+                  currentPath === "/my/record"
+                    ? "selected"
+                    : ""
+                }
+              />
             </Tab>
             <Tab
               className={currentPath === "/my/record/save" ? "selected" : ""}
             >
               <Link to="save">저장</Link>
+              <TabIndicator
+                className={currentPath === "/my/record/save" ? "selected" : ""}
+              />
             </Tab>
           </TabTitle>
           <Divider className="line"></Divider>
