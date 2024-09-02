@@ -12,7 +12,9 @@ import {
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/Layout";
+import Feed from "./pages/Feed/Feed";
 import { sidebar } from "./_shared/icons";
+import Recommend from "./pages/Feed/Recommend/Recommend";
 
 const routerData: RouterElement[] = [
   // 로그인 페이지 라우터 등록하기 ('login', withAuth: false)
@@ -61,9 +63,20 @@ const routerData: RouterElement[] = [
     path: "/feed",
     label: "피드",
     image: <sidebar.feed />,
-    element: <></>,
+    element: <Feed />,
     withAuth: true,
     withSidebar: true,
+    children: [
+      {
+        id: 8,
+        path: "recommend",
+        label: "추천",
+        image: <></>,
+        element: <Recommend />,
+        withAuth: true,
+        withSidebar: false,
+      }
+    ]
   },
   {
     id: 6,
