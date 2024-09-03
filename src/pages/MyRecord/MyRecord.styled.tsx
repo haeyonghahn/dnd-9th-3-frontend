@@ -8,18 +8,12 @@ interface IPositionProps {
 }
 
 interface IVariantsProps {
-  initial: IPositionProps;
-  animate: IPositionProps;
-  exit: IPositionProps;
+  top: IPositionProps;
+  bottom: IPositionProps;
 }
 
 interface ITabsProps {
   variants?: IVariantsProps;
-  initial?: string;
-  animate?: string;
-  exit?: string;
-  layoutid?: string | null;
-  style: IPositionProps;
 }
 
 export const Wrapper = styled.div`
@@ -115,18 +109,17 @@ export const Tab = styled.div`
   margin: 20px 20px 0px 20px;
   font-weight: 600;
   font-size: 16px;
+  transition: color 0.3s ease-in-out;
   &.selected {
     color: ${colors.white};
   }
 `;
 
-export const TabIndicator = styled.div`
+export const TabIndicator = styled(motion.div)`
   height: 4px;
   width: 100%;
   margin-top: 20px;
-  &.selected {
-    background-color: ${colors.white};
-  }
+  background-color: ${colors.white};
 `;
 
 export const Divider = styled.div`

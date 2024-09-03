@@ -19,8 +19,6 @@ import {
   TabIndicator,
   TabTitle,
   Tabs,
-  TimeLineArrow,
-  TimeLineMonth,
   TimeLineMonthText,
   Wrapper,
 } from "./MyRecord.styled";
@@ -34,15 +32,24 @@ import {
   chooseTimeLineMonthAtom,
   deleteRecordPopUpOverAtom,
 } from "@/atoms/popup";
+import { useAnimation } from "framer-motion";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
   const isDeleteRecord = useRecoilValue(deleteRecordPopUpOverAtom);
   const timeLineMonth = useRecoilValue(chooseTimeLineMonthAtom);
-  const { currentPath } = useRouter();
-  const [tabSize, setTabSize] = useState(true);
+  const { currentPath, routeTo } = useRouter();
+  const navAnimation = useAnimation();
   const [mouseDownClientY, setMouseDownClientY] = useState(0);
   const [mouseUpClientY, setMouseUpClientY] = useState(0);
+  const navVariants = {
+    top: {
+      position: "absolute",
+    },
+    bottom: {
+      position: "",
+    },
+  };
 
   const onMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setMouseDownClientY(e.clientY);
@@ -52,10 +59,11 @@ const MyRecord = () => {
   };
 
   useEffect(() => {
+    routeTo("/my/record/timeline");
     if (mouseDownClientY - mouseUpClientY > 0) {
-      setTabSize(false);
+      navAnimation.start("top");
     } else if (mouseDownClientY - mouseUpClientY < 0) {
-      setTabSize(true);
+      navAnimation.start("bottom");
     }
   }, [mouseUpClientY]);
 
@@ -98,7 +106,7 @@ const MyRecord = () => {
           ></Button>
         </MyRecordProfileButton>
       </MyRecordProfile>
-      <Tabs style={tabSize ? { position: "" } : { position: "absolute" }}>
+      <Tabs variants={navVariants} animate={navAnimation} initial={"bottom"}>
         <TabTitle>
           <Tab
             className={
@@ -109,20 +117,15 @@ const MyRecord = () => {
             }
           >
             <Link to="timeline">타임라인</Link>
-            <TabIndicator
-              className={
-                currentPath === "/my/record/timeline" ||
-                currentPath === "/my/record"
-                  ? "selected"
-                  : ""
-              }
-            />
+            {currentPath === "/my/record/timeline" && (
+              <TabIndicator layoutId="tabIndicator" />
+            )}
           </Tab>
           <Tab className={currentPath === "/my/record/save" ? "selected" : ""}>
             <Link to="save">저장</Link>
-            <TabIndicator
-              className={currentPath === "/my/record/save" ? "selected" : ""}
-            />
+            {currentPath === "/my/record/save" && (
+              <TabIndicator layoutId="tabIndicator" />
+            )}
           </Tab>
         </TabTitle>
         <Divider className="line"></Divider>

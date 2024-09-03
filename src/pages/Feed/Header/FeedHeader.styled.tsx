@@ -33,6 +33,7 @@ export const FeedHeaderSearch = styled.form`
   svg {
     height: 25px;
   }
+  cursor: pointer;
 `;
 
 export const FeedHeaderItems = styled.div`
