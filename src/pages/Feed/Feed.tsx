@@ -1,18 +1,16 @@
+import { useRecoilValue } from "recoil";
 import FeedHeader from "./Header/FeedHeader";
-import Recommend from "./Recommend/Recommend";
+import { isFeedTabAtom } from "@/atoms/feedtab";
+import { FeedImage } from "./Feed.styled";
 
 const Feed = () => {
-	return (
-		<>
-			<FeedHeader />
-			{window.location.pathname === "/feed" ? 
-				<>
-					<div style={{ width: "500px", height: "100%", backgroundColor: "gray" }}></div>
-				</> : 
-				<Recommend /> }
-			
-		</>
-    );
-}
+  const feedTab = useRecoilValue(isFeedTabAtom);
+  return (
+    <>
+      <FeedHeader />
+      {feedTab ? <FeedImage src="/images/desert.jpg" /> : null}
+    </>
+  );
+};
 
 export default Feed;

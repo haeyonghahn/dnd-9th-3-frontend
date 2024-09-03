@@ -39,7 +39,7 @@ const MyRecord = () => {
   const user = useRecoilValue(userAtom);
   const isDeleteRecord = useRecoilValue(deleteRecordPopUpOverAtom);
   const timeLineMonth = useRecoilValue(chooseTimeLineMonthAtom);
-  const { currentPath, routeTo } = useRouter();
+  const { currentPath } = useRouter();
   const [tabSize, setTabSize] = useState(true);
   const [mouseDownClientY, setMouseDownClientY] = useState(0);
   const [mouseUpClientY, setMouseUpClientY] = useState(0);
@@ -52,7 +52,6 @@ const MyRecord = () => {
   };
 
   useEffect(() => {
-    routeTo("/my/record/timeline");
     if (mouseDownClientY - mouseUpClientY > 0) {
       setTabSize(false);
     } else if (mouseDownClientY - mouseUpClientY < 0) {

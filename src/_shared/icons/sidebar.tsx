@@ -28,8 +28,8 @@ const sidebar: IBasicProps = {
       <>
         <svg
           style={{ marginTop: "10%", marginBottom: "10%" }}
-          width="50"
-          height="50"
+          width="20"
+          height="20"
           viewBox="0 0 20 21"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -61,8 +61,8 @@ const sidebar: IBasicProps = {
       <>
         <svg
           style={{ marginTop: "10%", marginBottom: "10%" }}
-          width="50"
-          height="50"
+          width="20"
+          height="20"
           viewBox="0 0 21 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ const sidebar: IBasicProps = {
     const { currentPath } = useRouter();
 
     const handleColor = () => {
-      if (currentPath === "/feed") {
+      if (currentPath === "/feed" || currentPath === "/feed/recommend") {
         setColor(colors.white);
       } else {
         setColor(colors.gray650);
@@ -107,8 +107,8 @@ const sidebar: IBasicProps = {
       <>
         <svg
           style={{ marginTop: "10%", marginBottom: "10%" }}
-          width="50"
-          height="50"
+          width="20"
+          height="20"
           viewBox="0 0 19 18"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

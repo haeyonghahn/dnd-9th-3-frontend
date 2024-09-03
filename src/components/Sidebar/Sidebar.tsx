@@ -21,7 +21,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {
   const { currentPath, routeTo } = useRouter();
 
   const sidebarMenuClickHandler = (path: string) => {
-    routeTo(path);
+    if (path === "/my/record") {
+      routeTo("/my/record/timeline");
+    } else {
+      routeTo(path);
+    }
   };
 
   return (

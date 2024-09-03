@@ -68,15 +68,15 @@ const routerData: RouterElement[] = [
     withSidebar: true,
     children: [
       {
-        id: 8,
+        id: 10,
         path: "recommend",
         label: "추천",
         image: <></>,
         element: <Recommend />,
         withAuth: true,
         withSidebar: false,
-      }
-    ]
+      },
+    ],
   },
   {
     id: 6,
