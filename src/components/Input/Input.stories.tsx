@@ -48,7 +48,7 @@ export const AllTypes = () => (
           status="error"
           title="닉네임"
           theme="dark"
-          icon="isDarkCancel"
+          icon="cancel"
           icondirection="right"
           message="15자 이내로 입력해주세요."
           handleChange={() => console.log("handleChange")}
@@ -90,7 +90,7 @@ export const AllTypes = () => (
           status="error"
           title="닉네임"
           theme="white"
-          icon="isWhiteCancel"
+          icon="cancel"
           icondirection="right"
           message="15자 이내로 입력해주세요."
           handleChange={() => console.log("handleChange")}

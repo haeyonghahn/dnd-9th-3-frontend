@@ -10,6 +10,7 @@ interface IIconProps {
   height?: string;
   viewBoxWidth?: string;
   viewBoxHeight?: string;
+  fill?: string;
 }
 
 const Icon = ({
@@ -21,6 +22,7 @@ const Icon = ({
   height = "24",
   viewBoxWidth = "24",
   viewBoxHeight = "24",
+  fill,
   ...props
 }: IIconProps) => {
   return (
@@ -34,7 +36,7 @@ const Icon = ({
       stroke="currentColor"
       {...props}
     >
-      {icons[icon]}
+      {icons[icon](fill)}
     </Svg>
   );
 };

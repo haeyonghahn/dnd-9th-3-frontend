@@ -77,6 +77,7 @@ const TimeLineCard = ({
         <RecordPlace>
           <Icon
             icon="locationOn"
+            fill="#3CEFA3"
             width="12"
             height="12"
             minX="0"
