@@ -19,8 +19,10 @@ import {
 } from "./Recent.styled";
 import Icon from "@/foundations/Icon";
 import { colors } from "@/_shared/colors";
+import { feedAtom } from "@/atoms/feed";
 
 const Recent = () => {
+  const feeds = useRecoilValue(feedAtom);
   const user = useRecoilValue(userAtom);
   return (
     <RecentWrapper>
@@ -68,54 +70,18 @@ const Recent = () => {
             />
           </FeedDescription>
           <EllipseWrapper>
-            <Icon
-              icon="ellipse"
-              viewBoxWidth="10"
-              viewBoxHeight="10"
-              width="10"
-              height="10"
-              fill="#FFFFFF"
-            />
-            <Icon
-              icon="ellipse"
-              viewBoxWidth="10"
-              viewBoxHeight="10"
-              width="10"
-              height="10"
-              fill={colors.gray650}
-            />
-            <Icon
-              icon="ellipse"
-              viewBoxWidth="10"
-              viewBoxHeight="10"
-              width="10"
-              height="10"
-              fill={colors.gray650}
-            />
-            <Icon
-              icon="ellipse"
-              viewBoxWidth="10"
-              viewBoxHeight="10"
-              width="10"
-              height="10"
-              fill={colors.gray650}
-            />
-            <Icon
-              icon="ellipse"
-              viewBoxWidth="10"
-              viewBoxHeight="10"
-              width="10"
-              height="10"
-              fill={colors.gray650}
-            />
-            <Icon
-              icon="ellipse"
-              viewBoxWidth="10"
-              viewBoxHeight="10"
-              width="10"
-              height="10"
-              fill={colors.gray650}
-            />
+            {feeds.map((feed) => (
+              <span key={feed.feedId}>
+                <Icon
+                  icon="ellipse"
+                  viewBoxWidth="10"
+                  viewBoxHeight="10"
+                  width="10"
+                  height="10"
+                  fill="#FFFFFF"
+                />
+              </span>
+            ))}
           </EllipseWrapper>
         </div>
       </FeedHeaderWrapper>

@@ -8,12 +8,14 @@ import {
   Wrapper,
 } from "./Feed.styled";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { isFeedTabAtom } from "@/atoms/feedtab";
 import { useRouter } from "@/hooks/useRouter";
 import Recent from "./Recent/Recent";
 import Recommend from "./Recommend/Recommend";
+import { feedAtom } from "@/atoms/feed";
 const Feed = () => {
+  const feeds = useRecoilValue(feedAtom);
   const [feedTab, setFeedTab] = useRecoilState(isFeedTabAtom);
   const { currentPath } = useRouter();
   const handleHeaderItem = () => {
@@ -57,7 +59,9 @@ const Feed = () => {
         </FeedHeaderWrapper>
         {currentPath === "/feed" ? <Recent /> : <Recommend />}
       </Wrapper>
-      {feedTab ? <FeedImage src="/images/desert.jpg" /> : null}
+      {feedTab
+        ? feeds.map((feed) => <FeedImage key={feed.feedId} src={feed.img} />)
+        : null}
     </>
   );
 };

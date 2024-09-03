@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { colors } from "@/_shared/colors";
 import { fontSize, fontWeight } from "@/_shared/typography";
+import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -65,7 +66,7 @@ export const FeedProfileName = styled.div`
   padding-left: 10px;
 `;
 
-export const FeedImage = styled.img`
+export const FeedImage = styled(motion.img)`
   height: 100%;
   width: 100%;
   display: block;

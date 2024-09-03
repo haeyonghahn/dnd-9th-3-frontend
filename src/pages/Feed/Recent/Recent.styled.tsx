@@ -42,6 +42,8 @@ export const BookMark = styled.div`
 `;
 
 export const EllipseWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
   text-align: center;
 `;
