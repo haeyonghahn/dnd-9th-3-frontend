@@ -12,9 +12,10 @@ import {
 import { SidebarElement } from "./types/sidebar";
 import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/Layout";
-import Feed from "./pages/Feed/Feed";
 import { sidebar } from "./_shared/icons";
 import Recommend from "./pages/Feed/Recommend/Recommend";
+import Feed from "./pages/Feed/Feed";
+import Record from "./pages/Record/Record";
 
 const routerData: RouterElement[] = [
   // 로그인 페이지 라우터 등록하기 ('login', withAuth: false)
@@ -83,7 +84,7 @@ const routerData: RouterElement[] = [
     path: "/record",
     label: "기록",
     image: <sidebar.record />,
-    element: <></>,
+    element: <Record />,
     withAuth: true,
     withSidebar: true,
   },
