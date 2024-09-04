@@ -5,7 +5,7 @@ import {
   FeedProfileName,
 } from "../Feed.styled";
 import Typography from "@/foundations/Typography";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userAtom } from "@/atoms/user";
 import {
   BookMark,
@@ -19,11 +19,18 @@ import {
 } from "./Recent.styled";
 import Icon from "@/foundations/Icon";
 import { colors } from "@/_shared/colors";
-import { feedAtom } from "@/atoms/feed";
+import { feedAtom, feedIndexAtom } from "@/atoms/feed";
 
 const Recent = () => {
-  const feeds = useRecoilValue(feedAtom);
   const user = useRecoilValue(userAtom);
+  const feeds = useRecoilValue(feedAtom);
+  const [feedIndex, setFeedIndex] = useRecoilState(feedIndexAtom);
+
+  const incraseIndex = () => {
+    const totalRecordImages = feeds.length - 1;
+    setFeedIndex((prev) => (prev === totalRecordImages ? 0 : prev + 1));
+  };
+
   return (
     <RecentWrapper>
       <FeedHeaderWrapper>
@@ -70,15 +77,19 @@ const Recent = () => {
             />
           </FeedDescription>
           <EllipseWrapper>
-            {feeds.map((feed) => (
-              <span key={feed.feedId}>
+            {feeds.map((feed, index) => (
+              <span
+                key={index}
+                onClick={incraseIndex}
+                style={{ cursor: "pointer" }}
+              >
                 <Icon
                   icon="ellipse"
                   viewBoxWidth="10"
                   viewBoxHeight="10"
                   width="10"
                   height="10"
-                  fill="#FFFFFF"
+                  fill={feedIndex === index ? "#FFFFFF" : colors.gray600}
                 />
               </span>
             ))}

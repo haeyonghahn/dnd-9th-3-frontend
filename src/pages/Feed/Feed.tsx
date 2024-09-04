@@ -13,9 +13,10 @@ import { isFeedTabAtom } from "@/atoms/feedtab";
 import { useRouter } from "@/hooks/useRouter";
 import Recent from "./Recent/Recent";
 import Recommend from "./Recommend/Recommend";
-import { feedAtom } from "@/atoms/feed";
+import { feedAtom, feedIndexAtom } from "@/atoms/feed";
 const Feed = () => {
   const feeds = useRecoilValue(feedAtom);
+  const feedIndex = useRecoilValue(feedIndexAtom);
   const [feedTab, setFeedTab] = useRecoilState(isFeedTabAtom);
   const { currentPath } = useRouter();
   const handleHeaderItem = () => {
@@ -59,9 +60,9 @@ const Feed = () => {
         </FeedHeaderWrapper>
         {currentPath === "/feed" ? <Recent /> : <Recommend />}
       </Wrapper>
-      {feedTab
-        ? feeds.map((feed) => <FeedImage key={feed.feedId} src={feed.img} />)
-        : null}
+      <div style={{ height: "100%", display: "flex" }}>
+        {feedTab ? <FeedImage src={feeds[feedIndex].img} /> : null}
+      </div>
     </>
   );
 };
