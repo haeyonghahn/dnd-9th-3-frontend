@@ -14,8 +14,7 @@ import {
   OnboardingDescription,
   OnboardingHeader,
 } from "./Onboarding.styled";
-
-type Status = "default" | "error" | "success";
+import { Status } from "@/types/status";
 
 const Onboarding = () => {
   const { routeTo } = useRouter();

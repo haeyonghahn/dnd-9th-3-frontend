@@ -60,9 +60,7 @@ const Feed = () => {
         </FeedHeaderWrapper>
         {currentPath === "/feed" ? <Recent /> : <Recommend />}
       </Wrapper>
-      <div style={{ height: "100%", display: "flex" }}>
-        {feedTab ? <FeedImage src={feeds[feedIndex].img} /> : null}
-      </div>
+      {feedTab ? <FeedImage src={feeds[feedIndex].img} /> : null}
     </>
   );
 };
