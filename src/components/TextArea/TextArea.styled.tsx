@@ -54,13 +54,13 @@ export const Layout = styled.div`
   gap: 6px;
 `;
 
-export const InputBox = styled.div<IInputBoxProps>`
+export const TextAreaBox = styled.div<IInputBoxProps>`
   display: flex;
   align-items: center;
   flex-direction: ${(props) =>
     props.icondirection === "right" ? "row-reverse" : ""};
   box-sizing: border-box;
-  height: 42px;
+  height: 130px;
   padding: 0 16px;
   border: 1px solid
     ${(props) =>
@@ -89,8 +89,9 @@ export const InputBox = styled.div<IInputBoxProps>`
   }
 `;
 
-export const InputText = styled.textarea`
+export const TextAreaText = styled.textarea`
   width: 100%;
+  height: 100px;
   margin-left: 8px;
   margin-right: 8px;
   border: none;
@@ -100,6 +101,7 @@ export const InputText = styled.textarea`
   font-weight: ${fontWeight.semiBoldRegular};
   color: ${colors.inputTextClor};
   outline: none;
+  resize: none;
 `;
 
 export const Label = styled.label<ILabelProps>`

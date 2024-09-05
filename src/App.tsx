@@ -39,6 +39,8 @@ const GlobalStyle = createGlobalStyle`
 
   .general-layout {
     margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: 100vh;
     width: 100%;
     max-width: 500px;

@@ -2,6 +2,10 @@ import { colors } from "@/_shared/colors";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
+export const RecrodContainer = styled.div`
+  overflow: auto;
+`;
+
 export const RecordIndicator = styled(motion.div)`
   height: 4px;
   width: 100%;
@@ -48,4 +52,6 @@ export const RecordInputBox = styled.div`
   margin-bottom: 3%;
 `;
 
-export const RecordDescription = styled.div``;
+export const RecordDescription = styled.div`
+  margin-bottom: 3%;
+`;

@@ -6,10 +6,12 @@ import {
   RecordIndicator,
   RecordInputBox,
   RecordWrapper,
+  RecrodContainer,
 } from "./Record.styled";
 import Typography from "@/foundations/Typography";
 import Input from "@/components/Input";
 import { Status } from "@/types/status";
+import TextArea from "@/components/TextArea";
 
 const Record = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -39,39 +41,52 @@ const Record = () => {
 
   const [title, setTitle] = useState("");
   const [titleStatus, setStatus] = useState<Status>("default");
-  const [titleErrorMessage, setErrorMessage] = useState("");
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value },
     } = event;
     if (0 < value.length && value.length > 20) {
       setStatus("error");
-      setErrorMessage("20자 이내로 입력해주세요.");
     } else {
       setStatus("default");
-      setErrorMessage("");
     }
     setTitle(value);
   };
 
   const [descript, setDescript] = useState("");
   const [descriptStatus, setDescriptStatus] = useState<Status>("default");
-  const [descriptErrorMessage, setDescriptErrorMessage] = useState("");
-  const handleDescriptChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDescriptChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     const {
       currentTarget: { value },
     } = event;
     if (0 < value.length && value.length > 100) {
       setDescriptStatus("error");
-      setDescriptErrorMessage("100자 이내로 입력해주세요.");
     } else {
       setDescriptStatus("default");
-      setDescriptErrorMessage("");
     }
     setDescript(value);
   };
+
+  const [recordDay, setRecordDay] = useState("");
+  const handleDayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: { value },
+    } = event;
+    setRecordDay(value);
+  };
+
+  const [recordPlace, setRecordPlace] = useState("");
+  const handlePlaceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      currentTarget: { value },
+    } = event;
+    setRecordPlace(value);
+  };
+
   return (
-    <>
+    <RecrodContainer>
       <RecordIndicator />
       <RecordImageWrapper
         ref={scrollRef}
@@ -91,25 +106,58 @@ const Record = () => {
         <RecordInputBox>
           <Input
             status={titleStatus}
-            message={titleErrorMessage}
             placeholder="제목을 입력해주세요."
             handleChange={(event) => handleTitleChange(event)}
             theme="dark"
             value={title}
+            messageBoxShow={false}
           />
         </RecordInputBox>
         <RecordDescription>
-          <Input
+          <TextArea
             status={descriptStatus}
-            message={descriptErrorMessage}
             placeholder="굳이데이 활동과 계기에 대해 작성해주세요."
             handleChange={(event) => handleDescriptChange(event)}
             theme="dark"
             value={descript}
+            messageBoxShow={false}
           />
         </RecordDescription>
+        <Typography text="활동 날짜" type="h3" />
+        <RecordInputBox>
+          <Input
+            status="default"
+            placeholder="YY / MM / DD"
+            handleChange={(event) => handleDayChange(event)}
+            theme="dark"
+            value={recordDay}
+            messageBoxShow={false}
+          />
+        </RecordInputBox>
+        <Typography text="활동 장소" type="h3" />
+        <RecordInputBox>
+          <Input
+            status="default"
+            placeholder="장소를 설정해주세요.(선택)"
+            handleChange={(event) => handlePlaceChange(event)}
+            theme="dark"
+            value={recordPlace}
+            messageBoxShow={false}
+          />
+        </RecordInputBox>
+        <Typography text="활동 카테고리" type="h3" />
+        <RecordInputBox>
+          <Input
+            status="default"
+            placeholder="장소를 설정해주세요.(선택)"
+            handleChange={(event) => handlePlaceChange(event)}
+            theme="dark"
+            value={recordPlace}
+            messageBoxShow={false}
+          />
+        </RecordInputBox>
       </RecordWrapper>
-    </>
+    </RecrodContainer>
   );
 };
 

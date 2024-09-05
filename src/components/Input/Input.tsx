@@ -8,14 +8,15 @@ import {
   MessageBox,
 } from "./Input.styled";
 import Icon from "@/foundations/Icon";
+import { Status } from "@/types/status";
 
-type Status = "default" | "error" | "success";
 type IconDirection = "left" | "right";
 
 interface IInputProps {
   title?: string;
   placeholder?: string;
   message?: string;
+  messageBoxShow?: boolean;
   status: Status;
   icon?: string;
   icondirection?: IconDirection;
@@ -31,6 +32,7 @@ const Input = forwardRef(
       title,
       placeholder,
       message,
+      messageBoxShow = true,
       status,
       icon,
       icondirection,
@@ -54,14 +56,16 @@ const Input = forwardRef(
             value={value || ""}
           ></InputText>
         </InputBox>
-        <MessageBox>
-          {status === "error" ? (
-            <Icon icon="warning" />
-          ) : (
-            <Message status={status}></Message>
-          )}
-          <Message status={status}>{message}</Message>
-        </MessageBox>
+        {messageBoxShow ? (
+          <MessageBox>
+            {status === "error" ? (
+              <Icon icon="warning" />
+            ) : (
+              <Message status={status}></Message>
+            )}
+            <Message status={status}>{message}</Message>
+          </MessageBox>
+        ) : null}
       </Layout>
     );
   }

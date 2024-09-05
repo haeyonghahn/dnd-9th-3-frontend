@@ -1,11 +1,11 @@
 import { forwardRef } from "react";
 import {
-  InputBox,
-  InputText,
   Label,
   Layout,
   Message,
   MessageBox,
+  TextAreaBox,
+  TextAreaText,
 } from "./TextArea.styled";
 import Icon from "@/foundations/Icon";
 
@@ -16,6 +16,7 @@ interface IInputProps {
   title?: string;
   placeholder?: string;
   message?: string;
+  messageBoxShow?: boolean;
   status: Status;
   icon?: string;
   icondirection?: IconDirection;
@@ -30,6 +31,7 @@ const TextArea = forwardRef(
       title,
       placeholder,
       message,
+      messageBoxShow = true,
       status,
       icon,
       icondirection,
@@ -37,28 +39,34 @@ const TextArea = forwardRef(
       value,
       handleChange,
     }: IInputProps,
-    inputRef: React.ForwardedRef<HTMLTextAreaElement>
+    textAreaRef: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
     return (
       <Layout>
         <Label status={status}>{title}</Label>
-        <InputBox theme={theme} status={status} icondirection={icondirection}>
+        <TextAreaBox
+          theme={theme}
+          status={status}
+          icondirection={icondirection}
+        >
           {icon && <Icon icon={icon} />}
-          <InputText
+          <TextAreaText
             placeholder={placeholder}
-            ref={inputRef}
+            ref={textAreaRef}
             onChange={(event) => handleChange(event)}
             value={value || ""}
-          ></InputText>
-        </InputBox>
-        <MessageBox>
-          {status === "error" ? (
-            <Icon icon="warning" />
-          ) : (
-            <Message status={status}></Message>
-          )}
-          <Message status={status}>{message}</Message>
-        </MessageBox>
+          ></TextAreaText>
+        </TextAreaBox>
+        {messageBoxShow ? (
+          <MessageBox>
+            {status === "error" ? (
+              <Icon icon="warning" />
+            ) : (
+              <Message status={status}></Message>
+            )}
+            <Message status={status}>{message}</Message>
+          </MessageBox>
+        ) : null}
       </Layout>
     );
   }
