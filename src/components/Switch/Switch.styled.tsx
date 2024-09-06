@@ -2,17 +2,22 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { colors } from "@/_shared/colors";
 
-export const Container = styled.div`
-  width: 90px;
-  height: 50px;
+interface ISwitchProps {
+  width?: string;
+  height?: string;
+  handleWidth?: string;
+  handleHeight?: string;
+  padding?: string;
+}
+
+export const Container = styled.div<ISwitchProps>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   background-color: #3e4049;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
   display: flex;
   justify-content: flex-start;
   border-radius: 50px;
-  padding: 10px;
+  padding: ${(props) => props.padding};
   cursor: pointer;
   &[data-isOn="true"] {
     justify-content: flex-end;
@@ -20,9 +25,9 @@ export const Container = styled.div`
   }
 `;
 
-export const Handle = styled(motion.div)`
-  width: 30px;
-  height: 30px;
+export const Handle = styled(motion.div)<ISwitchProps>`
+  width: ${(props) => props.handleWidth};
+  height: ${(props) => props.handleHeight};
   background-color: #ffffff;
   border-radius: 40px;
 `;

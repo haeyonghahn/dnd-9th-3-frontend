@@ -1,10 +1,13 @@
 import { useRef, useState } from "react";
 import {
+  RecordButtonBox,
   RecordDescription,
-  RecordImage,
+  RecordImageBox,
   RecordImageWrapper,
   RecordIndicator,
   RecordInputBox,
+  RecordStateBox,
+  RecordStateMessageBox,
   RecordWrapper,
   RecrodContainer,
 } from "./Record.styled";
@@ -12,6 +15,10 @@ import Typography from "@/foundations/Typography";
 import Input from "@/components/Input";
 import { Status } from "@/types/status";
 import TextArea from "@/components/TextArea";
+import Switch from "@/components/Switch";
+import Button from "@/components/Button";
+import { colors } from "@/_shared/colors";
+import RecordImage from "./Image/RecordImage";
 
 const Record = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -95,11 +102,11 @@ const Record = () => {
         onMouseUp={handleMouseLeaveOrUp}
         onMouseMove={handleMouseMove}
       >
-        <RecordImage></RecordImage>
-        <RecordImage></RecordImage>
-        <RecordImage></RecordImage>
-        <RecordImage></RecordImage>
-        <RecordImage></RecordImage>
+        <RecordImageBox></RecordImageBox>
+        <RecordImageBox></RecordImageBox>
+        <RecordImageBox></RecordImageBox>
+        <RecordImageBox></RecordImageBox>
+        <RecordImageBox></RecordImageBox>
       </RecordImageWrapper>
       <RecordWrapper>
         <Typography text="어떤 굳이데이를 보내셨나요?" type="h3" />
@@ -156,6 +163,31 @@ const Record = () => {
             messageBoxShow={false}
           />
         </RecordInputBox>
+        <RecordStateBox>
+          <Typography text="공개 여부 설정" type="h3" />
+          <Switch
+            handleHeight="25px"
+            handleWidth="25px"
+            height="25px"
+            width="50px"
+            padding="0px"
+          />
+        </RecordStateBox>
+        <RecordStateMessageBox>
+          <Typography
+            text="기록을 공개하면, 다른 사람들도 나의 기록을 볼 수 있습니다."
+            type="body3"
+          />
+        </RecordStateMessageBox>
+        <RecordButtonBox>
+          <Button
+            text="다음"
+            width="100%"
+            color={colors.white}
+            bordercolor={colors.inputTextClor}
+            backgroundcolor={colors.gray850}
+          />
+        </RecordButtonBox>
       </RecordWrapper>
     </RecrodContainer>
   );

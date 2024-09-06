@@ -12,6 +12,7 @@ import { colors } from "@/_shared/colors";
 import { TimeLineArrow, TimeLineMonth } from "../MyRecord/MyRecord.styled";
 import { useSetRecoilState } from "recoil";
 import { chooseTimeLineMonthAtom } from "@/atoms/popup";
+import { useRouter } from "@/hooks/useRouter";
 
 const MyTimeLine = () => {
   const { data: myRecordData } = useQuery<Record[] | null>({
@@ -19,8 +20,9 @@ const MyTimeLine = () => {
     queryFn: getMyRecord,
     throwOnError: true,
   });
-  const setTimeLineMonth = useSetRecoilState(chooseTimeLineMonthAtom);
+  const { routeTo } = useRouter();
 
+  const setTimeLineMonth = useSetRecoilState(chooseTimeLineMonthAtom);
   const handleTimeLineMonthPopUp = () => {
     setTimeLineMonth((prev) => !prev);
   };
@@ -65,6 +67,7 @@ const MyTimeLine = () => {
               bordercolor={colors.inputTextClor}
               backgroundcolor={colors.gray850}
               none="true"
+              onClick={() => routeTo("/record")}
             ></Button>
           </ButtonWrapper>
         </>

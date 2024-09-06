@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const SideBar = styled.div`
   width: 500px;
-  height: 100vh;
+  height: 100%;
   background-color: ${(props) => props.theme.bgColor};
   box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
@@ -12,7 +12,8 @@ export const SideBar = styled.div`
 `;
 
 export const SideBarContent = styled.div`
-  height: 100vh;
+  height: 100%;
+  overflow: auto;
 `;
 
 export const SideBarFooter = styled.div`
@@ -40,7 +41,7 @@ export const SideBarMenu = styled.li`
   font-weight: ${fontWeight.semiBoldRegular};
   text-align: center;
   list-style: none;
-  padding: 18px;
+  padding: 5px 18px 5px 18px;
   cursor: pointer;
   transition: 0.5s ease;
   &.selected {

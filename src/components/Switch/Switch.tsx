@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Container, Handle } from "./Switch.styled";
-import { isDarkAtom } from "@/atoms/theme";
-import { useSetRecoilState } from "recoil";
+
+interface ISwitchProps {
+  width?: string;
+  height?: string;
+  handleWidth?: string;
+  handleHeight?: string;
+  padding?: string;
+}
 
 const spring = {
   type: "spring",
@@ -9,17 +15,32 @@ const spring = {
   damping: 30,
 };
 
-const Switch = () => {
+const Switch = ({
+  width = "90px",
+  height = "50px",
+  handleWidth = "30px",
+  handleHeight = "30px",
+  padding = "10px",
+}: ISwitchProps) => {
   const [isOn, setIsOn] = useState(false);
-  const setDarkAtom = useSetRecoilState(isDarkAtom);
   const toggleSwitch = () => {
     setIsOn((prev) => !prev);
-    setDarkAtom((prev) => !prev);
   };
 
   return (
-    <Container data-ison={isOn} onClick={toggleSwitch}>
-      <Handle layout transition={spring} />
+    <Container
+      data-ison={isOn}
+      width={width}
+      height={height}
+      padding={padding}
+      onClick={toggleSwitch}
+    >
+      <Handle
+        layout
+        transition={spring}
+        handleWidth={handleWidth}
+        handleHeight={handleHeight}
+      />
     </Container>
   );
 };

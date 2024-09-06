@@ -36,11 +36,12 @@ export const RecordImageWrapper = styled.div`
   }
 `;
 
-export const RecordImage = styled.div`
+export const RecordImageBox = styled.div`
   height: 100%;
   min-width: 250px;
   border-radius: 4px;
-  background-color: ${colors.gray500};
+  border: 3px solid ${colors.gray500};
+  background-color: ${colors.black};
   margin-right: 5px;
   &:last-child {
     margin-right: 0px;
@@ -53,5 +54,23 @@ export const RecordInputBox = styled.div`
 `;
 
 export const RecordDescription = styled.div`
+  margin-bottom: 3%;
+`;
+
+export const RecordStateBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const RecordStateMessageBox = styled.div`
+  color: ${colors.gray500};
+  font-size: small;
+  margin-top: 3%;
+  margin-bottom: 3%;
+`;
+
+export const RecordButtonBox = styled.div`
+  margin-top: 10%;
   margin-bottom: 3%;
 `;
