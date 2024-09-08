@@ -73,7 +73,7 @@ const MyRecord = () => {
         <MyRecordWrapperTitle>
           <span>마이 굳잉</span>
         </MyRecordWrapperTitle>
-        <MyRecordWrapperImage>
+        <MyRecordWrapperImage onClick={() => routeTo("/setting")}>
           <img src="/images/settings.svg" />
         </MyRecordWrapperImage>
       </MyRecordWrapper>

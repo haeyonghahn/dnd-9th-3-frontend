@@ -7,6 +7,7 @@ import {
   MySave,
   MyTimeLine,
   Onboarding,
+  Setting,
   Welcome,
 } from "./pages";
 import { SidebarElement } from "./types/sidebar";
@@ -116,6 +117,15 @@ const routerData: RouterElement[] = [
         withSidebar: false,
       },
     ],
+  },
+  {
+    id: 11,
+    path: "/setting",
+    label: "세팅",
+    image: <></>,
+    element: <Setting />,
+    withAuth: true,
+    withSidebar: false,
   },
 ];
 

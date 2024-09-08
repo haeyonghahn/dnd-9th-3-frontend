@@ -2159,6 +2159,19 @@ const basic: IBasicProps = {
       </>
     );
   },
+  rightArrow: () => {
+    return (
+      <>
+        <path
+          d="M1 11L6 6L1 1"
+          stroke="white"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </>
+    );
+  },
 };
 
 export default basic;
