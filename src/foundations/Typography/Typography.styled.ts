@@ -13,6 +13,7 @@ interface IText {
   type: string;
   textover?: string;
   textoverwidth?: string;
+  color?: string;
 }
 
 const textSize: ITextProps = {
@@ -49,5 +50,6 @@ export const Text = styled.div<IText>`
           overflow: hidden;
           text-overflow: ellipsis;
         `
-      : ""}
+      : ""};
+  color: ${(props) => props.color};
 `;

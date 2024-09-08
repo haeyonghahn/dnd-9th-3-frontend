@@ -1,19 +1,31 @@
+import Icon from "@/foundations/Icon";
+import Typography from "@/foundations/Typography";
+
 interface IRecordImage {
-  size?: string;
   isloading?: string;
-  theme?: string;
   src?: string;
   name?: string;
 }
 
-const RecordImage = ({ size, isloading, theme, src, name }: IRecordImage) => {
-  let avatarFigure = <></>;
+const RecordImage = ({ isloading, src, name }: IRecordImage) => {
+  let avatarFigure = null;
   if (isloading === "true") {
     avatarFigure = <></>;
   } else if (src) {
     avatarFigure = <img src={src} alt={name}></img>;
   }
-  return <></>;
+  return (
+    <>
+      {avatarFigure ? (
+        avatarFigure
+      ) : (
+        <>
+          <Icon icon="plusCircle" />
+          <Typography text="사진 추가" type="h3" color="#575860" />
+        </>
+      )}
+    </>
+  );
 };
 
 export default RecordImage;

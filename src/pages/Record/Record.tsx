@@ -102,11 +102,21 @@ const Record = () => {
         onMouseUp={handleMouseLeaveOrUp}
         onMouseMove={handleMouseMove}
       >
-        <RecordImageBox></RecordImageBox>
-        <RecordImageBox></RecordImageBox>
-        <RecordImageBox></RecordImageBox>
-        <RecordImageBox></RecordImageBox>
-        <RecordImageBox></RecordImageBox>
+        <RecordImageBox>
+          <RecordImage></RecordImage>
+        </RecordImageBox>
+        <RecordImageBox>
+          <RecordImage></RecordImage>
+        </RecordImageBox>
+        <RecordImageBox>
+          <RecordImage></RecordImage>
+        </RecordImageBox>
+        <RecordImageBox>
+          <RecordImage></RecordImage>
+        </RecordImageBox>
+        <RecordImageBox>
+          <RecordImage></RecordImage>
+        </RecordImageBox>
       </RecordImageWrapper>
       <RecordWrapper>
         <Typography text="어떤 굳이데이를 보내셨나요?" type="h3" />

@@ -43,6 +43,10 @@ export const RecordImageBox = styled.div`
   border: 3px solid ${colors.gray500};
   background-color: ${colors.black};
   margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   &:last-child {
     margin-right: 0px;
   }
