@@ -8,3 +8,10 @@ export interface Record {
   title: string;
   description: string;
 }
+
+export interface RecordPlace {
+  placeName: string;
+  addressName: string;
+  placeLatitude: number;
+  placeLongitude: number;
+}

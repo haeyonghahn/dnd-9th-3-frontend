@@ -1,85 +1,98 @@
 import Typography from "@/foundations/Typography";
-import { RecordCardIndicator, RecordPlaceBox, RecordPlaceCard, RecordPlaceCardDescription, RecordPlaceHeaderWrapper, RecordPlaceIndicator, RecordPlaceWrapper } from "./RecordPlace.styled";
+import {
+  RecordCardIndicator,
+  RecordPlaceBox,
+  RecordPlaceCard,
+  RecordPlaceCardDescription,
+  RecordPlaceContainer,
+  RecordPlaceContent,
+  RecordPlaceHeaderWrapper,
+  RecordPlaceIndicator,
+  RecordPlaceInputBox,
+} from "./RecordPlace.styled";
 import Input from "@/components/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { colors } from "@/_shared/colors";
+import { useDebounce } from "@/hooks/useDebounce";
+import { getRecordPlace } from "@/api/record";
+
+interface IRecordPlace {
+  placeName: string;
+  addressName: string;
+  placeLatitude: number;
+  placeLongitude: number;
+}
 
 const RecordPlace = () => {
-  const [recordPlace, setRecordPlace] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [places, setPlaces] = useState<IRecordPlace[] | null>(null);
+  const debouncedKeyword = useDebounce(keyword, 500);
   const handlePlaceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value },
     } = event;
-    setRecordPlace(value);
+    setKeyword(value);
   };
+
+  const fetchRecordPlace = async () => {
+    const recordPlaceResponse = await getRecordPlace(keyword);
+    setPlaces(recordPlaceResponse);
+  };
+
+  useEffect(() => {
+    if (debouncedKeyword && keyword) {
+      fetchRecordPlace();
+    }
+  }, [debouncedKeyword]);
   return (
     <>
-      <div>
+      <RecordPlaceContainer>
         <RecordPlaceHeaderWrapper>
           <Typography text="장소 선택" type="h1" />
           <RecordPlaceIndicator />
         </RecordPlaceHeaderWrapper>
-        <RecordPlaceWrapper>
-          <RecordPlaceBox>
-            <Input
-              status="default"
-              placeholder="지역,장소 검색"
-              handleChange={(event) => handlePlaceChange(event)}
-              theme="dark"
-              value={recordPlace}
-              messageBoxShow={false}
-              icon="search"
-              fill="currentColor"
-              viewBoxWidth="20"
-              viewBoxHeight="20"
-              icondirection="right"
-            />
-          </RecordPlaceBox>
-          <RecordPlaceBox>
-            {/* <RecordPlaceContent>
+        <RecordPlaceInputBox>
+          <Input
+            status="default"
+            placeholder="지역,장소 검색"
+            handleChange={(event) => handlePlaceChange(event)}
+            theme="dark"
+            value={keyword}
+            messageBoxShow={false}
+            icon="search"
+            fill="currentColor"
+            viewBoxWidth="20"
+            viewBoxHeight="20"
+            icondirection="right"
+          />
+        </RecordPlaceInputBox>
+        <RecordPlaceBox>
+          {places && places.length > 0 ? (
+            places.map((place, index) => (
+              <RecordPlaceCard key={index}>
+                <Typography text={place.placeName} type="body0" />
+                <RecordPlaceCardDescription>
+                  <Typography
+                    text={place.addressName}
+                    type="body2"
+                    color={colors.gray500}
+                  />
+                </RecordPlaceCardDescription>
+                <RecordCardIndicator />
+              </RecordPlaceCard>
+            ))
+          ) : (
+            <RecordPlaceContent>
               <Typography
                 text="굳이데이를 즐긴 장소를 검색해주세요."
                 type="body2"
               />
-            </RecordPlaceContent> */}
-            <RecordPlaceCard>
-              <Typography text="을왕리 해수욕장" type="body0" />
-              <RecordPlaceCardDescription>
-                <Typography
-                  text="인천광역시 증구 을왕동"
-                  type="body2"
-                  color={colors.gray500}
-                />
-              </RecordPlaceCardDescription>
-              <RecordCardIndicator />
-            </RecordPlaceCard>
-            <RecordPlaceCard>
-              <Typography text="을왕리 바닷가" type="body0" />
-              <RecordPlaceCardDescription>
-                <Typography
-                  text="인천광역시 증구 용유서로302번길 16-15"
-                  type="body2"
-                  color={colors.gray500}
-                />
-              </RecordPlaceCardDescription>
-              <RecordCardIndicator />
-            </RecordPlaceCard>
-            <RecordPlaceCard>
-              <Typography text="을왕리 조개구이집" type="body0" />
-              <RecordPlaceCardDescription>
-                <Typography
-                  text="인천광역시 증구 을왕로 76"
-                  type="body2"
-                  color={colors.gray500}
-                />
-              </RecordPlaceCardDescription>
-              <RecordCardIndicator />
-            </RecordPlaceCard>
-          </RecordPlaceBox>
-        </RecordPlaceWrapper>
-      </div>
+            </RecordPlaceContent>
+          )}
+        </RecordPlaceBox>
+      </RecordPlaceContainer>
     </>
   );
-}
+};
 
 export default RecordPlace;
