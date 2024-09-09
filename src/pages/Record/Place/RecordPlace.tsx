@@ -1,7 +1,8 @@
 import Typography from "@/foundations/Typography";
-import { RecordPlaceBox, RecordPlaceContent, RecordPlaceHeaderWrapper, RecordPlaceIndicator, RecordPlaceWrapper } from "./RecordPlace.styled";
+import { RecordCardIndicator, RecordPlaceBox, RecordPlaceCard, RecordPlaceCardDescription, RecordPlaceHeaderWrapper, RecordPlaceIndicator, RecordPlaceWrapper } from "./RecordPlace.styled";
 import Input from "@/components/Input";
 import { useState } from "react";
+import { colors } from "@/_shared/colors";
 
 const RecordPlace = () => {
   const [recordPlace, setRecordPlace] = useState("");
@@ -35,12 +36,45 @@ const RecordPlace = () => {
             />
           </RecordPlaceBox>
           <RecordPlaceBox>
-            <RecordPlaceContent>
+            {/* <RecordPlaceContent>
               <Typography
                 text="굳이데이를 즐긴 장소를 검색해주세요."
                 type="body2"
               />
-            </RecordPlaceContent>
+            </RecordPlaceContent> */}
+            <RecordPlaceCard>
+              <Typography text="을왕리 해수욕장" type="body0" />
+              <RecordPlaceCardDescription>
+                <Typography
+                  text="인천광역시 증구 을왕동"
+                  type="body2"
+                  color={colors.gray500}
+                />
+              </RecordPlaceCardDescription>
+              <RecordCardIndicator />
+            </RecordPlaceCard>
+            <RecordPlaceCard>
+              <Typography text="을왕리 바닷가" type="body0" />
+              <RecordPlaceCardDescription>
+                <Typography
+                  text="인천광역시 증구 용유서로302번길 16-15"
+                  type="body2"
+                  color={colors.gray500}
+                />
+              </RecordPlaceCardDescription>
+              <RecordCardIndicator />
+            </RecordPlaceCard>
+            <RecordPlaceCard>
+              <Typography text="을왕리 조개구이집" type="body0" />
+              <RecordPlaceCardDescription>
+                <Typography
+                  text="인천광역시 증구 을왕로 76"
+                  type="body2"
+                  color={colors.gray500}
+                />
+              </RecordPlaceCardDescription>
+              <RecordCardIndicator />
+            </RecordPlaceCard>
           </RecordPlaceBox>
         </RecordPlaceWrapper>
       </div>

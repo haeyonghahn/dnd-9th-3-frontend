@@ -29,3 +29,20 @@ export const RecordPlaceContent = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const RecordPlaceCard = styled.div`
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-bottom: 5%;
+`;
+
+export const RecordPlaceCardDescription = styled.div`
+  margin-top: 2%;
+`;
+
+export const RecordCardIndicator = styled.div`
+  margin-top: 3%;
+  height: 1px;
+  background-color: #282932;
+`;
