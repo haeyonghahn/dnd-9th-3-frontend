@@ -1,22 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Router as RemixRouter } from "@remix-run/router/dist/router";
 import {
+  Feed,
   Home,
   Login,
   MyRecord,
   MySave,
   MyTimeLine,
   Onboarding,
+  Recommend,
+  Record,
+  RecordPlace,
   Setting,
+  SocialLogin,
   Welcome,
 } from "./pages";
 import { SidebarElement } from "./types/sidebar";
-import SocialLogin from "./pages/Login/SocialLogin";
 import Layout from "./layout/Layout";
 import { sidebar } from "./_shared/icons";
-import Recommend from "./pages/Feed/Recommend/Recommend";
-import Feed from "./pages/Feed/Feed";
-import Record from "./pages/Record/Record";
 
 const routerData: RouterElement[] = [
   // 로그인 페이지 라우터 등록하기 ('login', withAuth: false)
@@ -124,6 +125,15 @@ const routerData: RouterElement[] = [
     label: "세팅",
     image: <></>,
     element: <Setting />,
+    withAuth: true,
+    withSidebar: false,
+  },
+  {
+    id: 12,
+    path: "/place",
+    label: "장소",
+    image: <></>,
+    element: <RecordPlace />,
     withAuth: true,
     withSidebar: false,
   },

@@ -1,8 +1,13 @@
 export { default as Login } from "./Login/Login";
+export { default as SocialLogin } from "./Login/SocialLogin";
 export { default as Home } from "./Home";
 export { default as Onboarding } from "./Onboarding/Onboarding";
 export { default as Welcome } from "./Onboarding/Welcome";
 export { default as MyRecord } from "./MyRecord/MyRecord";
 export { default as MyTimeLine } from "./MyTimeLine/MyTimeLine";
 export { default as MySave } from "./MySave/MySave";
+export { default as Feed } from "./Feed/Feed";
+export { default as Recommend } from "./Feed/Recommend/Recommend";
 export { default as Setting } from "./Setting/Setting";
+export { default as Record } from "./Record/Record";
+export { default as RecordPlace } from "./Record/Place/RecordPlace"

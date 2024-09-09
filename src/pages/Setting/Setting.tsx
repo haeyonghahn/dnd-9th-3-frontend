@@ -21,9 +21,7 @@ const Setting = () => {
           <SettingBox>
             <SettingContent>
               <Typography text="내 계정 설정" type="h1" />
-              <div style={{ paddingTop: "10px" }}>
-                <Icon icon="rightArrow" height="35" width="35" />
-              </div>
+              <Icon icon="rightArrow" minY="-7" height="35" width="35" />
             </SettingContent>
           </SettingBox>
           <SettingBox>
@@ -37,17 +35,13 @@ const Setting = () => {
           <SettingBox>
             <SettingContent>
               <Typography text="서비스 소개" type="h1" />
-              <div style={{ paddingTop: "10px" }}>
-                <Icon icon="rightArrow" height="35" width="35" />
-              </div>
+              <Icon icon="rightArrow" minY="-7" height="35" width="35" />
             </SettingContent>
           </SettingBox>
           <SettingBox>
             <SettingContent>
               <Typography text="개인정보 처리 방침" type="h1" />
-              <div style={{ paddingTop: "10px" }}>
-                <Icon icon="rightArrow" height="35" width="35" />
-              </div>
+              <Icon icon="rightArrow" minY="-7" height="35" width="35" />
             </SettingContent>
           </SettingBox>
         </SettingWrapper>

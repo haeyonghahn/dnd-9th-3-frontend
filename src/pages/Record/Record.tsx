@@ -19,8 +19,10 @@ import Switch from "@/components/Switch";
 import Button from "@/components/Button";
 import { colors } from "@/_shared/colors";
 import RecordImage from "./Image/RecordImage";
+import { useRouter } from "@/hooks/useRouter";
 
 const Record = () => {
+  const { routeTo } = useRouter();
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -83,6 +85,9 @@ const Record = () => {
     } = event;
     setRecordDay(value);
   };
+  const handleDayClick = () => {
+    console.log("day test");
+  }
 
   const [recordPlace, setRecordPlace] = useState("");
   const handlePlaceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,6 +95,16 @@ const Record = () => {
       currentTarget: { value },
     } = event;
     setRecordPlace(value);
+  };
+  const handlePlaceClick = () => {
+    routeTo("/record/place");
+  }
+
+  const handleCategoryChange = () => {
+    console.log("category test");
+  }
+  const handleCategoryClick = () => {
+    console.log("category test");
   };
 
   return (
@@ -149,6 +164,13 @@ const Record = () => {
             theme="dark"
             value={recordDay}
             messageBoxShow={false}
+            icon="rightArrow"
+            icondirection="right"
+            minX="-15"
+            minY="-8"
+            width="30"
+            height="35"
+            handleClick={handleDayClick}
           />
         </RecordInputBox>
         <Typography text="활동 장소" type="h3" />
@@ -160,17 +182,31 @@ const Record = () => {
             theme="dark"
             value={recordPlace}
             messageBoxShow={false}
+            icon="rightArrow"
+            icondirection="right"
+            minX="-15"
+            minY="-8"
+            width="30"
+            height="35"
+            handleClick={() => routeTo("/place")}
           />
         </RecordInputBox>
         <Typography text="활동 카테고리" type="h3" />
         <RecordInputBox>
           <Input
             status="default"
-            placeholder="장소를 설정해주세요.(선택)"
-            handleChange={(event) => handlePlaceChange(event)}
+            placeholder="카테고리를 설정해주세요.(선택)"
+            handleChange={handleCategoryChange}
             theme="dark"
             value={recordPlace}
             messageBoxShow={false}
+            icon="rightArrow"
+            icondirection="right"
+            minX="-15"
+            minY="-8"
+            width="30"
+            height="35"
+            handleClick={handleCategoryClick}
           />
         </RecordInputBox>
         <RecordStateBox>

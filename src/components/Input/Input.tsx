@@ -20,10 +20,18 @@ interface IInputProps {
   status: Status;
   icon?: string;
   icondirection?: IconDirection;
+  fill?: string;
+  minX?: string;
+  minY?: string;
+  viewBoxWidth?: string;
+  viewBoxHeight?: string;
+  width?: string;
+  height?: string;
   number?: number;
   theme?: string;
   value?: string;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleClick?: () => void;
 }
 
 const Input = forwardRef(
@@ -36,10 +44,18 @@ const Input = forwardRef(
       status,
       icon,
       icondirection,
+      fill,
+      minX,
+      minY,
+      viewBoxWidth,
+      viewBoxHeight,
+      width,
+      height,
       number,
       theme,
       value,
       handleChange,
+      handleClick,
     }: IInputProps,
     inputRef: React.ForwardedRef<HTMLInputElement>
   ) => {
@@ -47,7 +63,19 @@ const Input = forwardRef(
       <Layout>
         <Label status={status}>{title}</Label>
         <InputBox theme={theme} status={status} icondirection={icondirection}>
-          {icon && <Icon icon={icon} />}
+          {icon && (
+            <Icon
+              onClick={handleClick}
+              icon={icon}
+              fill={fill}
+              minX={minX}
+              minY={minY}
+              viewBoxWidth={viewBoxWidth}
+              viewBoxHeight={viewBoxHeight}
+              width={width}
+              height={height}
+            />
+          )}
           <InputText
             placeholder={placeholder}
             type={number ? "number" : "text"}

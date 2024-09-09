@@ -9,4 +9,5 @@ export const Svg = styled.svg<ISvgProps>`
   stroke-width: 0.1;
   stroke-linecap: round;
   stroke-linejoin: round;
+  cursor: pointer;
 `;
