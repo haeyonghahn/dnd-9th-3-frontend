@@ -17,10 +17,10 @@ export const getMyRecord = async (): Promise<Record[] | null> => {
 };
 
 export const getRecordPlace = async (
-  keyword: string,
+  keyword?: string,
   page: number = 1,
   size: number = 15
-): Promise<RecordPlace[] | null> => {
+): Promise<RecordPlace[]> => {
   const recordPlaceRes = await fetch(
     `${BASE_URL}/api/v1/record/place?keyword=${keyword}&page=${page}&size=${size}`,
     {
@@ -34,5 +34,7 @@ export const getRecordPlace = async (
   if (!recordPlaceRes.ok) {
     throw new Error("Network RecordPlace response was not ok");
   }
-  return recordPlaceRes.json();
+
+  const data = await recordPlaceRes.json();
+  return data ?? [];
 };

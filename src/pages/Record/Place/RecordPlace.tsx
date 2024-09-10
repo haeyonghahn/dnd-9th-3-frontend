@@ -11,10 +11,12 @@ import {
   RecordPlaceInputBox,
 } from "./RecordPlace.styled";
 import Input from "@/components/Input";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { colors } from "@/_shared/colors";
 import { useDebounce } from "@/hooks/useDebounce";
 import { getRecordPlace } from "@/api/record";
+import { useFetchRecordPlaces } from "@/hooks/api/useFetchRecordPlaces";
+import { useIntersect } from "@/hooks/useIntersect";
 
 interface IRecordPlace {
   placeName: string;
@@ -26,7 +28,7 @@ interface IRecordPlace {
 const RecordPlace = () => {
   const [keyword, setKeyword] = useState("");
   const [places, setPlaces] = useState<IRecordPlace[] | null>(null);
-  const debouncedKeyword = useDebounce(keyword, 500);
+  // const debouncedKeyword = useDebounce(keyword, 500);
   const handlePlaceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value },
@@ -34,16 +36,24 @@ const RecordPlace = () => {
     setKeyword(value);
   };
 
-  const fetchRecordPlace = async () => {
-    const recordPlaceResponse = await getRecordPlace(keyword);
-    setPlaces(recordPlaceResponse);
-  };
+  const { data, hasNextPage, isFetching, fetchNextPage } = useFetchRecordPlaces(
+    { keyword: keyword, size: 15 }
+  );
+  // const ref = useIntersect(async (entry, observer) => {
+  //   observer.unobserve(entry.target);
+  //   if (hasNextPage && !isFetching) {
+  //     fetchNextPage();
+  //   }
+  // });
 
-  useEffect(() => {
-    if (debouncedKeyword && keyword) {
-      fetchRecordPlace();
-    }
-  }, [debouncedKeyword]);
+  // const fetchRecordPlace = () => {
+  // };
+
+  // useEffect(() => {
+  //   if (debouncedKeyword && keyword) {
+  //     fetchRecordPlace();
+  //   }
+  // }, [debouncedKeyword]);
   return (
     <>
       <RecordPlaceContainer>
