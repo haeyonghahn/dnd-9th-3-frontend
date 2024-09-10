@@ -1,25 +1,23 @@
 import { getRecordPlace } from "@/api/record";
-import { RecordPlace } from "@/types/record";
+import { PaginatedRecordPlace } from "@/types/record";
 import { QueryFunctionContext, useInfiniteQuery } from "@tanstack/react-query";
 
 interface PaginationParams {
-  keyword?: string;
+  keyword: string;
   size?: number;
 }
 
-const placeKeys = {
-  all: ['places'] as const,
-  lists: () => [...placeKeys.all, 'list'] as const,
-}
-
-export const useFetchRecordPlaces = ({ keyword, size = 15 }: PaginationParams) => {
-  return useInfiniteQuery<RecordPlace[]>({
-    queryKey: placeKeys.lists(),
-    queryFn: ({ pageParam = 1 }: QueryFunctionContext) =>
+export const useFetchRecordPlaces = ({
+  keyword,
+  size = 15,
+}: PaginationParams) => {
+  return useInfiniteQuery<PaginatedRecordPlace>({
+    queryKey: ["places", keyword],
+    queryFn: ({ pageParam }: QueryFunctionContext) =>
       getRecordPlace(keyword, pageParam as number, size),
     getNextPageParam: (lastPage, allPages) => {
-      const nextPage = allPages.length + 1;
-      return lastPage.length === 0 ? undefined : nextPage;
+      const nextPage = lastPage.currentPage + 1;
+      return lastPage.end || lastPage.data.length === 0 ? undefined : nextPage;
     },
     initialPageParam: 1,
   });

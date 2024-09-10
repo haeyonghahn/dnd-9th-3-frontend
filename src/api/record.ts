@@ -1,4 +1,4 @@
-import { Record, RecordPlace } from "@/types/record";
+import { PaginatedRecordPlace, Record } from "@/types/record";
 import { BASE_URL } from "./const";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 
@@ -17,24 +17,38 @@ export const getMyRecord = async (): Promise<Record[] | null> => {
 };
 
 export const getRecordPlace = async (
-  keyword?: string,
+  keyword: string,
   page: number = 1,
   size: number = 15
-): Promise<RecordPlace[]> => {
-  const recordPlaceRes = await fetch(
-    `${BASE_URL}/api/v1/record/place?keyword=${keyword}&page=${page}&size=${size}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
-      },
+): Promise<PaginatedRecordPlace> => {
+  if (keyword) {
+    const recordPlaceRes = await fetch(
+      `${BASE_URL}/api/v1/record/place?keyword=${keyword}&page=${page}&size=${size}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+        },
+      }
+    );
+    if (!recordPlaceRes.ok) {
+      throw new Error("Network RecordPlace response was not ok");
     }
-  );
-  if (!recordPlaceRes.ok) {
-    throw new Error("Network RecordPlace response was not ok");
-  }
 
-  const data = await recordPlaceRes.json();
-  return data ?? [];
+    const data = await recordPlaceRes.json();
+    return {
+      data: data.data,
+      totalPages: data.totalCount,
+      currentPage: page,
+      end: data.end,
+    };
+  } else {
+    return {
+      data: [],
+      totalPages: 0,
+      currentPage: page,
+      end: true,
+    };
+  }
 };
