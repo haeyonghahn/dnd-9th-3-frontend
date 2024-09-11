@@ -8,7 +8,7 @@ import {
   DayWrapper,
 } from "./Calendar.styled";
 import Button from "@/components/Button";
-import { addMonths, format, isAfter, subMonths } from "date-fns";
+import { addMonths, format, isAfter, isEqual, subMonths } from "date-fns";
 import Icon from "@/foundations/Icon";
 import Typography from "@/foundations/Typography";
 import { useSetRecoilState } from "recoil";
@@ -33,7 +33,9 @@ const Calendar = ({ date }: ICalendar) => {
     calendar.setCurrentDate((prev) => addMonths(prev, 1));
   };
   const handleDay = (day: Date) => {
-    setSelectedDay(day);
+    if (isAfter(new Date(), day)) {
+      setSelectedDay(day);
+    }
   };
   const handleClick = (day: Date) => {
     setRecordDayPopUp((prev) => !prev);
@@ -82,7 +84,15 @@ const Calendar = ({ date }: ICalendar) => {
                 )
               }
               className={
-                Number(format(selectedDay, "d")) === day && day !== 0
+                day !== 0 &&
+                isEqual(
+                  selectedDay,
+                  new Date(
+                    calendar.currentDate.getFullYear(),
+                    calendar.currentDate.getMonth(),
+                    day
+                  )
+                )
                   ? "selected"
                   : isAfter(
                       new Date(),
