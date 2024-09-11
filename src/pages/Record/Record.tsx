@@ -20,6 +20,10 @@ import Button from "@/components/Button";
 import { colors } from "@/_shared/colors";
 import RecordImage from "./Image/RecordImage";
 import { useRouter } from "@/hooks/useRouter";
+import PopUp from "@/components/PopUp";
+import { useRecoilState } from "recoil";
+import { recordDayAtom } from "@/atoms/popup";
+import Calendar from "./Calendar/Calendar";
 
 const Record = () => {
   const { routeTo } = useRouter();
@@ -78,6 +82,7 @@ const Record = () => {
     setDescript(value);
   };
 
+  const [recordDayPopUp, setRecordDayPopUp] = useRecoilState(recordDayAtom);
   const [recordDay, setRecordDay] = useState("");
   const handleDayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -86,8 +91,8 @@ const Record = () => {
     setRecordDay(value);
   };
   const handleDayClick = () => {
-    console.log("day test");
-  }
+    setRecordDayPopUp((prev) => !prev);
+  };
 
   const [recordPlace, setRecordPlace] = useState("");
   const handlePlaceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,13 +101,10 @@ const Record = () => {
     } = event;
     setRecordPlace(value);
   };
-  const handlePlaceClick = () => {
-    routeTo("/record/place");
-  }
 
   const handleCategoryChange = () => {
     console.log("category test");
-  }
+  };
   const handleCategoryClick = () => {
     console.log("category test");
   };
@@ -235,6 +237,11 @@ const Record = () => {
           />
         </RecordButtonBox>
       </RecordWrapper>
+      {recordDayPopUp ? (
+        <>
+          <PopUp state={recordDayAtom} height="50%" children={<Calendar />} />
+        </>
+      ) : null}
     </RecrodContainer>
   );
 };

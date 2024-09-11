@@ -2172,6 +2172,19 @@ const basic: IBasicProps = {
       </>
     );
   },
+  leftArrow: () => {
+    return (
+      <>
+        <path
+          d="M6 11L1 6L6 1"
+          stroke="white"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </>
+    );
+  },
   search: () => {
     return (
       <>
@@ -2182,7 +2195,7 @@ const basic: IBasicProps = {
         ></path>
       </>
     );
-  }
+  },
 };
 
 export default basic;

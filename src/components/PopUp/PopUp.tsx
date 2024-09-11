@@ -35,6 +35,7 @@ const PopUp: React.FC<PopUpProps> = ({ children, height, state }) => {
           height: height ? height : "20%",
           backgroundColor: "#282932",
           borderRadius: "24px 24px 0px 0px",
+          overflow: "auto",
         }}
       >
         {children}
