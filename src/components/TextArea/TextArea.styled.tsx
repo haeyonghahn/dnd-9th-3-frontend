@@ -99,7 +99,7 @@ export const TextAreaText = styled.textarea`
 
   font-size: ${fontSize.body1};
   font-weight: ${fontWeight.semiBoldRegular};
-  color: ${colors.inputTextClor};
+  color: ${colors.white};
   outline: none;
   resize: none;
 `;

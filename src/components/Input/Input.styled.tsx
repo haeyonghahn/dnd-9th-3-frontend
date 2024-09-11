@@ -98,7 +98,7 @@ export const InputText = styled.input`
 
   font-size: ${fontSize.body1};
   font-weight: ${fontWeight.semiBoldRegular};
-  color: ${colors.inputTextClor};
+  color: ${colors.white};
   outline: none;
 `;
 
