@@ -21,9 +21,11 @@ import { colors } from "@/_shared/colors";
 import RecordImage from "./Image/RecordImage";
 import { useRouter } from "@/hooks/useRouter";
 import PopUp from "@/components/PopUp";
-import { useRecoilState } from "recoil";
-import { recordDayAtom } from "@/atoms/popup";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { recordDayPopUpAtom } from "@/atoms/popup";
 import Calendar from "./Calendar/Calendar";
+import { recordDateAtom } from "@/atoms/record";
+import { format } from "date-fns";
 
 const Record = () => {
   const { routeTo } = useRouter();
@@ -82,14 +84,10 @@ const Record = () => {
     setDescript(value);
   };
 
-  const [recordDayPopUp, setRecordDayPopUp] = useRecoilState(recordDayAtom);
-  const [recordDay, setRecordDay] = useState("");
-  const handleDayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = event;
-    setRecordDay(value);
-  };
+  const [recordDayPopUp, setRecordDayPopUp] =
+    useRecoilState(recordDayPopUpAtom);
+  const recordDay = useRecoilValue(recordDateAtom);
+  const handleDayChange = () => {};
   const handleDayClick = () => {
     setRecordDayPopUp((prev) => !prev);
   };
@@ -102,12 +100,8 @@ const Record = () => {
     setRecordPlace(value);
   };
 
-  const handleCategoryChange = () => {
-    console.log("category test");
-  };
-  const handleCategoryClick = () => {
-    console.log("category test");
-  };
+  const handleCategoryChange = () => {};
+  const handleCategoryClick = () => {};
 
   return (
     <RecrodContainer>
@@ -162,9 +156,8 @@ const Record = () => {
           <Input
             status="default"
             placeholder="YY / MM / DD"
-            handleChange={(event) => handleDayChange(event)}
             theme="dark"
-            value={recordDay}
+            value={format(recordDay, "yy / MM / dd")}
             messageBoxShow={false}
             icon="rightArrow"
             icondirection="right"
@@ -172,7 +165,9 @@ const Record = () => {
             minY="-8"
             width="30"
             height="35"
+            handleChange={handleDayChange}
             handleClick={handleDayClick}
+            disabled={true}
           />
         </RecordInputBox>
         <Typography text="활동 장소" type="h3" />
@@ -191,6 +186,7 @@ const Record = () => {
             width="30"
             height="35"
             handleClick={() => routeTo("/place")}
+            disabled={true}
           />
         </RecordInputBox>
         <Typography text="활동 카테고리" type="h3" />
@@ -239,7 +235,11 @@ const Record = () => {
       </RecordWrapper>
       {recordDayPopUp ? (
         <>
-          <PopUp state={recordDayAtom} height="50%" children={<Calendar />} />
+          <PopUp
+            state={recordDayPopUpAtom}
+            height="50%"
+            children={<Calendar date={recordDay} />}
+          />
         </>
       ) : null}
     </RecrodContainer>

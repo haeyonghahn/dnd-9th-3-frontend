@@ -30,6 +30,7 @@ interface IInputProps {
   number?: number;
   theme?: string;
   value?: string;
+  disabled?: boolean;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleClick?: () => void;
 }
@@ -54,6 +55,7 @@ const Input = forwardRef(
       number,
       theme,
       value,
+      disabled = false,
       handleChange,
       handleClick,
     }: IInputProps,
@@ -82,6 +84,7 @@ const Input = forwardRef(
             ref={inputRef}
             onChange={(event) => handleChange(event)}
             value={value || ""}
+            disabled={disabled}
           ></InputText>
         </InputBox>
         {messageBoxShow ? (

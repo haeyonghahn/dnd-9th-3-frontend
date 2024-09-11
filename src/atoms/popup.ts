@@ -10,7 +10,7 @@ export const chooseTimeLineMonthAtom = atom({
   default: false,
 });
 
-export const recordDayAtom = atom({
+export const recordDayPopUpAtom = atom({
   key: "recordDayAtom",
   default: false,
 });

@@ -1,4 +1,4 @@
-import { getDaysInMonth } from "date-fns";
+import { getDaysInMonth, startOfMonth } from "date-fns";
 import { useState } from "react";
 
 const calendarLength = 35;
@@ -7,11 +7,12 @@ const dayOfWeek = 7;
 const days = ["일", "월", "화", "수", "목", "금", "토"];
 
 export const useCalendar = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const firstDayOfMonth = startOfMonth(new Date());
+  const [currentDate, setCurrentDate] = useState(firstDayOfMonth);
   const totalMonthDays = getDaysInMonth(currentDate);
 
   const prevDays = Array.from({
-    length: Math.max(0, currentDate.getDay() - 1),
+    length: Math.max(0, currentDate.getDay()),
   }).map(() => defaultTrashValue);
 
   const currentDays = Array.from({

@@ -1,4 +1,5 @@
 import { colors } from "@/_shared/colors";
+import { fontWeight } from "@/_shared/typography";
 import styled from "styled-components";
 
 export const CalendarWrapper = styled.div`
@@ -23,6 +24,7 @@ export const DayDateWrapper = styled.div`
 `;
 
 export const DayDate = styled.span`
+  font-weight: ${fontWeight.semiBold};
   width: 25px;
   height: 25px;
   color: ${colors.gray500};
@@ -36,13 +38,19 @@ export const DayWrapper = styled.div`
 `;
 
 export const Day = styled.div`
+  font-weight: ${fontWeight.semiBold};
+  border-radius: 12px;
   width: 25px;
   height: 25px;
   color: ${colors.white};
   cursor: pointer;
   text-align: center;
-  &.selected {
+  &.disable {
     color: ${colors.gray500};
     cursor: not-allowed;
+  }
+  &.selected {
+    color: ${colors.black};
+    background-color: ${colors.green50};
   }
 `;

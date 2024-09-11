@@ -11,14 +11,33 @@ import Button from "@/components/Button";
 import { addMonths, format, isAfter, subMonths } from "date-fns";
 import Icon from "@/foundations/Icon";
 import Typography from "@/foundations/Typography";
+import { useSetRecoilState } from "recoil";
+import { recordDateAtom } from "@/atoms/record";
+import { recordDayPopUpAtom } from "@/atoms/popup";
+import { useState } from "react";
 
-const Calendar = () => {
+interface ICalendar {
+  date: Date;
+}
+
+const Calendar = ({ date }: ICalendar) => {
   const calendar = useCalendar();
+  const [selectedDay, setSelectedDay] = useState<Date>(date);
+  const setRecordDay = useSetRecoilState(recordDateAtom);
+  const setRecordDayPopUp = useSetRecoilState(recordDayPopUpAtom);
+
   const handlePrevCalendar = () => {
     calendar.setCurrentDate((prev) => subMonths(prev, 1));
   };
   const handleNextCalendar = () => {
     calendar.setCurrentDate((prev) => addMonths(prev, 1));
+  };
+  const handleDay = (day: Date) => {
+    setSelectedDay(day);
+  };
+  const handleClick = (day: Date) => {
+    setRecordDayPopUp((prev) => !prev);
+    setRecordDay(day);
   };
   return (
     <>
@@ -53,17 +72,28 @@ const Calendar = () => {
         <DayWrapper key={weekIndex}>
           {week.map((day, dayIndex) => (
             <Day
-              className={
-                isAfter(
-                  new Date(),
+              onClick={() =>
+                handleDay(
                   new Date(
                     calendar.currentDate.getFullYear(),
                     calendar.currentDate.getMonth(),
                     day
                   )
                 )
+              }
+              className={
+                Number(format(selectedDay, "d")) === day && day !== 0
+                  ? "selected"
+                  : isAfter(
+                      new Date(),
+                      new Date(
+                        calendar.currentDate.getFullYear(),
+                        calendar.currentDate.getMonth(),
+                        day
+                      )
+                    )
                   ? ""
-                  : "selected"
+                  : "disable"
               }
               key={dayIndex}
             >
@@ -73,7 +103,11 @@ const Calendar = () => {
         </DayWrapper>
       ))}
       <div style={{ marginLeft: "5%", marginRight: "5%", marginBottom: "5%" }}>
-        <Button width="100%" text="선택완료" />
+        <Button
+          width="100%"
+          text="선택완료"
+          onClick={() => handleClick(selectedDay)}
+        />
       </div>
     </>
   );
