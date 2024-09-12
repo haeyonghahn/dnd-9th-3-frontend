@@ -29,30 +29,30 @@ import { format } from "date-fns";
 
 const Record = () => {
   const { routeTo } = useRouter();
-  // const [isDragging, setIsDragging] = useState(false);
-  // const [startX, setStartX] = useState(0);
-  // const [scrollLeft, setScrollLeft] = useState(0);
-  // const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  // const handleMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-  //   if (scrollRef.current) {
-  //     setIsDragging(true);
-  //     setStartX(e.pageX - scrollRef.current.offsetLeft);
-  //     setScrollLeft(scrollRef.current.scrollLeft);
-  //   }
-  // };
+  const handleMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (scrollRef.current) {
+      setIsDragging(true);
+      setStartX(e.pageX - scrollRef.current.offsetLeft);
+      setScrollLeft(scrollRef.current.scrollLeft);
+    }
+  };
 
-  // const handleMouseLeaveOrUp = () => {
-  //   setIsDragging(false);
-  // };
+  const handleMouseLeaveOrUp = () => {
+    setIsDragging(false);
+  };
 
-  // const handleMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-  //   if (!isDragging || !scrollRef.current) return;
-  //   e.preventDefault();
-  //   const x = e.pageX - scrollRef.current.offsetLeft;
-  //   const walk = (x - startX) * 1; // 드래그 속도 조정 (2는 배율)
-  //   scrollRef.current.scrollLeft = scrollLeft - walk;
-  // };
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1; // 드래그 속도 조정 (2는 배율)
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
 
   const [title, setTitle] = useState("");
   const [titleStatus, setStatus] = useState<Status>("default");
@@ -107,11 +107,11 @@ const Record = () => {
     <RecrodContainer>
       <RecordIndicator />
       <RecordImageWrapper
-      // ref={scrollRef}
-      // onMouseDown={handleMouseDown}
-      // onMouseLeave={handleMouseLeaveOrUp}
-      // onMouseUp={handleMouseLeaveOrUp}
-      // onMouseMove={handleMouseMove}
+        ref={scrollRef}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeaveOrUp}
+        onMouseUp={handleMouseLeaveOrUp}
+        onMouseMove={handleMouseMove}
       >
         <RecordImageBox>
           <RecordImage></RecordImage>

@@ -22,3 +22,11 @@ export const FileInput = styled.input`
   width: 100%;
   display: none;
 `;
+
+export const FileImage = styled.img`
+  width: 100%;
+  height: 100%;
+  &.hide {
+    display: none;
+  }
+`;
