@@ -39,8 +39,6 @@ export const RecordImageWrapper = styled.div`
 export const RecordImageBox = styled.div`
   height: 100%;
   min-width: 250px;
-  border-radius: 4px;
-  border: 3px solid ${colors.gray500};
   background-color: ${colors.black};
   margin-right: 5px;
   display: flex;
