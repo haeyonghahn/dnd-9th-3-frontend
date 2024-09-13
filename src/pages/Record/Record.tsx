@@ -251,7 +251,7 @@ const Record = () => {
         <>
           <PopUp
             state={categoryPopUpAtom}
-            height="50%"
+            height="20%"
             children={<Category />}
           />
         </>

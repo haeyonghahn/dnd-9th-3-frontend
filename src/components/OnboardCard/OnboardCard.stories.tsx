@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Typography from "@/foundations/Typography/Typography";
 import OnboardCard from "./OnboardCard";
 import { RecoilRoot } from "recoil";
+import { interestAtom } from "@/atoms/user";
 
 export default {
   title: "Components/OnboardCard",
@@ -16,6 +17,7 @@ export const AllTypes = () => (
         <TypeBox>
           <CardBox>
             <OnboardCard
+              state={interestAtom}
               interestCode="1"
               icon="shopping"
               theme="dark"
@@ -25,6 +27,7 @@ export const AllTypes = () => (
           </CardBox>
           <CardBox>
             <OnboardCard
+              state={interestAtom}
               interestCode="2"
               icon="travel"
               theme="dark"
@@ -37,14 +40,17 @@ export const AllTypes = () => (
         <TypeBox>
           <CardBox>
             <OnboardCard
+              state={interestAtom}
               interestCode="1"
               icon="shopping"
               theme="light"
               title="쇼핑"
             />
+            <Typography text="Default" type="h0" />
           </CardBox>
           <CardBox>
             <OnboardCard
+              state={interestAtom}
               interestCode="2"
               icon="travel"
               theme="light"

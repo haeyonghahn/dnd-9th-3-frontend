@@ -1,14 +1,16 @@
 import Icon from "@/foundations/Icon";
 import { Layout, Title } from "./OnboardCard.styled";
-import { useRecoilState } from "recoil";
+import { RecoilState, useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
-import { interestAtom } from "@/atoms/user";
 import { InterestElement } from "@/types/user";
 
 interface ICardProps extends ImageBoxElement {
   interestCode: string;
   title: string;
+  layoutwidth?: string;
+  titlewidth?: string;
   disabled?: boolean;
+  state: RecoilState<InterestElement[]>;
 }
 
 const OnboardCard = ({
@@ -16,10 +18,12 @@ const OnboardCard = ({
   icon,
   theme,
   title,
+  layoutwidth = "90%",
+  titlewidth = "100%",
   disabled = false,
+  state,
 }: ICardProps) => {
-  const [interests, setInterests] =
-    useRecoilState<InterestElement[]>(interestAtom);
+  const [interests, setInterests] = useRecoilState<InterestElement[]>(state);
   const [className, setClassName] = useState<string>("");
   const selectInterest = (
     event: React.MouseEvent<HTMLElement>,
@@ -60,6 +64,7 @@ const OnboardCard = ({
       <Layout
         onClick={(event) => selectInterest(event, interestCode)}
         theme={theme}
+        layoutwidth={layoutwidth}
         className={className}
         disabled={disabled}
       >
@@ -70,7 +75,9 @@ const OnboardCard = ({
           viewBoxWidth="30"
           viewBoxHeight="30"
         />
-        <Title theme={theme}>{title}</Title>
+        <Title theme={theme} titlewidth={titlewidth}>
+          {title}
+        </Title>
       </Layout>
     </>
   );
