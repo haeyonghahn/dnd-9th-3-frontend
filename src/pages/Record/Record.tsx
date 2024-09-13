@@ -22,10 +22,11 @@ import RecordImage from "./Image/RecordImage";
 import { useRouter } from "@/hooks/useRouter";
 import PopUp from "@/components/PopUp";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { recordDayPopUpAtom } from "@/atoms/popup";
+import { categoryPopUpAtom, recordDayPopUpAtom } from "@/atoms/popup";
 import Calendar from "./Calendar/Calendar";
 import { recordDateAtom } from "@/atoms/record";
 import { format } from "date-fns";
+import Category from "./Category/Category";
 
 const Record = () => {
   const { routeTo } = useRouter();
@@ -100,8 +101,11 @@ const Record = () => {
     setRecordPlace(value);
   };
 
+  const [categoryPopUp, setCategoryPopUp] = useRecoilState(categoryPopUpAtom);
   const handleCategoryChange = () => {};
-  const handleCategoryClick = () => {};
+  const handleCategoryClick = () => {
+    setCategoryPopUp((prev) => !prev);
+  };
 
   return (
     <RecrodContainer>
@@ -240,6 +244,15 @@ const Record = () => {
             state={recordDayPopUpAtom}
             height="50%"
             children={<Calendar date={recordDay} />}
+          />
+        </>
+      ) : null}
+      {categoryPopUp ? (
+        <>
+          <PopUp
+            state={categoryPopUpAtom}
+            height="50%"
+            children={<Category />}
           />
         </>
       ) : null}
