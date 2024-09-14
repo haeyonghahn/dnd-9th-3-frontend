@@ -8,14 +8,11 @@ interface CardProps {
 
 interface IILayoutProps {
   theme: string;
-  layoutwidth?: string;
   disabled?: boolean;
-  flexdirection?: string;
 }
 
 interface ITitleProps {
   theme: string;
-  titlewidth: string;
 }
 
 const bgColor: CardProps = {
@@ -35,7 +32,7 @@ const hoverColor: CardProps = {
 
 export const Layout = styled.div<IILayoutProps>`
   position: relative;
-  width: ${(props) => props.layoutwidth};
+  width: 90%;
   text-align: center;
   flex-direction: column;
   align-items: center;
@@ -45,8 +42,6 @@ export const Layout = styled.div<IILayoutProps>`
   user-select: none;
   cursor: pointer;
   justify-content: center;
-  display: flex;
-  flex-direction: ${(props) => props.flexdirection};
   ${(props) =>
     props.disabled
       ? css`
@@ -69,7 +64,6 @@ export const Layout = styled.div<IILayoutProps>`
 `;
 
 export const Title = styled.div<ITitleProps>`
-  width: ${(props) => props.titlewidth};
   font-weight: ${fontWeight.semiBold};
   font-size: ${fontSize.h1};
   color: ${(props) => textColor[props.theme]};

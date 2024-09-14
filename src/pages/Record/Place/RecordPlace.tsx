@@ -15,6 +15,16 @@ import { useMemo, useState } from "react";
 import { colors } from "@/_shared/colors";
 import { useFetchRecordPlaces } from "@/hooks/api/useFetchRecordPlaces";
 import { useIntersect } from "@/hooks/useIntersect";
+import { recordPlacePopUpAtom } from "@/atoms/popup";
+import { useSetRecoilState } from "recoil";
+import { recordPlaceAtom } from "@/atoms/record";
+
+interface RecordPlace {
+  placeName: string;
+  addressName: string;
+  placeLatitude: number;
+  placeLongitude: number;
+}
 
 const RecordPlace = () => {
   const [keyword, setKeyword] = useState("");
@@ -40,6 +50,13 @@ const RecordPlace = () => {
       fetchNextPage();
     }
   });
+
+  const setRecordPlace = useSetRecoilState(recordPlaceAtom);
+  const setRecordPlacePopUp = useSetRecoilState(recordPlacePopUpAtom);
+  const handleClick = (place: RecordPlace) => {
+    setRecordPlace(place);
+    setRecordPlacePopUp((prev) => !prev);
+  };
   return (
     <>
       <RecordPlaceContainer>
@@ -65,7 +82,11 @@ const RecordPlace = () => {
         <RecordPlaceBox>
           {places && places.length > 0 ? (
             places.map((place, index) => (
-              <RecordPlaceCard key={index} ref={ref}>
+              <RecordPlaceCard
+                key={index}
+                ref={ref}
+                onClick={() => handleClick(place)}
+              >
                 <Typography text={place.placeName} type="body0" />
                 <RecordPlaceCardDescription>
                   <Typography

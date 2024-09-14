@@ -15,6 +15,11 @@ export const recordDayPopUpAtom = atom({
   default: false,
 });
 
+export const recordPlacePopUpAtom = atom({
+  key: "recordPlacePopUpAtom",
+  default: false,
+});
+
 export const categoryPopUpAtom = atom({
   key: "categoryPopUpAtom",
   default: false,

@@ -35,24 +35,18 @@ const MyTimeLine = () => {
       </TimeLineMonth>
       {myRecordData && myRecordData.length > 0 ? (
         <TimeLineWrapper>
-          <TimeLineCard
-            date="8월11일(금)"
-            description="설명"
-            placeName="바다"
-            title="타이틀"
-            src="/images/ocean.jpg"
-            images={["puppy.jpg", "desert.jpg", "ocean.jpg"]}
-            theme="dark"
-          ></TimeLineCard>
-          <TimeLineCard
-            date="8월12일(토)"
-            description="설명"
-            placeName="사막"
-            title="타이틀"
-            src="/images/desert.jpg"
-            images={["puppy.jpg", "desert.jpg", "ocean.jpg"]}
-            theme="dark"
-          ></TimeLineCard>
+          {myRecordData.map((record, _) => (
+            <TimeLineCard
+              key={record.recordNumber}
+              date=""
+              description={record.description}
+              placeName=""
+              title={record.placeTitle}
+              src=""
+              images={[]}
+              theme="dark"
+            ></TimeLineCard>
+          ))}
         </TimeLineWrapper>
       ) : (
         <>

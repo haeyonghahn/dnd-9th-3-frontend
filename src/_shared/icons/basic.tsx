@@ -2048,6 +2048,30 @@ const basic: IBasicProps = {
       </>
     );
   },
+  gooding: (): JSX.Element => {
+    return (
+      <>
+        <path
+          d="M10.799 21.7977C11.2645 22.845 12.7488 22.851 13.2227 21.8074L15.5531 16.6756C15.6865 16.382 15.9221 16.1468 16.2161 16.0141L21.3178 13.7109C22.3604 13.2402 22.3604 11.7598 21.3178 11.2891L16.2161 8.98591C15.9221 8.85319 15.6865 8.61804 15.5531 8.32435L13.2227 3.19257C12.7488 2.14899 11.2645 2.15496 10.799 3.20232L8.52684 8.3146C8.39367 8.61424 8.1544 8.85404 7.85507 8.98788L2.71262 11.2871C1.66425 11.7559 1.66425 13.2441 2.71262 13.7129L7.85507 16.0121C8.1544 16.146 8.39367 16.3858 8.52684 16.6854L10.799 21.7977Z"
+          fill="url(#paint0_angular_4153_9696)"
+        />
+        <defs>
+          <radialGradient
+            id="paint0_angular_4153_9696"
+            cx="0"
+            cy="0"
+            r="1"
+            gradientUnits="userSpaceOnUse"
+            gradientTransform="translate(12 12.5) rotate(90) scale(12 12)"
+          >
+            <stop stopColor="#FF59D0" />
+            <stop offset="0.510417" stopColor="white" />
+            <stop offset="1" stopColor="#3CEFA3" />
+          </radialGradient>
+        </defs>
+      </>
+    );
+  },
   start: (): JSX.Element => {
     return (
       <>

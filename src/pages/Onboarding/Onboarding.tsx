@@ -15,15 +15,18 @@ import {
   OnboardingHeader,
 } from "./Onboarding.styled";
 import { Status } from "@/types/status";
+import { CATEGORIES } from "@/api/const";
 
 const Onboarding = () => {
   const { routeTo } = useRouter();
   const isDark = useRecoilValue(isDarkAtom);
+  const theme: string = isDark ? "dark" : "light";
+
   const interests = useRecoilValue<InterestElement[]>(interestAtom);
   const [userProfile, setUserProfile] = useRecoilState<User | null>(userAtom);
   const [status, setStatus] = useState<Status>("default");
   const [errorMessage, setErrorMessage] = useState("");
-  const theme: string = isDark ? "dark" : "light";
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       currentTarget: { value },
@@ -83,64 +86,7 @@ const Onboarding = () => {
         ></Input>
       </OnboardingDescription>
       <CardGridWrapper>
-        <OnboardCardGrid
-          data={[
-            {
-              interestCode: "1",
-              icon: "shopping",
-              theme: `${theme}`,
-              title: "쇼핑",
-            },
-            {
-              interestCode: "2",
-              icon: "travel",
-              theme: `${theme}`,
-              title: "여행",
-            },
-            {
-              interestCode: "3",
-              icon: "delicacies",
-              theme: `${theme}`,
-              title: "미식",
-            },
-            {
-              interestCode: "4",
-              icon: "reading",
-              theme: `${theme}`,
-              title: "독서",
-            },
-            {
-              interestCode: "5",
-              icon: "cooking",
-              theme: `${theme}`,
-              title: "요리",
-            },
-            {
-              interestCode: "6",
-              icon: "culture",
-              theme: `${theme}`,
-              title: "문화",
-            },
-            {
-              interestCode: "7",
-              icon: "sports",
-              theme: `${theme}`,
-              title: "스포츠",
-            },
-            {
-              interestCode: "8",
-              icon: "hobby",
-              theme: `${theme}`,
-              title: "취미",
-            },
-            {
-              interestCode: "9",
-              icon: "study",
-              theme: `${theme}`,
-              title: "학업",
-            },
-          ]}
-        />
+        <OnboardCardGrid data={CATEGORIES} />
       </CardGridWrapper>
       <ButtonWarpper>
         <Button

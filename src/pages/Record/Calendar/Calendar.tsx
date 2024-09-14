@@ -17,12 +17,12 @@ import { recordDayPopUpAtom } from "@/atoms/popup";
 import { useState } from "react";
 
 interface ICalendar {
-  date: Date;
+  date: Date | null;
 }
 
 const Calendar = ({ date }: ICalendar) => {
   const calendar = useCalendar();
-  const [selectedDay, setSelectedDay] = useState<Date>(date);
+  const [selectedDay, setSelectedDay] = useState<Date | null>(date);
   const setRecordDay = useSetRecoilState(recordDateAtom);
   const setRecordDayPopUp = useSetRecoilState(recordDayPopUpAtom);
 
@@ -85,6 +85,7 @@ const Calendar = ({ date }: ICalendar) => {
               }
               className={
                 day !== 0 &&
+                selectedDay &&
                 isEqual(
                   selectedDay,
                   new Date(
@@ -116,7 +117,7 @@ const Calendar = ({ date }: ICalendar) => {
         <Button
           width="100%"
           text="선택완료"
-          onClick={() => handleClick(selectedDay)}
+          onClick={() => selectedDay && handleClick(selectedDay)}
         />
       </div>
     </>

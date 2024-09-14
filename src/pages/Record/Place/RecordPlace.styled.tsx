@@ -1,8 +1,7 @@
+import { colors } from "@/_shared/colors";
 import styled from "styled-components";
 
-export const RecordPlaceContainer = styled.div`
-  height: 100vh;
-`;
+export const RecordPlaceContainer = styled.div``;
 
 export const RecordPlaceHeaderWrapper = styled.div`
   margin-top: 5%;
@@ -42,6 +41,10 @@ export const RecordPlaceCard = styled.div`
   justify-content: left;
   flex-direction: column;
   margin-bottom: 5%;
+  &:hover {
+    background-color: ${colors.gray900};
+    cursor: pointer;
+  }
 `;
 
 export const RecordPlaceCardDescription = styled.div`

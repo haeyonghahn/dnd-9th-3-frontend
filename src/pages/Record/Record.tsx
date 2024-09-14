@@ -19,17 +19,24 @@ import Switch from "@/components/Switch";
 import Button from "@/components/Button";
 import { colors } from "@/_shared/colors";
 import RecordImage from "./Image/RecordImage";
-import { useRouter } from "@/hooks/useRouter";
 import PopUp from "@/components/PopUp";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { categoryPopUpAtom, recordDayPopUpAtom } from "@/atoms/popup";
+import {
+  categoryPopUpAtom,
+  recordDayPopUpAtom,
+  recordPlacePopUpAtom,
+} from "@/atoms/popup";
 import Calendar from "./Calendar/Calendar";
-import { recordDateAtom } from "@/atoms/record";
+import {
+  recordCategoriesAtom,
+  recordDateAtom,
+  recordPlaceAtom,
+} from "@/atoms/record";
 import { format } from "date-fns";
 import Category from "./Category/Category";
+import RecordPlace from "./Place/RecordPlace";
 
 const Record = () => {
-  const { routeTo } = useRouter();
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
@@ -93,15 +100,16 @@ const Record = () => {
     setRecordDayPopUp((prev) => !prev);
   };
 
-  const [recordPlace, setRecordPlace] = useState("");
-  const handlePlaceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {
-      currentTarget: { value },
-    } = event;
-    setRecordPlace(value);
+  const [recordPlacePopUp, setRecordPlacePopUp] =
+    useRecoilState(recordPlacePopUpAtom);
+  const recordPlace = useRecoilValue(recordPlaceAtom);
+  const handlePlaceChange = () => {};
+  const handlePlaceClick = () => {
+    setRecordPlacePopUp((prev) => !prev);
   };
 
   const [categoryPopUp, setCategoryPopUp] = useRecoilState(categoryPopUpAtom);
+  const categories = useRecoilValue(recordCategoriesAtom);
   const handleCategoryChange = () => {};
   const handleCategoryClick = () => {
     setCategoryPopUp((prev) => !prev);
@@ -161,7 +169,7 @@ const Record = () => {
             status="default"
             placeholder="YY / MM / DD"
             theme="dark"
-            value={format(recordDay, "yy / MM / dd")}
+            value={recordDay ? format(recordDay, "yy / MM / dd") : ""}
             messageBoxShow={false}
             icon="rightArrow"
             icondirection="right"
@@ -179,9 +187,9 @@ const Record = () => {
           <Input
             status="default"
             placeholder="장소를 설정해주세요.(선택)"
-            handleChange={(event) => handlePlaceChange(event)}
+            handleChange={handlePlaceChange}
             theme="dark"
-            value={recordPlace}
+            value={recordPlace.placeName}
             messageBoxShow={false}
             icon="rightArrow"
             icondirection="right"
@@ -189,7 +197,7 @@ const Record = () => {
             minY="-8"
             width="30"
             height="35"
-            handleClick={() => routeTo("/place")}
+            handleClick={handlePlaceClick}
             disabled={true}
           />
         </RecordInputBox>
@@ -200,7 +208,13 @@ const Record = () => {
             placeholder="카테고리를 설정해주세요.(선택)"
             handleChange={handleCategoryChange}
             theme="dark"
-            value={recordPlace}
+            value={
+              categories && categories.length > 0
+                ? categories
+                    .map((category, _) => category.interestName)
+                    .join(" ")
+                : ""
+            }
             messageBoxShow={false}
             icon="rightArrow"
             icondirection="right"
@@ -247,12 +261,21 @@ const Record = () => {
           />
         </>
       ) : null}
+      {recordPlacePopUp ? (
+        <>
+          <PopUp
+            state={recordPlacePopUpAtom}
+            height="90%"
+            children={<RecordPlace />}
+          ></PopUp>
+        </>
+      ) : null}
       {categoryPopUp ? (
         <>
           <PopUp
             state={categoryPopUpAtom}
-            height="20%"
-            children={<Category />}
+            height="50%"
+            children={<Category categories={categories ? categories : []} />}
           />
         </>
       ) : null}

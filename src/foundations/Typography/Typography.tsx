@@ -6,6 +6,7 @@ interface ITypographyProps {
   textover?: string;
   textoverwidth?: string;
   color?: string;
+  display?: string;
 }
 
 function Typography({
@@ -14,6 +15,7 @@ function Typography({
   textover,
   textoverwidth,
   color,
+  display = "block",
 }: ITypographyProps) {
   return (
     <Text
@@ -21,6 +23,7 @@ function Typography({
       textover={textover}
       textoverwidth={textoverwidth}
       color={color}
+      display={display}
     >
       {text}
     </Text>

@@ -36,17 +36,6 @@ const MySave = () => {
               <img src="/images/ocean.jpg" />
             </MySaveImage>
           </MySaveRowWrapper>
-          <MySaveRowWrapper>
-            <MySaveImage>
-              <img src="/images/desert.jpg" />
-            </MySaveImage>
-            <MySaveImage>
-              <img src="/images/puppy.jpg" />
-            </MySaveImage>
-            <MySaveImage>
-              <img src="/images/ocean.jpg" />
-            </MySaveImage>
-          </MySaveRowWrapper>
         </>
       ) : (
         <div

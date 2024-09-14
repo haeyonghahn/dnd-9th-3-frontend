@@ -128,15 +128,6 @@ const routerData: RouterElement[] = [
     withAuth: true,
     withSidebar: false,
   },
-  {
-    id: 12,
-    path: "/place",
-    label: "장소",
-    image: <></>,
-    element: <RecordPlace />,
-    withAuth: true,
-    withSidebar: false,
-  },
 ];
 
 export const routers: RemixRouter = createBrowserRouter(

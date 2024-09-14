@@ -14,6 +14,7 @@ interface IText {
   textover?: string;
   textoverwidth?: string;
   color?: string;
+  display?: string;
 }
 
 const textSize: ITextProps = {
@@ -40,6 +41,7 @@ const textWeight: ITextWeightProps = {
 };
 
 export const Text = styled.div<IText>`
+  display: ${(props) => props.display};
   font-weight: ${(props) => textWeight[props.type]};
   font-size: ${(props) => textSize[props.type]};
   ${(props) =>

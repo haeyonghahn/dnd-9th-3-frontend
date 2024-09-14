@@ -1,31 +1,26 @@
 import Icon from "@/foundations/Icon";
 import { Layout, Title } from "./OnboardCard.styled";
-import { RecoilState, useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
-import { InterestElement } from "@/types/user";
+import { interestAtom } from "@/atoms/user";
+import { isDarkAtom } from "@/atoms/theme";
 
-interface ICardProps extends ImageBoxElement {
+interface ICardProps {
+  icon: string;
   interestCode: string;
-  title: string;
-  layoutwidth?: string;
-  titlewidth?: string;
+  interestName: string;
   disabled?: boolean;
-  flexdirection?: string;
-  state: RecoilState<InterestElement[]>;
 }
 
 const OnboardCard = ({
-  interestCode,
   icon,
-  theme,
-  title,
-  layoutwidth = "90%",
-  titlewidth = "100%",
+  interestCode,
+  interestName,
   disabled = false,
-  flexdirection = "column",
-  state,
 }: ICardProps) => {
-  const [interests, setInterests] = useRecoilState<InterestElement[]>(state);
+  const isDark = useRecoilValue(isDarkAtom);
+  const theme: string = isDark ? "dark" : "light";
+  const [interests, setInterests] = useRecoilState(interestAtom);
   const [className, setClassName] = useState<string>("");
   const selectInterest = (
     event: React.MouseEvent<HTMLElement>,
@@ -46,7 +41,10 @@ const OnboardCard = ({
         ];
       } else {
         setClassName("selected");
-        const newInterest = { interestCode: interestCode, interestName: title };
+        const newInterest = {
+          interestCode: interestCode,
+          interestName: interestName,
+        };
         return [...oldInterests, newInterest];
       }
     });
@@ -66,10 +64,8 @@ const OnboardCard = ({
       <Layout
         onClick={(event) => selectInterest(event, interestCode)}
         theme={theme}
-        layoutwidth={layoutwidth}
         className={className}
         disabled={disabled}
-        flexdirection={flexdirection}
       >
         <Icon
           icon={icon}
@@ -78,9 +74,7 @@ const OnboardCard = ({
           viewBoxWidth="30"
           viewBoxHeight="30"
         />
-        <Title theme={theme} titlewidth={titlewidth}>
-          {title}
-        </Title>
+        <Title theme={theme}>{interestName}</Title>
       </Layout>
     </>
   );
