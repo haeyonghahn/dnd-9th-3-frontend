@@ -10,6 +10,7 @@ interface IILayoutProps {
   theme: string;
   layoutwidth?: string;
   disabled?: boolean;
+  flexdirection?: string;
 }
 
 interface ITitleProps {
@@ -44,6 +45,8 @@ export const Layout = styled.div<IILayoutProps>`
   user-select: none;
   cursor: pointer;
   justify-content: center;
+  display: flex;
+  flex-direction: ${(props) => props.flexdirection};
   ${(props) =>
     props.disabled
       ? css`

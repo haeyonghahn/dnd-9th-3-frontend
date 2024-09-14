@@ -10,6 +10,7 @@ interface ICardProps extends ImageBoxElement {
   layoutwidth?: string;
   titlewidth?: string;
   disabled?: boolean;
+  flexdirection?: string;
   state: RecoilState<InterestElement[]>;
 }
 
@@ -21,6 +22,7 @@ const OnboardCard = ({
   layoutwidth = "90%",
   titlewidth = "100%",
   disabled = false,
+  flexdirection = "column",
   state,
 }: ICardProps) => {
   const [interests, setInterests] = useRecoilState<InterestElement[]>(state);
@@ -67,6 +69,7 @@ const OnboardCard = ({
         layoutwidth={layoutwidth}
         className={className}
         disabled={disabled}
+        flexdirection={flexdirection}
       >
         <Icon
           icon={icon}

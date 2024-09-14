@@ -18,6 +18,7 @@ const Category = () => {
           titlewidth=""
           theme="dark"
           title="쇼핑"
+          flexdirection="row"
         />
         <OnboardCard
           state={recordCategoryAtom}
@@ -27,6 +28,7 @@ const Category = () => {
           titlewidth=""
           theme="dark"
           title="쇼핑"
+          flexdirection="row"
         />
         <OnboardCard
           state={recordCategoryAtom}
@@ -36,6 +38,7 @@ const Category = () => {
           titlewidth=""
           theme="dark"
           title="쇼핑"
+          flexdirection="row"
         />
       </CategoryWrapper>
     </>
