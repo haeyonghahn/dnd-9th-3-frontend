@@ -3,12 +3,12 @@ import { InterestElement } from "@/types/user";
 import { atom } from "recoil";
 
 export const myRecordAtom = atom<Record[]>({
-  key: "myRecord",
+  key: "myRecordAtom",
   default: [],
 });
 
 export const recordDateAtom = atom<Date | null>({
-  key: "recordDate",
+  key: "recordDateAtom",
   default: null,
 });
 
@@ -25,4 +25,14 @@ export const recordPlaceAtom = atom<RecordPlace>({
 export const recordCategoriesAtom = atom<InterestElement[] | undefined>({
   key: "recordCategories",
   default: [],
+});
+
+export const recordStateAtom = atom<String>({
+  key: "recordStateAtom",
+  default: "PRIVATE",
+});
+
+export const recordScoreAtom = atom<Number>({
+  key: "recordScoreAtom",
+  default: 0,
 });

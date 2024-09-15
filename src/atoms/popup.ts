@@ -24,3 +24,8 @@ export const categoryPopUpAtom = atom({
   key: "categoryPopUpAtom",
   default: false,
 });
+
+export const scorePopUpAtom = atom({
+  key: "scorePopUpAtom",
+  default: false,
+});

@@ -5,14 +5,17 @@ export const RecordPlaceContainer = styled.div``;
 
 export const RecordPlaceHeaderWrapper = styled.div`
   margin-top: 5%;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 `;
 
 export const RecordPlaceIndicator = styled.div`
   height: 2px;
   width: 100%;
   margin-top: 20px;
-  background-color: #282932;
+  background-color: ${colors.gray800};
 `;
 
 export const RecordPlaceInputBox = styled.div`

@@ -18,6 +18,7 @@ import { useIntersect } from "@/hooks/useIntersect";
 import { recordPlacePopUpAtom } from "@/atoms/popup";
 import { useSetRecoilState } from "recoil";
 import { recordPlaceAtom } from "@/atoms/record";
+import Icon from "@/foundations/Icon";
 
 interface RecordPlace {
   placeName: string;
@@ -51,6 +52,10 @@ const RecordPlace = () => {
     }
   });
 
+  const haandleGoBack = () => {
+    setRecordPlacePopUp((prev) => !prev);
+  };
+
   const setRecordPlace = useSetRecoilState(recordPlaceAtom);
   const setRecordPlacePopUp = useSetRecoilState(recordPlacePopUpAtom);
   const handleClick = (place: RecordPlace) => {
@@ -61,9 +66,23 @@ const RecordPlace = () => {
     <>
       <RecordPlaceContainer>
         <RecordPlaceHeaderWrapper>
-          <Typography text="장소 선택" type="h1" />
-          <RecordPlaceIndicator />
+          <div style={{ position: "absolute", left: "5%" }}>
+            <Icon
+              icon="leftArrow"
+              minX="0"
+              minY="-5"
+              viewBoxHeight="18"
+              viewBoxWidth="18"
+              width="30"
+              height="35"
+              onClick={haandleGoBack}
+            />
+          </div>
+          <div style={{ margin: "0 auto" }}>
+            <Typography text="장소 선택" type="h1" />
+          </div>
         </RecordPlaceHeaderWrapper>
+        <RecordPlaceIndicator />
         <RecordPlaceInputBox>
           <Input
             status="default"
@@ -72,11 +91,10 @@ const RecordPlace = () => {
             theme="dark"
             value={keyword}
             messageBoxShow={false}
-            icon="search"
-            fill="currentColor"
-            viewBoxWidth="20"
-            viewBoxHeight="20"
-            icondirection="right"
+            rightIcon="search"
+            rightfill="currentColor"
+            rightviewBoxWidth="20"
+            rightviewBoxHeight="20"
           />
         </RecordPlaceInputBox>
         <RecordPlaceBox>

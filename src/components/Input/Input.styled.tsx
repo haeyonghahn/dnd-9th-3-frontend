@@ -57,8 +57,6 @@ export const Layout = styled.div`
 export const InputBox = styled.div<IInputBoxProps>`
   display: flex;
   align-items: center;
-  flex-direction: ${(props) =>
-    props.icondirection === "right" ? "row-reverse" : ""};
   box-sizing: border-box;
   height: 42px;
   padding: 0 16px;

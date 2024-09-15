@@ -10,23 +10,28 @@ import {
 import Icon from "@/foundations/Icon";
 import { Status } from "@/types/status";
 
-type IconDirection = "left" | "right";
-
 interface IInputProps {
   title?: string;
   placeholder?: string;
   message?: string;
   messageBoxShow?: boolean;
   status: Status;
-  icon?: string;
-  icondirection?: IconDirection;
-  fill?: string;
-  minX?: string;
-  minY?: string;
-  viewBoxWidth?: string;
-  viewBoxHeight?: string;
-  width?: string;
-  height?: string;
+  leftIcon?: string;
+  leftfill?: string;
+  leftminX?: string;
+  leftminY?: string;
+  leftviewBoxWidth?: string;
+  leftviewBoxHeight?: string;
+  leftwidth?: string;
+  leftheight?: string;
+  rightIcon?: string;
+  rightfill?: string;
+  rightminX?: string;
+  rightminY?: string;
+  rightviewBoxWidth?: string;
+  rightviewBoxHeight?: string;
+  rightwidth?: string;
+  rightheight?: string;
   number?: number;
   theme?: string;
   value?: string;
@@ -43,15 +48,22 @@ const Input = forwardRef(
       message,
       messageBoxShow = true,
       status,
-      icon,
-      icondirection,
-      fill,
-      minX,
-      minY,
-      viewBoxWidth,
-      viewBoxHeight,
-      width,
-      height,
+      leftIcon,
+      leftfill,
+      leftminX,
+      leftminY,
+      leftviewBoxWidth,
+      leftviewBoxHeight,
+      leftwidth,
+      leftheight,
+      rightIcon,
+      rightfill,
+      rightminX,
+      rightminY,
+      rightviewBoxWidth,
+      rightviewBoxHeight,
+      rightwidth,
+      rightheight,
       number,
       theme,
       value,
@@ -64,19 +76,21 @@ const Input = forwardRef(
     return (
       <Layout>
         <Label status={status}>{title}</Label>
-        <InputBox theme={theme} status={status} icondirection={icondirection}>
-          {icon && (
-            <Icon
-              onClick={handleClick}
-              icon={icon}
-              fill={fill}
-              minX={minX}
-              minY={minY}
-              viewBoxWidth={viewBoxWidth}
-              viewBoxHeight={viewBoxHeight}
-              width={width}
-              height={height}
-            />
+        <InputBox theme={theme} status={status}>
+          {leftIcon && (
+            <>
+              <Icon
+                onClick={handleClick}
+                icon={leftIcon}
+                fill={leftfill}
+                minX={leftminX}
+                minY={leftminY}
+                viewBoxWidth={leftviewBoxWidth}
+                viewBoxHeight={leftviewBoxHeight}
+                width={leftwidth}
+                height={leftheight}
+              />
+            </>
           )}
           <InputText
             placeholder={placeholder}
@@ -86,6 +100,21 @@ const Input = forwardRef(
             value={value || ""}
             disabled={disabled}
           ></InputText>
+          {rightIcon && (
+            <>
+              <Icon
+                onClick={handleClick}
+                icon={rightIcon}
+                fill={rightfill}
+                minX={rightminX}
+                minY={rightminY}
+                viewBoxWidth={rightviewBoxWidth}
+                viewBoxHeight={rightviewBoxHeight}
+                width={rightwidth}
+                height={rightheight}
+              />
+            </>
+          )}
         </InputBox>
         {messageBoxShow ? (
           <MessageBox>

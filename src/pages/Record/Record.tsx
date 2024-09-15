@@ -25,16 +25,20 @@ import {
   categoryPopUpAtom,
   recordDayPopUpAtom,
   recordPlacePopUpAtom,
+  scorePopUpAtom,
 } from "@/atoms/popup";
 import Calendar from "./Calendar/Calendar";
 import {
   recordCategoriesAtom,
   recordDateAtom,
   recordPlaceAtom,
+  recordScoreAtom,
+  recordStateAtom,
 } from "@/atoms/record";
 import { format } from "date-fns";
 import Category from "./Category/Category";
 import RecordPlace from "./Place/RecordPlace";
+import Score from "./Score/Score";
 
 const Record = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -115,6 +119,23 @@ const Record = () => {
     setCategoryPopUp((prev) => !prev);
   };
 
+  const [_, setRecordState] = useRecoilState(recordStateAtom);
+  const handleSateClick = () => {
+    setRecordState((prev) => {
+      if (prev === "PRIVATE") {
+        return "PUBLIC";
+      } else {
+        return "PRIVATE";
+      }
+    });
+  };
+
+  const [scorePopUp, setScorePopUp] = useRecoilState(scorePopUpAtom);
+  const [score, setScore] = useRecoilState(recordScoreAtom);
+  const handleScoreClick = () => {
+    setScorePopUp((prev) => !prev);
+  };
+
   return (
     <RecrodContainer>
       <RecordIndicator />
@@ -171,12 +192,11 @@ const Record = () => {
             theme="dark"
             value={recordDay ? format(recordDay, "yy / MM / dd") : ""}
             messageBoxShow={false}
-            icon="rightArrow"
-            icondirection="right"
-            minX="-15"
-            minY="-8"
-            width="30"
-            height="35"
+            rightIcon="rightArrow"
+            rightminX="-15"
+            rightminY="-8"
+            rightwidth="30"
+            rightheight="35"
             handleChange={handleDayChange}
             handleClick={handleDayClick}
             disabled={true}
@@ -191,12 +211,19 @@ const Record = () => {
             theme="dark"
             value={recordPlace.placeName}
             messageBoxShow={false}
-            icon="rightArrow"
-            icondirection="right"
-            minX="-15"
-            minY="-8"
-            width="30"
-            height="35"
+            leftIcon="locationOn"
+            leftminX="0"
+            leftminY="0"
+            leftviewBoxHeight="12"
+            leftviewBoxWidth="12"
+            leftwidth="25"
+            leftheight="30"
+            leftfill={recordPlace.placeName ? "#3CEFA3" : "#75777B"}
+            rightIcon="rightArrow"
+            rightminX="-15"
+            rightminY="-8"
+            rightwidth="30"
+            rightheight="35"
             handleClick={handlePlaceClick}
             disabled={true}
           />
@@ -216,12 +243,11 @@ const Record = () => {
                 : ""
             }
             messageBoxShow={false}
-            icon="rightArrow"
-            icondirection="right"
-            minX="-15"
-            minY="-8"
-            width="30"
-            height="35"
+            rightIcon="rightArrow"
+            rightminX="-15"
+            rightminY="-8"
+            rightwidth="30"
+            rightheight="35"
             handleClick={handleCategoryClick}
             disabled={true}
           />
@@ -234,6 +260,7 @@ const Record = () => {
             height="25px"
             width="50px"
             padding="0px"
+            callback={handleSateClick}
           />
         </RecordStateBox>
         <RecordStateMessageBox>
@@ -249,6 +276,7 @@ const Record = () => {
             color={colors.white}
             bordercolor={colors.inputTextClor}
             backgroundcolor={colors.gray850}
+            onClick={handleScoreClick}
           />
         </RecordButtonBox>
       </RecordWrapper>
@@ -265,7 +293,7 @@ const Record = () => {
         <>
           <PopUp
             state={recordPlacePopUpAtom}
-            height="90%"
+            height="100%"
             children={<RecordPlace />}
           ></PopUp>
         </>
@@ -277,6 +305,11 @@ const Record = () => {
             height="50%"
             children={<Category categories={categories ? categories : []} />}
           />
+        </>
+      ) : null}
+      {scorePopUp ? (
+        <>
+          <PopUp state={scorePopUpAtom} height="90%" children={<Score />} />
         </>
       ) : null}
     </RecrodContainer>

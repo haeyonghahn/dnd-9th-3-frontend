@@ -86,7 +86,9 @@ const Onboarding = () => {
         ></Input>
       </OnboardingDescription>
       <CardGridWrapper>
-        <OnboardCardGrid data={CATEGORIES} />
+        <OnboardCardGrid
+          data={CATEGORIES.filter((category) => category.interestCode !== "10")}
+        />
       </CardGridWrapper>
       <ButtonWarpper>
         <Button

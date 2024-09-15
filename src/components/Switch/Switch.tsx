@@ -7,6 +7,7 @@ interface ISwitchProps {
   handleWidth?: string;
   handleHeight?: string;
   padding?: string;
+  callback: () => void;
 }
 
 const spring = {
@@ -21,10 +22,12 @@ const Switch = ({
   handleWidth = "30px",
   handleHeight = "30px",
   padding = "10px",
+  callback,
 }: ISwitchProps) => {
   const [isOn, setIsOn] = useState(false);
   const toggleSwitch = () => {
     setIsOn((prev) => !prev);
+    callback();
   };
 
   return (

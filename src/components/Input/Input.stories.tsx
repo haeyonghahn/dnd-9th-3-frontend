@@ -41,15 +41,14 @@ export const AllTypes = () => (
           theme="dark"
           placeholder="이메일"
           message="가입한 이메일 주소를 입력해주세요."
-          icon="email"
+          leftIcon="email"
           handleChange={() => console.log("handleChange")}
         />
         <Input
           status="error"
           title="닉네임"
           theme="dark"
-          icon="cancel"
-          icondirection="right"
+          rightIcon="cancel"
           message="15자 이내로 입력해주세요."
           handleChange={() => console.log("handleChange")}
         />
@@ -83,15 +82,14 @@ export const AllTypes = () => (
           theme="white"
           placeholder="이메일"
           message="가입한 이메일 주소를 입력해주세요."
-          icon="email"
+          leftIcon="email"
           handleChange={() => console.log("handleChange")}
         />
         <Input
           status="error"
           title="닉네임"
           theme="white"
-          icon="cancel"
-          icondirection="right"
+          rightIcon="cancel"
           message="15자 이내로 입력해주세요."
           handleChange={() => console.log("handleChange")}
         />
