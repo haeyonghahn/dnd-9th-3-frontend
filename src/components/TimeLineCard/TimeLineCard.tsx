@@ -13,21 +13,27 @@ import {
 import Typography from "@/foundations/Typography/Typography";
 import RecordImage from "./TimeLineImage";
 import { useState } from "react";
-import { useSetRecoilState } from "recoil";
 import { deleteRecordPopUpOverAtom } from "@/atoms/popup";
 import Button from "../Button";
+import { IImage } from "@/types/record";
+import PopUp from "../PopUp";
+import { colors } from "@/_shared/colors";
+import { useRecoilState } from "recoil";
+import { deleteRecord } from "@/api/record";
 
 interface ITimeLineCardProps {
+  recordNumber: string;
   date: string;
   placeName: string;
   title: string;
   description: string;
   src: string;
   theme?: string;
-  images: string[];
+  images: IImage[];
 }
 
 const TimeLineCard = ({
+  recordNumber,
   date,
   placeName,
   title,
@@ -37,12 +43,19 @@ const TimeLineCard = ({
   images,
 }: ITimeLineCardProps) => {
   const [textOver, setTextOver] = useState(true);
-  const setPopUpOver = useSetRecoilState(deleteRecordPopUpOverAtom);
+  const [isDeleteRecord, setPopUpOver] = useRecoilState(
+    deleteRecordPopUpOverAtom
+  );
 
   const handleTextOver = () => {
     setTextOver((prev) => !prev);
   };
   const handlePopUp = () => {
+    setPopUpOver((prev) => !prev);
+  };
+
+  const deleteClick = () => {
+    deleteRecord(recordNumber);
     setPopUpOver((prev) => !prev);
   };
 
@@ -109,6 +122,40 @@ const TimeLineCard = ({
           </RecordDescriptionMore>
         </RecordDescription>
       </RecordContent>
+      {isDeleteRecord ? (
+        <PopUp
+          state={deleteRecordPopUpOverAtom}
+          height="40%"
+          children={
+            <div style={{ marginLeft: "5%", marginRight: "5%" }}>
+              <div
+                style={{
+                  marginBottom: "7%",
+                  marginTop: "10%",
+                  textAlign: "left",
+                }}
+              >
+                <Typography text="삭제하시겠습니까?" type="h2" />
+                <Typography
+                  text="삭제된 이미지와 글은 복구가 불가능합니다."
+                  type="h2"
+                />
+              </div>
+              <div>
+                <Button
+                  width="100%"
+                  text="삭제하기"
+                  color={colors.white}
+                  bordercolor={colors.inputTextClor}
+                  backgroundcolor={colors.gray850}
+                  none="true"
+                  onClick={deleteClick}
+                />
+              </div>
+            </div>
+          }
+        />
+      ) : null}
     </RecordCardWrapper>
   );
 };

@@ -28,15 +28,11 @@ import { fontSize } from "@/_shared/typography";
 import Typography from "@/foundations/Typography";
 import { useRecoilValue } from "recoil";
 import PopUp from "@/components/PopUp";
-import {
-  chooseTimeLineMonthAtom,
-  deleteRecordPopUpOverAtom,
-} from "@/atoms/popup";
+import { chooseTimeLineMonthAtom } from "@/atoms/popup";
 import { useAnimation } from "framer-motion";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
-  const isDeleteRecord = useRecoilValue(deleteRecordPopUpOverAtom);
   const timeLineMonth = useRecoilValue(chooseTimeLineMonthAtom);
   const { currentPath, routeTo } = useRouter();
   const navAnimation = useAnimation();
@@ -153,39 +149,6 @@ const MyRecord = () => {
               </TimeLineMonthText>
               <div>
                 <Button width="100%" text="선택 완료" />
-              </div>
-            </div>
-          }
-        />
-      ) : null}
-      {isDeleteRecord ? (
-        <PopUp
-          state={deleteRecordPopUpOverAtom}
-          height="40%"
-          children={
-            <div style={{ marginLeft: "5%", marginRight: "5%" }}>
-              <div
-                style={{
-                  marginBottom: "7%",
-                  marginTop: "10%",
-                  textAlign: "left",
-                }}
-              >
-                <Typography text="삭제하시겠습니까?" type="h2" />
-                <Typography
-                  text="삭제된 이미지와 글은 복구가 불가능합니다."
-                  type="h2"
-                />
-              </div>
-              <div>
-                <Button
-                  width="100%"
-                  text="삭제하기"
-                  color={colors.white}
-                  bordercolor={colors.inputTextClor}
-                  backgroundcolor={colors.gray850}
-                  none="true"
-                />
               </div>
             </div>
           }

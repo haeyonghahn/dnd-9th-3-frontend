@@ -22,7 +22,7 @@ import {
   recordStateAtom,
   recordTitleAtom,
 } from "@/atoms/record";
-import { setMyRecord } from "@/api/record";
+import { createRecord } from "@/api/record";
 import { format } from "date-fns";
 
 const Score = () => {
@@ -40,7 +40,7 @@ const Score = () => {
   const recordState = useRecoilValue(recordStateAtom);
   const recordScore = useRecoilValue(recordScoreAtom);
   const handleSuccess = () => {
-    setMyRecord(
+    createRecord(
       recordImages.flatMap(({ file }) => file).filter((file) => file != null),
       recordTitle,
       recordDescript,

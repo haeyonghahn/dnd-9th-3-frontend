@@ -1,7 +1,4 @@
 import Button from "@/components/Button";
-import { useQuery } from "@tanstack/react-query";
-import { getMyRecord } from "@/api/record";
-import { Record } from "@/types/record";
 import {
   ButtonWrapper,
   TimeLineDescription,
@@ -13,13 +10,10 @@ import { TimeLineArrow, TimeLineMonth } from "../MyRecord/MyRecord.styled";
 import { useSetRecoilState } from "recoil";
 import { chooseTimeLineMonthAtom } from "@/atoms/popup";
 import { useRouter } from "@/hooks/useRouter";
+import { useFetchRecord } from "@/hooks/api/useFetchRecord";
 
 const MyTimeLine = () => {
-  const { data: myRecordData } = useQuery<Record[] | null>({
-    queryKey: ["myRecord"],
-    queryFn: getMyRecord,
-    throwOnError: true,
-  });
+  const { data: myRecordData } = useFetchRecord();
   const { routeTo } = useRouter();
 
   const setTimeLineMonth = useSetRecoilState(chooseTimeLineMonthAtom);
@@ -38,12 +32,13 @@ const MyTimeLine = () => {
           {myRecordData.map((record, _) => (
             <TimeLineCard
               key={record.recordNumber}
+              recordNumber={record.recordNumber}
               date=""
               description={record.description}
-              placeName=""
-              title={record.placeTitle}
-              src=""
-              images={[]}
+              placeName={record.placeTitle}
+              title={record.title}
+              src={record.images[0].path}
+              images={record.images}
               theme="dark"
             ></TimeLineCard>
           ))}

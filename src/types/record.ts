@@ -1,4 +1,4 @@
-export interface Record {
+export interface IRecord {
   recordNumber: string;
   placeTitle: string;
   placeLatitude: number;
@@ -7,6 +7,12 @@ export interface Record {
   recorderName: string;
   title: string;
   description: string;
+  images: IImage[];
+}
+
+export interface IImage {
+  id: string;
+  path: string;
 }
 
 export interface IRecordImage {

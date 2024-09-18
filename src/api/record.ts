@@ -1,9 +1,9 @@
-import { PaginatedRecordPlace, Record } from "@/types/record";
+import { PaginatedRecordPlace, IRecord } from "@/types/record";
 import { BASE_URL } from "./const";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import { InterestElement } from "@/types/user";
 
-export const getMyRecord = async (): Promise<Record[] | null> => {
+export const getMyRecord = async (): Promise<IRecord[] | null> => {
   const recordRes = await fetch(`${BASE_URL}/api/v1/my/record`, {
     method: "GET",
     headers: {
@@ -17,7 +17,7 @@ export const getMyRecord = async (): Promise<Record[] | null> => {
   return recordRes.json();
 };
 
-export const setMyRecord = async (
+export const createRecord = async (
   files: File[],
   title: string,
   description: string,
@@ -57,7 +57,21 @@ export const setMyRecord = async (
   if (!recordRes.ok) {
     throw new Error("Network response was not ok");
   }
-  return recordRes.json();
+};
+
+export const deleteRecord = async (recordNo: string): Promise<void> => {
+  const recordRes = await fetch(
+    `${BASE_URL}/api/v1/record?recordNo=${recordNo}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+      },
+    }
+  );
+  if (!recordRes.ok) {
+    throw new Error("Network response was not ok");
+  }
 };
 
 export const getRecordPlace = async (

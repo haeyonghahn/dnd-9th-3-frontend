@@ -12,6 +12,7 @@ export const RecordCardLine = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding-left: 3%;
 `;
 
 export const RecordContent = styled.div`
@@ -25,6 +26,7 @@ export const RecordContentHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-right: 3%;
 `;
 
 export const RecordPlace = styled.div`

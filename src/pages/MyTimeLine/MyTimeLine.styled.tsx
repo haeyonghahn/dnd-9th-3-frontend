@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const TimeLineWrapper = styled.div`
   position: absolute;
   width: 100%;
-  padding: 3%;
 `;
 
 export const TimeLineDescription = styled.div`
