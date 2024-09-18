@@ -46,10 +46,10 @@ const Score = () => {
       recordDescript,
       recordDate ? format(recordDate, "yyyy-MM-dd'T'HH:mm:ss") : "",
       recordPlace.placeName,
-      String(recordPlace.placeLatitude),
-      String(recordPlace.placeLongitude),
+      recordPlace.placeLatitude,
+      recordPlace.placeLongitude,
       recordState,
-      String(recordScore),
+      recordScore,
       recordCategories
     );
   };
