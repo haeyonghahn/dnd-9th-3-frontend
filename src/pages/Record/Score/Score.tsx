@@ -6,21 +6,37 @@ import {
   ScoreIndicator,
   ScoreWrapper,
 } from "./Score.styled";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { scorePopUpAtom } from "@/atoms/popup";
 import Typography from "@/foundations/Typography";
 import Button from "@/components/Button";
 import { SCORES } from "@/api/const";
 import ScoreCard from "./ScoreCard";
+import {
+  recordCategoriesAtom,
+  recordDateAtom,
+  recordPlaceAtom,
+  recordScoreAtom,
+  recordStateAtom,
+} from "@/atoms/record";
 
 const Score = () => {
   const setScorePopUpPopUp = useSetRecoilState(scorePopUpAtom);
   const haandleGoBack = () => {
     setScorePopUpPopUp((prev) => !prev);
   };
+
+  const recordDate = useRecoilValue(recordDateAtom);
+  const recordPlace = useRecoilValue(recordPlaceAtom);
+  const recordCategories = useRecoilValue(recordCategoriesAtom);
+  const recordState = useRecoilValue(recordStateAtom);
+  const recordScore = useRecoilValue(recordScoreAtom);
+  const handleSuccess = () => {
+    console.log("test");
+  };
   return (
     <ScoreContainer>
-      <div style={{ marginLeft: "5%", marginTop: "10%" }}>
+      <div style={{ marginLeft: "5%", marginTop: "5%" }}>
         <Icon
           icon="leftArrow"
           minX="0"
@@ -40,19 +56,21 @@ const Score = () => {
         />
         <ScoreCardWrapper>
           <ScoreGrid>
-            {SCORES.map((score, index) => (
+            {SCORES.map((score) => (
               <ScoreCard
-                key={index}
+                id={score.id}
+                key={score.id}
                 icon={score.icon}
                 viewBoxHeight={score.viewBoxHeight}
                 viewBoxWidth={score.viewBoxWidth}
                 height={score.height}
                 width={score.width}
+                text={score.text}
               />
             ))}
           </ScoreGrid>
         </ScoreCardWrapper>
-        <Button text="기록 완료" width="100%" />
+        <Button text="기록 완료" width="100%" onClick={handleSuccess} />
       </ScoreWrapper>
     </ScoreContainer>
   );

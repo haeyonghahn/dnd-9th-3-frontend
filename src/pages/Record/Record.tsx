@@ -32,7 +32,6 @@ import {
   recordCategoriesAtom,
   recordDateAtom,
   recordPlaceAtom,
-  recordScoreAtom,
   recordStateAtom,
 } from "@/atoms/record";
 import { format } from "date-fns";
@@ -119,7 +118,7 @@ const Record = () => {
     setCategoryPopUp((prev) => !prev);
   };
 
-  const [_, setRecordState] = useRecoilState(recordStateAtom);
+  const setRecordState = useSetRecoilState(recordStateAtom);
   const handleSateClick = () => {
     setRecordState((prev) => {
       if (prev === "PRIVATE") {
@@ -131,7 +130,6 @@ const Record = () => {
   };
 
   const [scorePopUp, setScorePopUp] = useRecoilState(scorePopUpAtom);
-  const [score, setScore] = useRecoilState(recordScoreAtom);
   const handleScoreClick = () => {
     setScorePopUp((prev) => !prev);
   };
@@ -237,9 +235,7 @@ const Record = () => {
             theme="dark"
             value={
               categories && categories.length > 0
-                ? categories
-                    .map((category, _) => category.interestName)
-                    .join(" ")
+                ? categories.map((category) => category.interestName).join(" ")
                 : ""
             }
             messageBoxShow={false}

@@ -27,12 +27,12 @@ export const recordCategoriesAtom = atom<InterestElement[] | undefined>({
   default: [],
 });
 
-export const recordStateAtom = atom<String>({
+export const recordStateAtom = atom<string>({
   key: "recordStateAtom",
   default: "PRIVATE",
 });
 
-export const recordScoreAtom = atom<Number>({
+export const recordScoreAtom = atom<number>({
   key: "recordScoreAtom",
   default: 0,
 });

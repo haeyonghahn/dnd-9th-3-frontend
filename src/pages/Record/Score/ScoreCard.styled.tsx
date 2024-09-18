@@ -1,3 +1,4 @@
+import { colors } from "@/_shared/colors";
 import styled from "styled-components";
 
 export const ScoreCardContent = styled.div`
@@ -9,6 +10,9 @@ export const ScoreCardContent = styled.div`
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+  &.selected {
+    outline: ${colors.green50} solid 1px;
+  }
 `;
 
 export const ScoreTextBox = styled.div`

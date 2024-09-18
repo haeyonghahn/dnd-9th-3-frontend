@@ -1,8 +1,11 @@
 import Icon from "@/foundations/Icon";
 import { ScoreCardContent, ScoreTextBox } from "./ScoreCard.styled";
 import Typography from "@/foundations/Typography";
+import { useRecoilState } from "recoil";
+import { recordScoreAtom } from "@/atoms/record";
 
 interface IScoreCard {
+  id: number;
   icon: string;
   minX?: string;
   minY?: string;
@@ -10,9 +13,11 @@ interface IScoreCard {
   viewBoxWidth?: string;
   width?: string;
   height?: string;
+  text: string;
 }
 
 const ScoreCard = ({
+  id,
   icon,
   minX,
   minY,
@@ -20,10 +25,18 @@ const ScoreCard = ({
   viewBoxWidth,
   width,
   height,
+  text,
 }: IScoreCard) => {
+  const [selectCard, setSelectCard] = useRecoilState(recordScoreAtom);
+  const handleClick = (id: number) => {
+    setSelectCard(id);
+  };
   return (
     <>
-      <ScoreCardContent>
+      <ScoreCardContent
+        className={selectCard === id ? "selected" : ""}
+        onClick={() => handleClick(id)}
+      >
         <Icon
           icon={icon}
           minX={minX}
@@ -34,7 +47,7 @@ const ScoreCard = ({
           height={height}
         />
         <ScoreTextBox>
-          <Typography text="낭만이긴 했어요" type="h3" color="#75777B" />
+          <Typography text={text} type="h3" color="#75777B" />
         </ScoreTextBox>
       </ScoreCardContent>
     </>
