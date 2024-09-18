@@ -309,7 +309,7 @@ const Record = () => {
       ) : null}
       {scorePopUp ? (
         <>
-          <PopUp state={scorePopUpAtom} height="90%" children={<Score />} />
+          <PopUp state={scorePopUpAtom} height="100%" children={<Score />} />
         </>
       ) : null}
     </RecrodContainer>

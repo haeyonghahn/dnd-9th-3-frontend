@@ -59,3 +59,38 @@ export const CATEGORIES = [
     height: "40",
   },
 ];
+export const SCORES = [
+  {
+    icon: "gooding",
+    width: "70",
+    height: "70",
+  },
+  {
+    icon: "score2",
+    viewBoxHeight: "76",
+    viewBoxWidth: "76",
+    width: "76",
+    height: "76",
+  },
+  {
+    icon: "score3",
+    viewBoxHeight: "76",
+    viewBoxWidth: "76",
+    width: "76",
+    height: "76",
+  },
+  {
+    icon: "score4",
+    viewBoxHeight: "76",
+    viewBoxWidth: "76",
+    width: "76",
+    height: "76",
+  },
+  {
+    icon: "score5",
+    viewBoxHeight: "76",
+    viewBoxWidth: "76",
+    width: "76",
+    height: "76",
+  },
+];
