@@ -15,10 +15,15 @@ import ScoreCard from "./ScoreCard";
 import {
   recordCategoriesAtom,
   recordDateAtom,
+  recordDescriptAtom,
+  recordImageAtom,
   recordPlaceAtom,
   recordScoreAtom,
   recordStateAtom,
+  recordTitleAtom,
 } from "@/atoms/record";
+import { setMyRecord } from "@/api/record";
+import { format } from "date-fns";
 
 const Score = () => {
   const setScorePopUpPopUp = useSetRecoilState(scorePopUpAtom);
@@ -26,13 +31,27 @@ const Score = () => {
     setScorePopUpPopUp((prev) => !prev);
   };
 
+  const recordImages = useRecoilValue(recordImageAtom);
+  const recordTitle = useRecoilValue(recordTitleAtom);
+  const recordDescript = useRecoilValue(recordDescriptAtom);
   const recordDate = useRecoilValue(recordDateAtom);
   const recordPlace = useRecoilValue(recordPlaceAtom);
   const recordCategories = useRecoilValue(recordCategoriesAtom);
   const recordState = useRecoilValue(recordStateAtom);
   const recordScore = useRecoilValue(recordScoreAtom);
   const handleSuccess = () => {
-    console.log("test");
+    setMyRecord(
+      recordImages.flatMap(({ file }) => file).filter((file) => file != null),
+      recordTitle,
+      recordDescript,
+      recordDate ? format(recordDate, "yyyy-MM-dd'T'HH:mm:ss") : "",
+      recordPlace.placeName,
+      String(recordPlace.placeLatitude),
+      String(recordPlace.placeLongitude),
+      recordState,
+      String(recordScore),
+      recordCategories
+    );
   };
   return (
     <ScoreContainer>

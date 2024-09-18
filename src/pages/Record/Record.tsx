@@ -20,7 +20,7 @@ import Button from "@/components/Button";
 import { colors } from "@/_shared/colors";
 import RecordImage from "./Image/RecordImage";
 import PopUp from "@/components/PopUp";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   categoryPopUpAtom,
   recordDayPopUpAtom,
@@ -31,8 +31,11 @@ import Calendar from "./Calendar/Calendar";
 import {
   recordCategoriesAtom,
   recordDateAtom,
+  recordDescriptAtom,
+  recordImageAtom,
   recordPlaceAtom,
   recordStateAtom,
+  recordTitleAtom,
 } from "@/atoms/record";
 import { format } from "date-fns";
 import Category from "./Category/Category";
@@ -65,7 +68,9 @@ const Record = () => {
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const [title, setTitle] = useState("");
+  const recordImage = useRecoilValue(recordImageAtom);
+
+  const [title, setTitle] = useRecoilState(recordTitleAtom);
   const [titleStatus, setStatus] = useState<Status>("default");
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -79,7 +84,7 @@ const Record = () => {
     setTitle(value);
   };
 
-  const [descript, setDescript] = useState("");
+  const [descript, setDescript] = useRecoilState(recordDescriptAtom);
   const [descriptStatus, setDescriptStatus] = useState<Status>("default");
   const handleDescriptChange = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -144,21 +149,11 @@ const Record = () => {
         onMouseUp={handleMouseLeaveOrUp}
         onMouseMove={handleMouseMove}
       >
-        <RecordImageBox>
-          <RecordImage></RecordImage>
-        </RecordImageBox>
-        <RecordImageBox>
-          <RecordImage></RecordImage>
-        </RecordImageBox>
-        <RecordImageBox>
-          <RecordImage></RecordImage>
-        </RecordImageBox>
-        <RecordImageBox>
-          <RecordImage></RecordImage>
-        </RecordImageBox>
-        <RecordImageBox>
-          <RecordImage></RecordImage>
-        </RecordImageBox>
+        {recordImage.map((file, index) => (
+          <RecordImageBox key={index}>
+            <RecordImage id={index} file={file.file}></RecordImage>
+          </RecordImageBox>
+        ))}
       </RecordImageWrapper>
       <RecordWrapper>
         <Typography text="어떤 굳이데이를 보내셨나요?" type="h3" />

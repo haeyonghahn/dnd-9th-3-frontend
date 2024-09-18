@@ -2,11 +2,15 @@ import Icon from "@/foundations/Icon";
 import Typography from "@/foundations/Typography";
 import { FileImage, FileInput, Preview } from "./RecordImage.styled";
 import { useRef, useState } from "react";
+import { useRecoilState } from "recoil";
+import { recordImageAtom } from "@/atoms/record";
+import { IRecordImage } from "@/types/record";
+import React from "react";
 
-const RecordImage = () => {
+const RecordImage = React.memo(({ id, file }: IRecordImage) => {
   const previewRef = useRef<HTMLImageElement | null>(null);
   const [isActive, setActive] = useState(false);
-  const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [uploadFile, setUploadFile] = useRecoilState(recordImageAtom);
   const handleDragStart = () => setActive(true);
   const handleDragEnd = (event: React.DragEvent<HTMLLabelElement>) => {
     event.preventDefault();
@@ -20,7 +24,17 @@ const RecordImage = () => {
       if (previewRef.current) {
         reader.onload = ({ target }) => {
           if (previewRef.current) {
-            setUploadFile(files[0]);
+            setUploadFile((oldFiles) => {
+              const newFiles = [...oldFiles];
+              const targetIndex = oldFiles.findIndex((file) => file.id === id);
+              if (targetIndex !== -1) {
+                newFiles[targetIndex] = {
+                  ...newFiles[targetIndex],
+                  file: files[0],
+                };
+              }
+              return newFiles;
+            });
             previewRef.current.src = target?.result as string;
           }
         };
@@ -40,7 +54,17 @@ const RecordImage = () => {
       if (previewRef.current) {
         reader.onload = ({ target }) => {
           if (previewRef.current) {
-            setUploadFile(files[0]);
+            setUploadFile((oldFiles) => {
+              const newFiles = [...oldFiles];
+              const targetIndex = oldFiles.findIndex((file) => file.id === id);
+              if (targetIndex !== -1) {
+                newFiles[targetIndex] = {
+                  ...newFiles[targetIndex],
+                  file: files[0],
+                };
+              }
+              return newFiles;
+            });
             previewRef.current.src = target?.result as string;
           }
         };
@@ -48,7 +72,6 @@ const RecordImage = () => {
       }
     }
   };
-
   return (
     <>
       <Preview
@@ -61,10 +84,10 @@ const RecordImage = () => {
         <FileInput
           type="file"
           onChange={handleUpload}
-          accept=".svg, .jpg .jpeg .mp4"
+          accept=".svg, .jpg, .jpeg, .mp4"
         />
 
-        {uploadFile ? (
+        {uploadFile[id].file ? (
           <></>
         ) : (
           <>
@@ -74,12 +97,12 @@ const RecordImage = () => {
         )}
         <FileImage
           ref={previewRef}
-          src=""
-          className={`${uploadFile ? "" : "hide"}`}
+          src={file ? URL.createObjectURL(file) : ""}
+          className={`${uploadFile[id].file ? "" : "hide"}`}
         />
       </Preview>
     </>
   );
-};
+});
 
 export default RecordImage;

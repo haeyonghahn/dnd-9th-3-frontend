@@ -1,6 +1,7 @@
 import { PaginatedRecordPlace, Record } from "@/types/record";
 import { BASE_URL } from "./const";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
+import { InterestElement } from "@/types/user";
 
 export const getMyRecord = async (): Promise<Record[] | null> => {
   const recordRes = await fetch(`${BASE_URL}/api/v1/my/record`, {
@@ -9,6 +10,49 @@ export const getMyRecord = async (): Promise<Record[] | null> => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
     },
+  });
+  if (!recordRes.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return recordRes.json();
+};
+
+export const setMyRecord = async (
+  files: File[],
+  title: string,
+  description: string,
+  recordDate: string,
+  placeTitle: string,
+  placeLatitude: number,
+  placeLongitude: number,
+  state: string,
+  recordScore: number,
+  interests: InterestElement[] | undefined
+): Promise<void> => {
+  const recordRequest = {
+    title: title,
+    description: description,
+    recordDate: recordDate,
+    placeTitle: placeTitle,
+    placeLatitude: placeLatitude,
+    placeLongitude: placeLongitude,
+    state: state,
+    recordScore: recordScore,
+    interests: interests,
+  };
+
+  const formData = new FormData();
+  files.forEach((file) => {
+    formData.append("files", file);
+  });
+  formData.append("recordRequest", JSON.stringify(recordRequest));
+
+  const recordRes = await fetch(`${BASE_URL}/api/v1/record`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+    },
+    body: formData,
   });
   if (!recordRes.ok) {
     throw new Error("Network response was not ok");

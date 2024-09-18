@@ -9,6 +9,11 @@ export interface Record {
   description: string;
 }
 
+export interface IRecordImage {
+  id: number;
+  file: File | null;
+}
+
 export interface RecordPlace {
   placeName: string;
   addressName: string;
