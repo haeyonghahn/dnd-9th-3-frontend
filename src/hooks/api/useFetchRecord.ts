@@ -7,6 +7,19 @@ export const useFetchRecord = () => {
     queryKey: ["myRecord"],
     queryFn: getMyRecord,
     throwOnError: true,
-    refetchOnMount: "always",
   });
 };
+
+export const useDeleteRecord = (recordNo: string) => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: () => deleteRecord(recordNo),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["myRecord"] });
+    },
+    onError: (error) => {
+      console.error("Failed to delete record:", error);
+    }
+  });
+}

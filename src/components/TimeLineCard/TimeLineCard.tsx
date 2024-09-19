@@ -19,7 +19,7 @@ import { IImage } from "@/types/record";
 import PopUp from "../PopUp";
 import { colors } from "@/_shared/colors";
 import { useRecoilState } from "recoil";
-import { deleteRecord } from "@/api/record";
+import { useDeleteRecord } from "@/hooks/api/useFetchRecord";
 
 interface ITimeLineCardProps {
   recordNumber: string;
@@ -54,8 +54,9 @@ const TimeLineCard = ({
     setPopUpOver((prev) => !prev);
   };
 
+  const { mutate: deleteRecordMutate } = useDeleteRecord(recordNumber);
   const deleteClick = () => {
-    deleteRecord(recordNumber);
+    deleteRecordMutate();
     setPopUpOver((prev) => !prev);
   };
 
