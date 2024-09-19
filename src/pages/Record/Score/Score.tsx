@@ -6,7 +6,7 @@ import {
   ScoreIndicator,
   ScoreWrapper,
 } from "./Score.styled";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import { scorePopUpAtom } from "@/atoms/popup";
 import Typography from "@/foundations/Typography";
 import Button from "@/components/Button";
@@ -22,13 +22,13 @@ import {
   recordStateAtom,
   recordTitleAtom,
 } from "@/atoms/record";
-import { createRecord } from "@/api/record";
 import { format } from "date-fns";
+import { useCreateRecord } from "@/hooks/api/useFetchRecord";
 
 const Score = () => {
-  const setScorePopUpPopUp = useSetRecoilState(scorePopUpAtom);
+  const setScorePopUp = useSetRecoilState(scorePopUpAtom);
   const haandleGoBack = () => {
-    setScorePopUpPopUp((prev) => !prev);
+    setScorePopUp((prev) => !prev);
   };
 
   const recordImages = useRecoilValue(recordImageAtom);
@@ -39,19 +39,20 @@ const Score = () => {
   const recordCategories = useRecoilValue(recordCategoriesAtom);
   const recordState = useRecoilValue(recordStateAtom);
   const recordScore = useRecoilValue(recordScoreAtom);
+  const { mutate: createRecordMutate } = useCreateRecord(
+    recordImages.flatMap(({ file }) => file).filter((file) => file != null),
+    recordTitle,
+    recordDescript,
+    recordDate ? format(recordDate, "yyyy-MM-dd'T'HH:mm:ss") : "",
+    recordPlace.placeName,
+    recordPlace.placeLatitude,
+    recordPlace.placeLongitude,
+    recordState,
+    recordScore,
+    recordCategories
+  );
   const handleSuccess = () => {
-    createRecord(
-      recordImages.flatMap(({ file }) => file).filter((file) => file != null),
-      recordTitle,
-      recordDescript,
-      recordDate ? format(recordDate, "yyyy-MM-dd'T'HH:mm:ss") : "",
-      recordPlace.placeName,
-      recordPlace.placeLatitude,
-      recordPlace.placeLongitude,
-      recordState,
-      recordScore,
-      recordCategories
-    );
+    createRecordMutate();
   };
   return (
     <ScoreContainer>

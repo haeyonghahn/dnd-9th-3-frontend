@@ -57,7 +57,6 @@ const TimeLineCard = ({
   const { mutate: deleteRecordMutate } = useDeleteRecord(recordNumber);
   const deleteClick = () => {
     deleteRecordMutate();
-    setPopUpOver((prev) => !prev);
   };
 
   return (

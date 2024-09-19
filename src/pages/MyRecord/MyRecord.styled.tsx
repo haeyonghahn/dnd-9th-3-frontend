@@ -126,23 +126,3 @@ export const Divider = styled.div`
   height: 1px;
   background-color: #3e4049;
 `;
-
-export const TimeLineMonth = styled.div`
-  margin: 20px;
-  font-weight: 600;
-  font-size: 18px;
-  cursor: pointer;
-`;
-
-export const TimeLineMonthText = styled.div`
-  margin-top: 5%;
-  margin-bottom: 5%;
-  color: ${colors.gray500};
-  &.selected {
-    color: ${colors.green50};
-  }
-`;
-
-export const TimeLineArrow = styled.img`
-  margin-left: 10px;
-`;

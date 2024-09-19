@@ -19,7 +19,6 @@ import {
   TabIndicator,
   TabTitle,
   Tabs,
-  TimeLineMonthText,
   Wrapper,
 } from "./MyRecord.styled";
 import { useEffect, useState } from "react";
@@ -27,13 +26,10 @@ import { colors } from "@/_shared/colors";
 import { fontSize } from "@/_shared/typography";
 import Typography from "@/foundations/Typography";
 import { useRecoilValue } from "recoil";
-import PopUp from "@/components/PopUp";
-import { chooseTimeLineMonthAtom } from "@/atoms/popup";
 import { useAnimation } from "framer-motion";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
-  const timeLineMonth = useRecoilValue(chooseTimeLineMonthAtom);
   const { currentPath, routeTo } = useRouter();
   const navAnimation = useAnimation();
   const [mouseDownClientY, setMouseDownClientY] = useState(0);
@@ -127,33 +123,6 @@ const MyRecord = () => {
         <Divider className="line"></Divider>
         <Outlet />
       </Tabs>
-      {timeLineMonth ? (
-        <PopUp
-          state={chooseTimeLineMonthAtom}
-          height="40%"
-          children={
-            <div style={{ marginLeft: "5%", marginRight: "5%" }}>
-              <div
-                style={{
-                  marginTop: "10%",
-                  textAlign: "left",
-                }}
-              >
-                <Typography text="월 선택하기" type="h2" />
-              </div>
-              <TimeLineMonthText className="selected">
-                <Typography text="2023.08" type="h2" />
-              </TimeLineMonthText>
-              <TimeLineMonthText>
-                <Typography text="2023.07" type="h2" />
-              </TimeLineMonthText>
-              <div>
-                <Button width="100%" text="선택 완료" />
-              </div>
-            </div>
-          }
-        />
-      ) : null}
     </Wrapper>
   );
 };

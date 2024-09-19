@@ -13,12 +13,12 @@ import {
 import Input from "@/components/Input";
 import { useMemo, useState } from "react";
 import { colors } from "@/_shared/colors";
-import { useFetchRecordPlaces } from "@/hooks/api/useFetchRecordPlaces";
 import { useIntersect } from "@/hooks/useIntersect";
 import { recordPlacePopUpAtom } from "@/atoms/popup";
 import { useSetRecoilState } from "recoil";
 import { recordPlaceAtom } from "@/atoms/record";
 import Icon from "@/foundations/Icon";
+import { useFetchRecordPlaces } from "@/hooks/api/useFetchRecord";
 
 interface RecordPlace {
   placeName: string;

@@ -1,5 +1,6 @@
 export interface IRecord {
   recordNumber: string;
+  recordDate: string;
   placeTitle: string;
   placeLatitude: number;
   placeLongitude: number;
