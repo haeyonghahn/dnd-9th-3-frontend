@@ -6,7 +6,7 @@ import {
   ScoreIndicator,
   ScoreWrapper,
 } from "./Score.styled";
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { scorePopUpAtom } from "@/atoms/popup";
 import Typography from "@/foundations/Typography";
 import Button from "@/components/Button";
@@ -27,7 +27,7 @@ import { useCreateRecord } from "@/hooks/api/useFetchRecord";
 
 const Score = () => {
   const setScorePopUp = useSetRecoilState(scorePopUpAtom);
-  const haandleGoBack = () => {
+  const handleGoBack = () => {
     setScorePopUp((prev) => !prev);
   };
 
@@ -65,7 +65,7 @@ const Score = () => {
           viewBoxWidth="18"
           width="30"
           height="35"
-          onClick={haandleGoBack}
+          onClick={handleGoBack}
         />
       </div>
       <ScoreIndicator />

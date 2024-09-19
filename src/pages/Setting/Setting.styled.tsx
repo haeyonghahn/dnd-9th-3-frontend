@@ -10,6 +10,24 @@ export const SettingHeaderWrapper = styled.div`
   text-align: center;
 `;
 
+export const SettingHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 5%;
+  align-items: center;
+  position: relative;
+`;
+
+export const IconWrapper = styled.div`
+  position: absolute;
+  left: 10px;
+`;
+
+export const TitleWrapper = styled.div`
+  flex: 1;
+  text-align: center;
+`;
+
 export const SettingIndicator = styled.div`
   height: 2px;
   width: 100%;
