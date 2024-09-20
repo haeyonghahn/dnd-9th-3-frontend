@@ -1,3 +1,4 @@
+import React from "react";
 import { RecoilState, useSetRecoilState } from "recoil";
 
 interface PopUpProps {
@@ -6,7 +7,7 @@ interface PopUpProps {
   state: RecoilState<boolean>;
 }
 
-const PopUp: React.FC<PopUpProps> = ({ children, height, state }) => {
+const PopUp: React.FC<PopUpProps> = ({ children, height, state, ...props }) => {
   const setPopUpOver = useSetRecoilState(state);
   const onPopUpOver = () => {
     setPopUpOver((prev) => !prev);
@@ -38,7 +39,9 @@ const PopUp: React.FC<PopUpProps> = ({ children, height, state }) => {
           overflow: "auto",
         }}
       >
-        {children}
+        {React.cloneElement(children as React.ReactElement, {
+          ...props,
+        })}
       </div>
     </>
   );

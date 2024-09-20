@@ -5,6 +5,7 @@ import {
   getRecordPlace,
 } from "@/api/record";
 import {
+  deleteRecordNumberAtom,
   recordCategoriesAtom,
   recordDateAtom,
   recordDescriptAtom,
@@ -40,18 +41,7 @@ export const useFetchRecord = () => {
   });
 };
 
-export const useCreateRecord = (
-  files: File[],
-  title: string,
-  description: string,
-  recordDate: string,
-  placeTitle: string,
-  placeLatitude: number,
-  placeLongitude: number,
-  state: string,
-  score: number,
-  interests: InterestElement[] | undefined
-) => {
+export const useCreateRecord = () => {
   const queryClient = useQueryClient();
   const { routeTo } = useRouter();
 
@@ -66,7 +56,29 @@ export const useCreateRecord = (
   const resetRecordScore = useResetRecoilState(recordScoreAtom);
 
   return useMutation({
-    mutationFn: () =>
+    mutationFn: ({
+      files,
+      title,
+      description,
+      recordDate,
+      placeTitle,
+      placeLatitude,
+      placeLongitude,
+      state,
+      score,
+      interests,
+    }: {
+      files: File[];
+      title: string;
+      description: string;
+      recordDate: string;
+      placeTitle: string;
+      placeLatitude: number;
+      placeLongitude: number;
+      state: string;
+      score: number;
+      interests: InterestElement[] | undefined;
+    }) =>
       createRecord(
         files,
         title,
@@ -99,14 +111,16 @@ export const useCreateRecord = (
   });
 };
 
-export const useDeleteRecord = (recordNo: string) => {
+export const useDeleteRecord = () => {
   const queryClient = useQueryClient();
+  const resetDeleteRecordNumber = useResetRecoilState(deleteRecordNumberAtom);
   const resetDeleteRecord = useResetRecoilState(deleteRecordPopUpOverAtom);
 
   return useMutation({
-    mutationFn: () => deleteRecord(recordNo),
+    mutationFn: (recordNo: string) => deleteRecord(recordNo),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myRecord"] });
+      resetDeleteRecordNumber();
       resetDeleteRecord();
     },
     onError: (error) => {

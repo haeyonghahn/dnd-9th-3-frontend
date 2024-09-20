@@ -24,6 +24,7 @@ import {
 } from "@/atoms/record";
 import { format } from "date-fns";
 import { useCreateRecord } from "@/hooks/api/useFetchRecord";
+import { InterestElement } from "@/types/user";
 
 const Score = () => {
   const setScorePopUp = useSetRecoilState(scorePopUpAtom);
@@ -39,20 +40,32 @@ const Score = () => {
   const recordCategories = useRecoilValue(recordCategoriesAtom);
   const recordState = useRecoilValue(recordStateAtom);
   const recordScore = useRecoilValue(recordScoreAtom);
-  const { mutate: createRecordMutate } = useCreateRecord(
-    recordImages.flatMap(({ file }) => file).filter((file) => file != null),
-    recordTitle,
-    recordDescript,
-    recordDate ? format(recordDate, "yyyy-MM-dd'T'HH:mm:ss") : "",
-    recordPlace.placeName,
-    recordPlace.placeLatitude,
-    recordPlace.placeLongitude,
-    recordState,
-    recordScore,
-    recordCategories
-  );
-  const handleSuccess = () => {
-    createRecordMutate();
+
+  const { mutate: createRecordMutate } = useCreateRecord();
+  const handleSuccess = (
+    files: File[],
+    title: string,
+    description: string,
+    recordDate: string,
+    placeTitle: string,
+    placeLatitude: number,
+    placeLongitude: number,
+    state: string,
+    score: number,
+    interests: InterestElement[] | undefined
+  ) => {
+    createRecordMutate({
+      files: files,
+      title: title,
+      description: description,
+      recordDate: recordDate,
+      placeTitle: placeTitle,
+      placeLatitude: placeLatitude,
+      placeLongitude: placeLongitude,
+      state: state,
+      score: score,
+      interests: interests,
+    });
   };
   return (
     <ScoreContainer>
@@ -90,7 +103,26 @@ const Score = () => {
             ))}
           </ScoreGrid>
         </ScoreCardWrapper>
-        <Button text="기록 완료" width="100%" onClick={handleSuccess} />
+        <Button
+          text="기록 완료"
+          width="100%"
+          onClick={() =>
+            handleSuccess(
+              recordImages
+                .flatMap(({ file }) => file)
+                .filter((file) => file != null),
+              recordTitle,
+              recordDescript,
+              recordDate ? format(recordDate, "yyyy-MM-dd'T'HH:mm:ss") : "",
+              recordPlace.placeName,
+              recordPlace.placeLatitude,
+              recordPlace.placeLongitude,
+              recordState,
+              recordScore,
+              recordCategories
+            )
+          }
+        />
       </ScoreWrapper>
     </ScoreContainer>
   );

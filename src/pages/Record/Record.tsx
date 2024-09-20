@@ -19,7 +19,6 @@ import Switch from "@/components/Switch";
 import Button from "@/components/Button";
 import { colors } from "@/_shared/colors";
 import RecordImage from "./Image/RecordImage";
-import PopUp from "@/components/PopUp";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   categoryPopUpAtom,
@@ -41,6 +40,7 @@ import { format } from "date-fns";
 import Category from "./Category/Category";
 import RecordPlace from "./Place/RecordPlace";
 import Score from "./Score/Score";
+import { PopUp } from "@/components/PopUp";
 
 const Record = () => {
   const [isDragging, setIsDragging] = useState(false);

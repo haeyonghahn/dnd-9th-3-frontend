@@ -11,15 +11,13 @@ import {
   RecordImageWrapper,
 } from "./TimeLineCard.styled";
 import Typography from "@/foundations/Typography/Typography";
-import RecordImage from "./TimeLineImage";
+import TimeLineImage from "./TimeLineImage";
 import { useState } from "react";
-import { deleteRecordPopUpOverAtom } from "@/atoms/popup";
 import Button from "../Button";
 import { IImage } from "@/types/record";
-import PopUp from "../PopUp";
-import { colors } from "@/_shared/colors";
-import { useRecoilState } from "recoil";
-import { useDeleteRecord } from "@/hooks/api/useFetchRecord";
+import { deleteRecordPopUpOverAtom } from "@/atoms/popup";
+import { useSetRecoilState } from "recoil";
+import { deleteRecordNumberAtom } from "@/atoms/record";
 
 interface ITimeLineCardProps {
   recordNumber: string;
@@ -43,20 +41,15 @@ const TimeLineCard = ({
   images,
 }: ITimeLineCardProps) => {
   const [textOver, setTextOver] = useState(true);
-  const [isDeleteRecord, setPopUpOver] = useRecoilState(
-    deleteRecordPopUpOverAtom
-  );
+  const setDeleteRecordNumber = useSetRecoilState(deleteRecordNumberAtom);
+  const setPopUpOver = useSetRecoilState(deleteRecordPopUpOverAtom);
 
-  const handleTextOver = () => {
-    setTextOver((prev) => !prev);
-  };
   const handlePopUp = () => {
     setPopUpOver((prev) => !prev);
+    setDeleteRecordNumber(recordNumber);
   };
-
-  const { mutate: deleteRecordMutate } = useDeleteRecord(recordNumber);
-  const deleteClick = () => {
-    deleteRecordMutate();
+  const handleTextOver = () => {
+    setTextOver((prev) => !prev);
   };
 
   return (
@@ -102,7 +95,7 @@ const TimeLineCard = ({
         </RecordPlace>
         <RecordImageWrapper>
           <RecordImageBox>
-            <RecordImage src={src} />
+            <TimeLineImage src={src} />
           </RecordImageBox>
           <Typography
             text={`${images.length > 1 ? "+" + (images.length - 1) : ""} `}
@@ -122,40 +115,6 @@ const TimeLineCard = ({
           </RecordDescriptionMore>
         </RecordDescription>
       </RecordContent>
-      {isDeleteRecord ? (
-        <PopUp
-          state={deleteRecordPopUpOverAtom}
-          height="40%"
-          children={
-            <div style={{ marginLeft: "5%", marginRight: "5%" }}>
-              <div
-                style={{
-                  marginBottom: "7%",
-                  marginTop: "10%",
-                  textAlign: "left",
-                }}
-              >
-                <Typography text="삭제하시겠습니까?" type="h2" />
-                <Typography
-                  text="삭제된 이미지와 글은 복구가 불가능합니다."
-                  type="h2"
-                />
-              </div>
-              <div>
-                <Button
-                  width="100%"
-                  text="삭제하기"
-                  color={colors.white}
-                  bordercolor={colors.inputTextClor}
-                  backgroundcolor={colors.gray850}
-                  none="true"
-                  onClick={deleteClick}
-                />
-              </div>
-            </div>
-          }
-        />
-      ) : null}
     </RecordCardWrapper>
   );
 };

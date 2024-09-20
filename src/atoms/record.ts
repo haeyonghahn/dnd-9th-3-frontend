@@ -28,6 +28,11 @@ export const recordImageAtom = atom<IRecordImage[]>({
   ],
 });
 
+export const deleteRecordNumberAtom = atom<string>({
+  key: "deleteRecordNumberAtom",
+  default: ""
+});
+
 export const recordTitleAtom = atom<string>({
   key: "recordTitleAtom",
   default: "",
