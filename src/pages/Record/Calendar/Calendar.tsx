@@ -1,5 +1,6 @@
 import { useCalendar } from "@/hooks/useCalendar";
 import {
+  CalendarButton,
   CalendarHeader,
   CalendarSelectHeader,
   Day,
@@ -16,11 +17,11 @@ import { recordDateAtom } from "@/atoms/record";
 import { recordDayPopUpAtom } from "@/atoms/popup";
 import { useState } from "react";
 
-interface ICalendar {
+interface CalendarProps {
   date: Date | null;
 }
 
-const Calendar = ({ date }: ICalendar) => {
+const Calendar = ({ date }: CalendarProps) => {
   const calendar = useCalendar();
   const [selectedDay, setSelectedDay] = useState<Date | null>(date);
   const setRecordDay = useSetRecoilState(recordDateAtom);
@@ -113,13 +114,13 @@ const Calendar = ({ date }: ICalendar) => {
           ))}
         </DayWrapper>
       ))}
-      <div style={{ marginLeft: "5%", marginRight: "5%", marginBottom: "5%" }}>
+      <CalendarButton>
         <Button
           width="100%"
           text="선택완료"
           onClick={() => selectedDay && handleClick(selectedDay)}
         />
-      </div>
+      </CalendarButton>
     </>
   );
 };

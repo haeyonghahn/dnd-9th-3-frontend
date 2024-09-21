@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Container, Handle } from "./Switch.styled";
 
-interface ISwitchProps {
+interface SwitchProps {
   width?: string;
   height?: string;
   handleWidth?: string;
@@ -23,7 +23,7 @@ const Switch = ({
   handleHeight = "30px",
   padding = "10px",
   callback,
-}: ISwitchProps) => {
+}: SwitchProps) => {
   const [isOn, setIsOn] = useState(false);
   const toggleSwitch = () => {
     setIsOn((prev) => !prev);

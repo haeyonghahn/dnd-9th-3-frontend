@@ -24,9 +24,9 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { useResetRecoilState } from "recoil";
-import { InterestElement } from "@/types/user";
 import { useRouter } from "../useRouter";
 import { deleteRecordPopUpOverAtom, scorePopUpAtom } from "@/atoms/popup";
+import { IInterest } from "@/types/user";
 
 interface PaginationParams {
   keyword: string;
@@ -77,7 +77,7 @@ export const useCreateRecord = () => {
       placeLongitude: number;
       state: string;
       score: number;
-      interests: InterestElement[] | undefined;
+      interests: IInterest[] | undefined;
     }) =>
       createRecord(
         files,

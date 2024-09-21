@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-interface ISvgProps {
+interface SvgProps {
   block?: string;
 }
 
-export const Svg = styled.svg<ISvgProps>`
+export const Svg = styled.svg<SvgProps>`
   display: ${(props) => (props.block ? "block" : "inline-block")};
   stroke-width: 0.1;
   stroke-linecap: round;

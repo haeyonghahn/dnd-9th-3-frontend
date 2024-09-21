@@ -1,7 +1,7 @@
 import { icons } from "@/_shared/icons";
 import { Svg } from "./Icon.styled";
 
-interface IIconProps {
+interface IconProps {
   icon: string;
   block?: string;
   minX?: string;
@@ -26,7 +26,7 @@ const Icon = ({
   fill,
   onClick,
   ...props
-}: IIconProps) => {
+}: IconProps) => {
   return (
     <Svg
       onClick={onClick}

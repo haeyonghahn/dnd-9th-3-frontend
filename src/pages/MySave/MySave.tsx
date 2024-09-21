@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { MySaveImage, MySaveRowWrapper } from "./MySave.styled";
 import { getMyRecord } from "@/api/record";
-import { Record } from "@/types/record";
+import { IRecord } from "@/types/record";
 
 const MySave = () => {
-  const { data: myRecordData } = useQuery<Record[] | null>({
+  const { data: myRecordData } = useQuery<IRecord[] | null>({
     queryKey: ["myRecord"],
     queryFn: getMyRecord,
     throwOnError: true,

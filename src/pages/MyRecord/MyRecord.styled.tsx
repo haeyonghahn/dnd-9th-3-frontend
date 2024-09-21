@@ -3,17 +3,17 @@ import { fontWeight } from "@/_shared/typography";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-interface IPositionProps {
+interface PositionProps {
   position: string;
 }
 
-interface IVariantsProps {
-  top: IPositionProps;
-  bottom: IPositionProps;
+interface VariantsProps {
+  top: PositionProps;
+  bottom: PositionProps;
 }
 
-interface ITabsProps {
-  variants?: IVariantsProps;
+interface TabsProps {
+  variants?: VariantsProps;
 }
 
 export const Wrapper = styled.div`
@@ -91,7 +91,7 @@ export const MyRecordProfileButton = styled.div``;
 
 export const MyRecordContents = styled.div``;
 
-export const Tabs = styled(motion.div)<ITabsProps>`
+export const Tabs = styled(motion.div)<TabsProps>`
   height: 100%;
   width: 100%;
   background-color: #282932;

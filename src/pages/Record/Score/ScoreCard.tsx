@@ -4,7 +4,7 @@ import Typography from "@/foundations/Typography";
 import { useRecoilState } from "recoil";
 import { recordScoreAtom } from "@/atoms/record";
 
-interface IScoreCard {
+interface ScoreCardProps {
   id: number;
   icon: string;
   minX?: string;
@@ -26,7 +26,7 @@ const ScoreCard = ({
   width,
   height,
   text,
-}: IScoreCard) => {
+}: ScoreCardProps) => {
   const [selectCard, setSelectCard] = useRecoilState(recordScoreAtom);
   const handleClick = (id: number) => {
     setSelectCard(id);

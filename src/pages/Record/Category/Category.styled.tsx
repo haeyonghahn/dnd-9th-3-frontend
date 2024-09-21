@@ -8,3 +8,7 @@ export const CategoryContainer = styled.div`
   margin: 5%;
   width: 90%;
 `;
+
+export const CategoryButton = styled.div`
+  margin-bottom: 5%;
+`;

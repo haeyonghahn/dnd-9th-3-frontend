@@ -1,15 +1,12 @@
 import { Image } from "./TimeLineImage.styled";
 
-interface ITimeLineImageProps {
+interface TimeLineImageProps {
   theme?: string;
   isloading?: string;
   src?: string;
 }
 
-const TimeLineImage = ({
-  isloading,
-  src
-}: ITimeLineImageProps) => {
+const TimeLineImage = ({ isloading, src }: TimeLineImageProps) => {
   let avatarFigure = <></>;
   if (isloading === "true") {
     avatarFigure = <></>;
@@ -18,9 +15,7 @@ const TimeLineImage = ({
   }
   return (
     <>
-      <Image>
-        {avatarFigure}
-      </Image>
+      <Image>{avatarFigure}</Image>
     </>
   );
 };

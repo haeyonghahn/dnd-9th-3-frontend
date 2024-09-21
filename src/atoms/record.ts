@@ -1,5 +1,5 @@
-import { IRecordImage, RecordPlace } from "@/types/record";
-import { InterestElement } from "@/types/user";
+import { IRecordImage, IRecordPlace } from "@/types/record";
+import { IInterest } from "@/types/user";
 import { atom } from "recoil";
 
 export const recordImageAtom = atom<IRecordImage[]>({
@@ -30,7 +30,7 @@ export const recordImageAtom = atom<IRecordImage[]>({
 
 export const deleteRecordNumberAtom = atom<string>({
   key: "deleteRecordNumberAtom",
-  default: ""
+  default: "",
 });
 
 export const recordTitleAtom = atom<string>({
@@ -48,7 +48,7 @@ export const recordDateAtom = atom<Date | null>({
   default: null,
 });
 
-export const recordPlaceAtom = atom<RecordPlace>({
+export const recordPlaceAtom = atom<IRecordPlace>({
   key: "recordPlaceAtom",
   default: {
     placeName: "",
@@ -58,7 +58,7 @@ export const recordPlaceAtom = atom<RecordPlace>({
   },
 });
 
-export const recordCategoriesAtom = atom<InterestElement[] | undefined>({
+export const recordCategoriesAtom = atom<IInterest[] | undefined>({
   key: "recordCategories",
   default: [],
 });

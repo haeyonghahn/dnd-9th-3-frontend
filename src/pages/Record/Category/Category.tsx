@@ -1,29 +1,30 @@
-import { CategoryContainer, CategoryHeader } from "./Category.styled";
+import {
+  CategoryButton,
+  CategoryContainer,
+  CategoryHeader,
+} from "./Category.styled";
 import Typography from "@/foundations/Typography";
 import Button from "@/components/Button";
 import CategoryCard from "./CategoryCard";
 import { categoryPopUpAtom } from "@/atoms/popup";
 import { useSetRecoilState } from "recoil";
-import { InterestElement } from "@/types/user";
 import { useState } from "react";
 import { recordCategoriesAtom } from "@/atoms/record";
 import { CATEGORIES } from "@/api/const";
+import { IInterest } from "@/types/user";
 
-interface ICategories {
-  categories: InterestElement[];
+interface CategoriesProps {
+  categories: IInterest[];
 }
 
-const Category = ({ categories }: ICategories) => {
-  const [interests, setInterests] = useState<InterestElement[] | undefined>(
+const Category = ({ categories }: CategoriesProps) => {
+  const [interests, setInterests] = useState<IInterest[] | undefined>(
     categories
   );
   const setCategories = useSetRecoilState(recordCategoriesAtom);
   const setCategoryPopUp = useSetRecoilState(categoryPopUpAtom);
 
-  const handleDataFromChild = (
-    classList: DOMTokenList,
-    data: InterestElement
-  ) => {
+  const handleDataFromChild = (classList: DOMTokenList, data: IInterest) => {
     setInterests((oldCategories) => {
       if (oldCategories) {
         const targetIndex = oldCategories.findIndex(
@@ -75,9 +76,9 @@ const Category = ({ categories }: ICategories) => {
             sendDataToParent={handleDataFromChild}
           />
         ))}
-        <div style={{ marginBottom: "5%" }}>
+        <CategoryButton>
           <Button width="100%" text="선택완료" onClick={handleClick} />
-        </div>
+        </CategoryButton>
       </CategoryContainer>
     </>
   );

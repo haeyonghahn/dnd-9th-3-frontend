@@ -1,15 +1,15 @@
 import { fontSize, fontWeight } from "@/_shared/typography";
 import styled, { css } from "styled-components";
 
-interface ITextProps {
+interface TextSizeProps {
   [key: string]: string;
 }
 
-interface ITextWeightProps {
+interface TextWeightProps {
   [key: string]: number;
 }
 
-interface IText {
+interface TextProps {
   type: string;
   textover?: string;
   textoverwidth?: string;
@@ -17,7 +17,7 @@ interface IText {
   display?: string;
 }
 
-const textSize: ITextProps = {
+const textSize: TextSizeProps = {
   h0: fontSize.h0,
   h1: fontSize.h1,
   h2: fontSize.h2,
@@ -27,7 +27,7 @@ const textSize: ITextProps = {
   body2: fontSize.body2,
 };
 
-const textWeight: ITextWeightProps = {
+const textWeight: TextWeightProps = {
   h0: fontWeight.semiBold,
   h1: fontWeight.semiBold,
   h2: fontWeight.semiBold,
@@ -40,7 +40,7 @@ const textWeight: ITextWeightProps = {
   caption3: fontWeight.semiBold,
 };
 
-export const Text = styled.div<IText>`
+export const Text = styled.div<TextProps>`
   display: ${(props) => props.display};
   font-weight: ${(props) => textWeight[props.type]};
   font-size: ${(props) => textSize[props.type]};

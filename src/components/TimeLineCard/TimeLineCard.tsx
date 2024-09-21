@@ -14,12 +14,12 @@ import Typography from "@/foundations/Typography/Typography";
 import TimeLineImage from "./TimeLineImage";
 import { useState } from "react";
 import Button from "../Button";
-import { IImage } from "@/types/record";
 import { deleteRecordPopUpOverAtom } from "@/atoms/popup";
 import { useSetRecoilState } from "recoil";
 import { deleteRecordNumberAtom } from "@/atoms/record";
+import { IImage } from "@/types/image";
 
-interface ITimeLineCardProps {
+interface TimeLineCardProps {
   recordNumber: string;
   date: string;
   placeName: string;
@@ -39,7 +39,7 @@ const TimeLineCard = ({
   src,
   theme,
   images,
-}: ITimeLineCardProps) => {
+}: TimeLineCardProps) => {
   const [textOver, setTextOver] = useState(true);
   const setDeleteRecordNumber = useSetRecoilState(deleteRecordNumberAtom);
   const setPopUpOver = useSetRecoilState(deleteRecordPopUpOverAtom);

@@ -1,9 +1,5 @@
-interface ImageBoxElement {
-  icon: string;
-  theme: string;
-  size?: string;
-  minX?: string;
-  minY?: string;
-  viewBoxWidth?: string;
-  viewBoxHeight?: string;
+export interface IImage {
+  id: string;
+  path: string;
+  recordNumber?: string;
 }

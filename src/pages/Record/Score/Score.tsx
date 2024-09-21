@@ -1,5 +1,6 @@
 import Icon from "@/foundations/Icon";
 import {
+  ScoreBack,
   ScoreCardWrapper,
   ScoreContainer,
   ScoreGrid,
@@ -24,7 +25,7 @@ import {
 } from "@/atoms/record";
 import { format } from "date-fns";
 import { useCreateRecord } from "@/hooks/api/useFetchRecord";
-import { InterestElement } from "@/types/user";
+import { IInterest } from "@/types/user";
 
 const Score = () => {
   const setScorePopUp = useSetRecoilState(scorePopUpAtom);
@@ -52,7 +53,7 @@ const Score = () => {
     placeLongitude: number,
     state: string,
     score: number,
-    interests: InterestElement[] | undefined
+    interests: IInterest[] | undefined
   ) => {
     createRecordMutate({
       files: files,
@@ -69,7 +70,7 @@ const Score = () => {
   };
   return (
     <ScoreContainer>
-      <div style={{ marginLeft: "5%", marginTop: "5%" }}>
+      <ScoreBack>
         <Icon
           icon="leftArrow"
           minX="0"
@@ -80,7 +81,7 @@ const Score = () => {
           height="35"
           onClick={handleGoBack}
         />
-      </div>
+      </ScoreBack>
       <ScoreIndicator />
       <ScoreWrapper>
         <Typography

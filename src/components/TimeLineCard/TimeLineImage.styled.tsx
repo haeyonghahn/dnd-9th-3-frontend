@@ -2,13 +2,13 @@ import styled, { css } from "styled-components";
 import { colors } from "@/_shared/colors";
 import { loadings } from "@/_shared/animations";
 
-interface IImageProps {
+interface ImageProps {
   theme?: string;
   isloading?: string;
   src?: string;
 }
 
-export const Image = styled.figure<IImageProps>`
+export const Image = styled.figure<ImageProps>`
   display: inline-block;
   object-fit: cover;
 

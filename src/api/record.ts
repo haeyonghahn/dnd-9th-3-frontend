@@ -1,7 +1,8 @@
 import { PaginatedRecordPlace, IRecord } from "@/types/record";
 import { BASE_URL } from "./const";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
-import { InterestElement } from "@/types/user";
+import { IInterest } from "@/types/user";
+import { IFeed } from "@/types/feed";
 
 export const getMyRecord = async (): Promise<IRecord[] | null> => {
   const recordRes = await fetch(`${BASE_URL}/api/v1/my/record`, {
@@ -27,7 +28,7 @@ export const createRecord = async (
   placeLongitude: number,
   state: string,
   recordScore: number,
-  interests: InterestElement[] | undefined
+  interests: IInterest[] | undefined
 ): Promise<void> => {
   const recordRequest = {
     title: title,
@@ -109,4 +110,18 @@ export const getRecordPlace = async (
       end: true,
     };
   }
+};
+
+export const getFeeds = async (): Promise<IFeed[] | null> => {
+  const feedRes = await fetch(`${BASE_URL}/api/v1/feed`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+    },
+  });
+  if (!feedRes.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return feedRes.json();
 };

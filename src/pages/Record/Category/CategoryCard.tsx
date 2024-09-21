@@ -1,10 +1,10 @@
 import Icon from "@/foundations/Icon";
 import Typography from "@/foundations/Typography";
 import { CategoryWrapper } from "./CategoryCard.styled";
-import { InterestElement } from "@/types/user";
 import { useState } from "react";
+import { IInterest } from "@/types/user";
 
-interface ICategoryCard {
+interface CategoryCardProps {
   interestCode: string;
   interestName: string;
   icon: string;
@@ -15,7 +15,7 @@ interface ICategoryCard {
   width?: string;
   height?: string;
   selected?: boolean;
-  sendDataToParent: (classList: DOMTokenList, data: InterestElement) => void;
+  sendDataToParent: (classList: DOMTokenList, data: IInterest) => void;
 }
 
 const CategoryCard = ({
@@ -30,7 +30,7 @@ const CategoryCard = ({
   height = "35",
   selected = false,
   sendDataToParent,
-}: ICategoryCard) => {
+}: CategoryCardProps) => {
   const [isSelect, setSelect] = useState(selected);
   const selectCategories = (
     event: React.MouseEvent<HTMLElement>,

@@ -54,3 +54,7 @@ export const SettingContent = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const SwitchWrapper = styled.div`
+  padding-right: 20px;
+`;

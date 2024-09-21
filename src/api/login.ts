@@ -2,8 +2,8 @@ import {
   removeAccessTokenFromLocalStorage,
   saveAccessTokenToLocalStorage,
 } from "@/utils/accessTokenHandler";
-import { User } from "@/types/user";
 import { BASE_URL } from "./const";
+import { IUser } from "@/types/user";
 
 type LoginResult = "success" | "fail";
 
@@ -33,7 +33,7 @@ export const login = async (args: LoginRequest): Promise<LoginResult> => {
 
 export const getCurrentUserInfoWithToken = async (
   token: string
-): Promise<User | null> => {
+): Promise<IUser | null> => {
   try {
     const userInfoRes = await fetch(`${BASE_URL}/api/v1/my/member`, {
       method: "GET",
@@ -69,7 +69,7 @@ export const socialLogin = async (code: string): Promise<LoginResult> => {
 
 export const updateMember = async (
   token: string,
-  memberRequest: User
+  memberRequest: IUser
 ): Promise<void> => {
   const memberRes = await fetch(`${BASE_URL}/api/v1/my/member`, {
     method: "POST",

@@ -1,7 +1,7 @@
-import { InterestElement, User } from "@/types/user";
+import { IInterest, IUser } from "@/types/user";
 import { atom } from "recoil";
 
-export const userAtom = atom<User | null>({
+export const userAtom = atom<IUser | null>({
   key: "user",
   default: {
     id: "",
@@ -12,7 +12,7 @@ export const userAtom = atom<User | null>({
   },
 });
 
-export const interestAtom = atom<InterestElement[]>({
+export const interestAtom = atom<IInterest[]>({
   key: "interests",
   default: [],
 });

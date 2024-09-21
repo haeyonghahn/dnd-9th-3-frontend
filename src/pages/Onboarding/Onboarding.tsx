@@ -4,7 +4,6 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import OnboardCardGrid from "@/components/OnboardCardGrid";
 import { useRouter } from "@/hooks/useRouter";
-import { InterestElement, User } from "@/types/user";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
@@ -14,16 +13,18 @@ import {
   OnboardingDescription,
   OnboardingHeader,
 } from "./Onboarding.styled";
-import { Status } from "@/types/status";
 import { CATEGORIES } from "@/api/const";
+import { IInterest, IUser } from "@/types/user";
+
+type Status = "default" | "error" | "success";
 
 const Onboarding = () => {
   const { routeTo } = useRouter();
   const isDark = useRecoilValue(isDarkAtom);
   const theme: string = isDark ? "dark" : "light";
 
-  const interests = useRecoilValue<InterestElement[]>(interestAtom);
-  const [userProfile, setUserProfile] = useRecoilState<User | null>(userAtom);
+  const interests = useRecoilValue<IInterest[]>(interestAtom);
+  const [userProfile, setUserProfile] = useRecoilState<IUser | null>(userAtom);
   const [status, setStatus] = useState<Status>("default");
   const [errorMessage, setErrorMessage] = useState("");
 

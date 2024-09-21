@@ -8,9 +8,10 @@ import {
   MessageBox,
 } from "./Input.styled";
 import Icon from "@/foundations/Icon";
-import { Status } from "@/types/status";
 
-interface IInputProps {
+type Status = "default" | "error" | "success";
+
+interface InputProps {
   title?: string;
   placeholder?: string;
   message?: string;
@@ -70,7 +71,7 @@ const Input = forwardRef(
       disabled = false,
       handleChange,
       handleClick,
-    }: IInputProps,
+    }: InputProps,
     inputRef: React.ForwardedRef<HTMLInputElement>
   ) => {
     return (

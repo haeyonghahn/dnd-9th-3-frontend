@@ -3,7 +3,7 @@ import { colors } from "@/_shared/colors";
 import { fontSize, fontWeight } from "@/_shared/typography";
 import styled, { css } from "styled-components";
 
-interface ILayoutProps {
+interface LayoutProps {
   width: string;
   disabled?: boolean;
   isloading?: string;
@@ -16,7 +16,7 @@ interface ILayoutProps {
   backgroundcolor?: string;
 }
 
-export const Layout = styled.button<ILayoutProps>`
+export const Layout = styled.button<LayoutProps>`
   display: flex;
   justify-content: center;
   align-items: center;

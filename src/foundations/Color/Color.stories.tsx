@@ -5,11 +5,11 @@ export default {
   title: "Foundations/Color",
 };
 
-interface IColorProps {
+interface ColorProps {
   [key: string]: string;
 }
 
-const colorData: IColorProps = colors;
+const colorData: ColorProps = colors;
 
 export const AllTypes = () => (
   <>

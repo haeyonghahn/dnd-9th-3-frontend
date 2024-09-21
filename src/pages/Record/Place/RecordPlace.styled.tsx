@@ -11,6 +11,15 @@ export const RecordPlaceHeaderWrapper = styled.div`
   position: relative;
 `;
 
+export const RecordPlaceBack = styled.div`
+  position: absolute;
+  left: 5%;
+`;
+
+export const RecordPlaceTitle = styled.div`
+  margin: 0 auto;
+`;
+
 export const RecordPlaceIndicator = styled.div`
   height: 2px;
   width: 100%;

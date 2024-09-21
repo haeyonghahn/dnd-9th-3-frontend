@@ -5,45 +5,45 @@ import styled from "styled-components";
 type Status = "default" | "error" | "success";
 type IconDirection = "left" | "right";
 
-interface IInputBoxProps {
+interface InputBoxProps {
   theme?: string;
   status: string;
   icondirection?: IconDirection;
 }
 
-interface ILabelProps {
+interface LabelProps {
   status: Status;
 }
 
-interface IMessageProps {
+interface MessageProps {
   status: string;
 }
 
-interface IColorProps {
+interface ColorProps {
   [key: string]: string;
 }
 
-const hoverColor: IColorProps = {
+const hoverColor: ColorProps = {
   default: colors.green50,
   error: colors.error,
 };
 
-const messageColor: IColorProps = {
+const messageColor: ColorProps = {
   default: colors.inputTextClor,
   error: colors.error,
 };
 
-const insetColor: IColorProps = {
+const insetColor: ColorProps = {
   default: colors.green50,
   error: colors.errorOpacity200,
 };
 
-const isDarkFocusColor: IColorProps = {
+const isDarkFocusColor: ColorProps = {
   default: colors.gray850,
   error: colors.errorOpacity100,
 };
 
-const isWhiteFocusColor: IColorProps = {
+const isWhiteFocusColor: ColorProps = {
   default: colors.gray50,
   error: colors.errorOpacity100,
 };
@@ -54,7 +54,7 @@ export const Layout = styled.div`
   gap: 6px;
 `;
 
-export const TextAreaBox = styled.div<IInputBoxProps>`
+export const TextAreaBox = styled.div<InputBoxProps>`
   display: flex;
   align-items: center;
   flex-direction: ${(props) =>
@@ -104,7 +104,7 @@ export const TextAreaText = styled.textarea`
   resize: none;
 `;
 
-export const Label = styled.label<ILabelProps>`
+export const Label = styled.label<LabelProps>`
   font-size: ${fontSize.h2};
   font-weight: ${fontWeight.semiBold};
   color: ${(props) => props.theme.textColor};
@@ -118,7 +118,7 @@ export const MessageBox = styled.div`
   height: 30px;
 `;
 
-export const Message = styled.div<IMessageProps>`
+export const Message = styled.div<MessageProps>`
   font-size: ${fontSize.body1};
   font-weight: ${fontWeight.semiBoldRegular};
   color: ${(props) => messageColor[props.status]};

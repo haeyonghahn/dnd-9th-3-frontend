@@ -1,12 +1,11 @@
-import { Feed } from "@/types/feed";
-import { atom } from "recoil";
+import { getFeeds } from "@/api/record";
+import { atom, selector } from "recoil";
 
-export const feedAtom = atom<Feed[]>({
-  key: "feed",
-  default: [
-    { feedId: 0, img: "/images/desert.jpg" },
-    { feedId: 1, img: "/images/ocean.jpg" },
-  ],
+export const feedAtom = selector({
+  key: "feeds",
+  get: async () => {
+    return getFeeds();
+  },
 });
 
 export const feedIndexAtom = atom<number>({

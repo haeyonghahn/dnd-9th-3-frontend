@@ -1,10 +1,10 @@
 import { avatar } from "@/_shared/icons";
 
-interface IAvatarBaseProps {
+interface AvatarBaseProps {
   image: string;
 }
 
-const AvatarBase = ({ image }: IAvatarBaseProps) => {
+const AvatarBase = ({ image }: AvatarBaseProps) => {
   return (
     <svg
       width="40"

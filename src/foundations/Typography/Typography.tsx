@@ -1,6 +1,6 @@
 import { Text } from "./Typography.styled";
 
-interface ITypographyProps {
+interface TypographyProps {
   text: string;
   type: string;
   textover?: string;
@@ -16,7 +16,7 @@ function Typography({
   textoverwidth,
   color,
   display = "block",
-}: ITypographyProps) {
+}: TypographyProps) {
   return (
     <Text
       type={type}

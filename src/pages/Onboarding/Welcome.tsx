@@ -3,7 +3,6 @@ import { userAtom } from "@/atoms/user";
 import Button from "@/components/Button";
 import Spinner from "@/components/Spinner";
 import { useRouter } from "@/hooks/useRouter";
-import { User } from "@/types/user";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import { useCallback, useEffect } from "react";
 import { useRecoilValue } from "recoil";
@@ -15,10 +14,11 @@ import {
   WelcomeSvgWrapper,
   WelcomeWrapper,
 } from "./Welcome.styled";
+import { IUser } from "@/types/user";
 
 const Welcome = () => {
   const { routeTo } = useRouter();
-  const userProfile = useRecoilValue<User | null>(userAtom);
+  const userProfile = useRecoilValue<IUser | null>(userAtom);
   const styles = {
     svg: {} as React.CSSProperties,
     ex: {

@@ -1,14 +1,14 @@
-export interface User {
+export interface IUser {
   id?: string;
   name: string;
   password?: string;
   emails?: string[];
-  interests?: InterestElement[];
+  interests?: IInterest[];
   oAuthId?: string;
   imageUrl?: string;
 }
 
-export interface InterestElement {
+export interface IInterest {
   interestCode: string;
   interestName: string;
 }

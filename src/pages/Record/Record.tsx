@@ -13,7 +13,6 @@ import {
 } from "./Record.styled";
 import Typography from "@/foundations/Typography";
 import Input from "@/components/Input";
-import { Status } from "@/types/status";
 import TextArea from "@/components/TextArea";
 import Switch from "@/components/Switch";
 import Button from "@/components/Button";
@@ -41,6 +40,8 @@ import Category from "./Category/Category";
 import RecordPlace from "./Place/RecordPlace";
 import Score from "./Score/Score";
 import { PopUp } from "@/components/PopUp";
+
+type Status = "default" | "error" | "success";
 
 const Record = () => {
   const [isDragging, setIsDragging] = useState(false);

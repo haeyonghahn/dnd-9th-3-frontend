@@ -1,6 +1,5 @@
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarElement } from "@/types/sidebar";
-import { User } from "@/types/user";
 import {
   SideBar,
   SideBarMenu,
@@ -10,11 +9,12 @@ import {
 } from "./Sidebar.styled";
 import Typography from "@/foundations/Typography/Typography";
 import React from "react";
+import { IUser } from "@/types/user";
 
 interface SidebarProps {
   children: React.ReactNode;
   sidebarContent: SidebarElement[];
-  userProfile: User | null;
+  userProfile: IUser | null;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {

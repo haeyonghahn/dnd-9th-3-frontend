@@ -54,3 +54,9 @@ export const Day = styled.div`
     background-color: ${colors.green50};
   }
 `;
+
+export const CalendarButton = styled.div`
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+`;

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { colors } from "@/_shared/colors";
 
-interface ISwitchProps {
+interface SwitchProps {
   width?: string;
   height?: string;
   handleWidth?: string;
@@ -10,7 +10,7 @@ interface ISwitchProps {
   padding?: string;
 }
 
-export const Container = styled.div<ISwitchProps>`
+export const Container = styled.div<SwitchProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-color: #3e4049;
@@ -25,7 +25,7 @@ export const Container = styled.div<ISwitchProps>`
   }
 `;
 
-export const Handle = styled(motion.div)<ISwitchProps>`
+export const Handle = styled(motion.div)<SwitchProps>`
   width: ${(props) => props.handleWidth};
   height: ${(props) => props.handleHeight};
   background-color: #ffffff;

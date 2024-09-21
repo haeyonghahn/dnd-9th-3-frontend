@@ -1,6 +1,7 @@
 import Typography from "@/foundations/Typography";
 import {
   RecordCardIndicator,
+  RecordPlaceBack,
   RecordPlaceBox,
   RecordPlaceCard,
   RecordPlaceCardDescription,
@@ -9,6 +10,7 @@ import {
   RecordPlaceHeaderWrapper,
   RecordPlaceIndicator,
   RecordPlaceInputBox,
+  RecordPlaceTitle,
 } from "./RecordPlace.styled";
 import Input from "@/components/Input";
 import { useMemo, useState } from "react";
@@ -19,13 +21,7 @@ import { useSetRecoilState } from "recoil";
 import { recordPlaceAtom } from "@/atoms/record";
 import Icon from "@/foundations/Icon";
 import { useFetchRecordPlaces } from "@/hooks/api/useFetchRecord";
-
-interface RecordPlace {
-  placeName: string;
-  addressName: string;
-  placeLatitude: number;
-  placeLongitude: number;
-}
+import { IRecordPlace } from "@/types/record";
 
 const RecordPlace = () => {
   const [keyword, setKeyword] = useState("");
@@ -58,7 +54,7 @@ const RecordPlace = () => {
 
   const setRecordPlace = useSetRecoilState(recordPlaceAtom);
   const setRecordPlacePopUp = useSetRecoilState(recordPlacePopUpAtom);
-  const handleClick = (place: RecordPlace) => {
+  const handleClick = (place: IRecordPlace) => {
     setRecordPlace(place);
     setRecordPlacePopUp((prev) => !prev);
   };
@@ -66,7 +62,7 @@ const RecordPlace = () => {
     <>
       <RecordPlaceContainer>
         <RecordPlaceHeaderWrapper>
-          <div style={{ position: "absolute", left: "5%" }}>
+          <RecordPlaceBack>
             <Icon
               icon="leftArrow"
               minX="0"
@@ -77,10 +73,10 @@ const RecordPlace = () => {
               height="35"
               onClick={haandleGoBack}
             />
-          </div>
-          <div style={{ margin: "0 auto" }}>
+          </RecordPlaceBack>
+          <RecordPlaceTitle>
             <Typography text="장소 선택" type="h1" />
-          </div>
+          </RecordPlaceTitle>
         </RecordPlaceHeaderWrapper>
         <RecordPlaceIndicator />
         <RecordPlaceInputBox>

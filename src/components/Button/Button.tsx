@@ -1,6 +1,6 @@
 import { Layout } from "./Button.styled";
 
-interface IButtonProps {
+interface ButtonProps {
   width: string;
   disabled?: boolean;
   isloading?: string;
@@ -28,7 +28,7 @@ const Button = ({
   bordercolor,
   color,
   backgroundcolor,
-}: IButtonProps): React.JSX.Element => {
+}: ButtonProps): React.JSX.Element => {
   return (
     <Layout
       width={width}

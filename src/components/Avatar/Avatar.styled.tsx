@@ -6,7 +6,7 @@ interface IObjectProps {
   [key: string]: string;
 }
 
-interface IAvatarProps {
+interface AvatarProps {
   size: string;
   isloading?: string;
   theme: string;
@@ -26,7 +26,7 @@ const sizeNum: IObjectProps = {
   small: "20px",
 };
 
-export const Image = styled.figure<IAvatarProps>`
+export const Image = styled.figure<AvatarProps>`
   display: inline-block;
   object-fit: cover;
 
@@ -68,7 +68,7 @@ export const Image = styled.figure<IAvatarProps>`
       : null}
 `;
 
-export const Initial = styled.div<IAvatarProps>`
+export const Initial = styled.div<AvatarProps>`
   text-align: center;
   color: ${colors.gray800};
   user-select: none;

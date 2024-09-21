@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { interestAtom } from "@/atoms/user";
 import { isDarkAtom } from "@/atoms/theme";
 
-interface ICardProps {
+interface CardProps {
   icon: string;
   interestCode: string;
   interestName: string;
@@ -17,7 +17,7 @@ const OnboardCard = ({
   interestCode,
   interestName,
   disabled = false,
-}: ICardProps) => {
+}: CardProps) => {
   const isDark = useRecoilValue(isDarkAtom);
   const theme: string = isDark ? "dark" : "light";
   const [interests, setInterests] = useRecoilState(interestAtom);

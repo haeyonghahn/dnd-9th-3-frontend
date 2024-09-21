@@ -6,12 +6,12 @@ interface CardProps {
   [key: string]: string;
 }
 
-interface IILayoutProps {
+interface ILayoutProps {
   theme: string;
   disabled?: boolean;
 }
 
-interface ITitleProps {
+interface TitleProps {
   theme: string;
 }
 
@@ -30,7 +30,7 @@ const hoverColor: CardProps = {
   light: colors.gray50,
 };
 
-export const Layout = styled.div<IILayoutProps>`
+export const Layout = styled.div<ILayoutProps>`
   position: relative;
   width: 90%;
   text-align: center;
@@ -63,7 +63,7 @@ export const Layout = styled.div<IILayoutProps>`
   }
 `;
 
-export const Title = styled.div<ITitleProps>`
+export const Title = styled.div<TitleProps>`
   font-weight: ${fontWeight.semiBold};
   font-size: ${fontSize.h1};
   color: ${(props) => textColor[props.theme]};

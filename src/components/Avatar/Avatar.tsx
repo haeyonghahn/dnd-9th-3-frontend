@@ -1,7 +1,7 @@
 import { Image, Initial } from "./Avatar.styled";
 import AvatarBase from "./AvatarBase";
 
-interface Avatar {
+interface AvatarProps {
   size: string;
   isloading?: string;
   theme: string;
@@ -9,7 +9,7 @@ interface Avatar {
   src?: string;
 }
 
-const Avatar = ({ size, isloading, theme, src, username }: Avatar) => {
+const Avatar = ({ size, isloading, theme, src, username }: AvatarProps) => {
   let avatarFigure = <AvatarBase image="user" />;
   if (isloading === "true") {
     avatarFigure = <></>;

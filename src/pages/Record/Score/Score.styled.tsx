@@ -6,6 +6,11 @@ export const ScoreContainer = styled.div`
   overflow: auto;
 `;
 
+export const ScoreBack = styled.div`
+  margin-left: 5%;
+  margin-top: 5%;
+`;
+
 export const ScoreIndicator = styled(motion.div)`
   height: 4px;
   width: 100%;

@@ -7,6 +7,7 @@ import {
   SettingHeaderWrapper,
   SettingIndicator,
   SettingWrapper,
+  SwitchWrapper,
   TitleWrapper,
 } from "./Setting.styled";
 import Icon from "@/foundations/Icon";
@@ -52,14 +53,14 @@ const Setting = () => {
           <SettingBox>
             <SettingContent>
               <Typography text="푸쉬 알림" type="h1" />
-              <div style={{ paddingRight: "20px" }}>
+              <SwitchWrapper>
                 <Switch
                   callback={handlePush}
                   width="70px"
                   height="40px"
                   padding="5px"
                 />
-              </div>
+              </SwitchWrapper>
             </SettingContent>
           </SettingBox>
           <SettingBox>

@@ -12,7 +12,7 @@ import Icon from "@/foundations/Icon";
 type Status = "default" | "error" | "success";
 type IconDirection = "left" | "right";
 
-interface IInputProps {
+interface InputProps {
   title?: string;
   placeholder?: string;
   message?: string;
@@ -38,7 +38,7 @@ const TextArea = forwardRef(
       theme,
       value,
       handleChange,
-    }: IInputProps,
+    }: InputProps,
     textAreaRef: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
     return (

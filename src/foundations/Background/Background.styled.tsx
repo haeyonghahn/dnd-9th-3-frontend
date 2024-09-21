@@ -1,16 +1,16 @@
 import { colors } from "@/_shared/colors";
 import styled from "styled-components";
 
-interface IBgColorProps {
+interface BgColorProps {
   [key: string]: string;
 }
 
-const textColor: IBgColorProps = {
+const textColor: BgColorProps = {
   dark: colors.white,
   light: colors.black,
 };
 
-const bgColor: IBgColorProps = {
+const bgColor: BgColorProps = {
   dark: colors.black,
   light: colors.white,
 };

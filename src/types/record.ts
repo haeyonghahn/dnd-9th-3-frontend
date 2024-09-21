@@ -1,3 +1,5 @@
+import { IImage } from "./image";
+
 export interface IRecord {
   recordNumber: string;
   recordDate: string;
@@ -11,17 +13,12 @@ export interface IRecord {
   images: IImage[];
 }
 
-export interface IImage {
-  id: string;
-  path: string;
-}
-
 export interface IRecordImage {
   id: number;
   file: File | null;
 }
 
-export interface RecordPlace {
+export interface IRecordPlace {
   placeName: string;
   addressName: string;
   placeLatitude: number;
@@ -29,7 +26,7 @@ export interface RecordPlace {
 }
 
 export interface PaginatedRecordPlace {
-  data: RecordPlace[]; // 실제 데이터 배열
+  data: IRecordPlace[]; // 실제 데이터 배열
   totalPages: number; // 전체 페이지 수
   currentPage: number; // 현재 페이지 번호
   end: boolean; // 마지막 페이지 여부

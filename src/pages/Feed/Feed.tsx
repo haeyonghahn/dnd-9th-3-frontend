@@ -3,62 +3,121 @@ import {
   FeedHeaderItem,
   FeedHeaderItems,
   FeedHeaderSearch,
-  FeedHeaderWrapper,
-  FeedImage,
+  FeedInfoWrapper,
   Wrapper,
 } from "./Feed.styled";
 import { Link } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { isFeedTabAtom } from "@/atoms/feedtab";
-import { useRouter } from "@/hooks/useRouter";
-import Recent from "./Recent/Recent";
-import Recommend from "./Recommend/Recommend";
-import { feedAtom, feedIndexAtom } from "@/atoms/feed";
+import { useRecoilValueLoadable } from "recoil";
+import { feedAtom } from "@/atoms/feed";
 import Icon from "@/foundations/Icon";
+import { TouchEventHandler, useRef, useState } from "react";
+import FeedItem from "./FeedItem";
+
 const Feed = () => {
-  const feeds = useRecoilValue(feedAtom);
-  const feedIndex = useRecoilValue(feedIndexAtom);
-  const [feedTab, setFeedTab] = useRecoilState(isFeedTabAtom);
-  const { currentPath } = useRouter();
+  const feeds = useRecoilValueLoadable(feedAtom);
+
+  const [feedTab, setFeedTab] = useState(true);
   const handleHeaderItem = () => {
     setFeedTab((prev) => !prev);
   };
-  return (
-    <>
-      <Wrapper>
-        <FeedHeaderWrapper>
-          <FeedHeaderCol>
-            <FeedHeaderItems>
-              <FeedHeaderItem
-                className={feedTab ? "selected" : ""}
-                onClick={handleHeaderItem}
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [prevTouch, setPrevTouch] = useState<React.Touch | null>(null);
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  // const height = useDomHeight(containerRef);
+
+  const handleTouchMove: TouchEventHandler = (event) => {
+    const touch = event.touches[0]!;
+    setPrevTouch(touch);
+    if (!prevTouch) return;
+
+    const diff = touch.pageY - prevTouch.pageY;
+    setScrollPosition(scrollPosition + diff);
+  };
+
+  const handleTouchEnd: TouchEventHandler = () => {
+    setPrevTouch(null);
+  };
+
+  switch (feeds.state) {
+    case "hasValue":
+      return (
+        <>
+          <Wrapper>
+            <FeedInfoWrapper>
+              <FeedHeaderCol>
+                <FeedHeaderItems>
+                  <FeedHeaderItem
+                    className={feedTab ? "selected" : ""}
+                    onClick={handleHeaderItem}
+                  >
+                    <Link to="">최신</Link>
+                  </FeedHeaderItem>
+                  <FeedHeaderItem
+                    className={feedTab ? "" : "selected"}
+                    onClick={handleHeaderItem}
+                  >
+                    <Link to="recommend">추천</Link>
+                  </FeedHeaderItem>
+                </FeedHeaderItems>
+              </FeedHeaderCol>
+              <FeedHeaderCol>
+                <FeedHeaderSearch>
+                  <Icon
+                    icon="search"
+                    fill="currentColor"
+                    viewBoxWidth="20"
+                    viewBoxHeight="20"
+                  />
+                </FeedHeaderSearch>
+              </FeedHeaderCol>
+            </FeedInfoWrapper>
+          </Wrapper>
+          {/* 스크롤 컨테이너 */}
+          {feedTab ? (
+            <div
+              ref={containerRef}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              style={{
+                width: "100%",
+                height: "100%",
+                overflowY: "hidden",
+                scrollSnapType: "y mandatory",
+              }}
+            >
+              {/* 자식 요소들을 이동 처리하기 위한 컨테이너 */}
+              <div
+                style={{
+                  height: "100%",
+                  transform: `translateY(${scrollPosition}px)`,
+                  position: "relative",
+                }}
               >
-                <Link to="">최신</Link>
-              </FeedHeaderItem>
-              <FeedHeaderItem
-                className={feedTab ? "" : "selected"}
-                onClick={handleHeaderItem}
-              >
-                <Link to="recommend">추천</Link>
-              </FeedHeaderItem>
-            </FeedHeaderItems>
-          </FeedHeaderCol>
-          <FeedHeaderCol>
-            <FeedHeaderSearch>
-              <Icon
-                icon="search"
-                fill="currentColor"
-                viewBoxWidth="20"
-                viewBoxHeight="20"
-              />
-            </FeedHeaderSearch>
-          </FeedHeaderCol>
-        </FeedHeaderWrapper>
-        {currentPath === "/feed" ? <Recent /> : <Recommend />}
-      </Wrapper>
-      {feedTab ? <FeedImage src={feeds[feedIndex].img} /> : null}
-    </>
-  );
+                {feeds.contents &&
+                  feeds.contents.map((feed, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        height: "100%",
+                        scrollSnapAlign: "start",
+                        position: "relative",
+                      }}
+                    >
+                      <FeedItem feed={feed} />
+                    </div>
+                  ))}
+              </div>
+            </div>
+          ) : null}
+        </>
+      );
+    case "loading":
+      return <>loading</>;
+    case "hasError":
+      return feeds.contents;
+  }
 };
 
 export default Feed;

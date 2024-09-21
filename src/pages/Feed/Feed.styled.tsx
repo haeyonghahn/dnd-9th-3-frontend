@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { colors } from "@/_shared/colors";
 import { fontSize, fontWeight } from "@/_shared/typography";
-import { motion } from "framer-motion";
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -9,9 +8,10 @@ export const Wrapper = styled.div`
   top: 0;
   max-width: 500px;
   padding: 3% 1% 0% 1%;
+  z-index: 1;
 `;
 
-export const FeedHeaderWrapper = styled.div`
+export const FeedInfoWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -55,20 +55,4 @@ export const FeedHeaderItem = styled.li`
     color: ${colors.white};
   }
   cursor: pointer;
-`;
-
-export const FeedProfile = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-export const FeedProfileName = styled.div`
-  padding-left: 10px;
-`;
-
-export const FeedImage = styled(motion.img)`
-  height: 100%;
-  width: 100%;
-  display: block;
-  object-fit: cover;
 `;

@@ -1,11 +1,22 @@
 import OnboardCard from "@/components/OnboardCard/OnboardCard";
 import { Layout } from "./OnboardCardGrid.styled";
 
-interface ICardGridProps {
-  data: OnbardCardElement[];
+interface OnbardCardProps {
+  icon: string;
+  interestCode: string;
+  interestName: string;
+  size?: string;
+  minX?: string;
+  minY?: string;
+  viewBoxWidth?: string;
+  viewBoxHeight?: string;
 }
 
-const OnboardCardGrid = ({ data }: ICardGridProps) => {
+interface CardGridProps {
+  data: OnbardCardProps[];
+}
+
+const OnboardCardGrid = ({ data }: CardGridProps) => {
   return (
     <>
       <Layout>
