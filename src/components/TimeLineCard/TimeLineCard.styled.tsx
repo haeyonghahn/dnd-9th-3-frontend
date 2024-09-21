@@ -13,6 +13,10 @@ export const Line = styled.div`
   align-items: center;
   gap: 10px;
   padding-left: 3%;
+
+  @media (max-width: 385px) {
+    padding-left: 0%;
+  }
 `;
 
 export const Content = styled.div`
