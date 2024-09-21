@@ -93,7 +93,7 @@ export const useCreateRecord = () => {
       ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myRecord"] });
-      routeTo("/my/record/timeline");
+      routeTo("/my/record");
 
       resetScorePopUp();
       resetRecordImages();

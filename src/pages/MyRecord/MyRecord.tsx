@@ -2,9 +2,7 @@ import { userAtom } from "@/atoms/user";
 import Avatar from "@/components/Avatar";
 import Button from "@/components/Button";
 import { useRouter } from "@/hooks/useRouter";
-import { Link, Outlet } from "react-router-dom";
 import {
-  Divider,
   Header,
   LevelTitle,
   LevelTitleText,
@@ -13,53 +11,23 @@ import {
   ProfileInfo,
   ProfileName,
   SettingImage,
-  Tab,
-  TabIndicator,
-  TabTitle,
-  Tabs,
   Title,
   Wrapper,
 } from "./MyRecord.styled";
-import { useEffect, useState } from "react";
 import { colors } from "@/_shared/colors";
 import { fontSize } from "@/_shared/typography";
 import Typography from "@/foundations/Typography";
 import { useRecoilValue } from "recoil";
-import { useAnimation } from "framer-motion";
+import Tab from "@/components/Tab/Tab";
+import MyTimeLine from "../MyTimeLine/MyTimeLine";
+import MySave from "../MySave/MySave";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
-  const { currentPath, routeTo } = useRouter();
-  const navAnimation = useAnimation();
-  const [mouseDownClientY, setMouseDownClientY] = useState(0);
-  const [mouseUpClientY, setMouseUpClientY] = useState(0);
-  const navVariants = {
-    top: {
-      position: "absolute",
-    },
-    bottom: {
-      position: "",
-    },
-  };
-
-  const onMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setMouseDownClientY(e.clientY);
-  };
-  const onMouseUp = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setMouseUpClientY(e.clientY);
-  };
-
-  useEffect(() => {
-    routeTo("/my/record/timeline");
-    if (mouseDownClientY - mouseUpClientY > 0) {
-      navAnimation.start("top");
-    } else if (mouseDownClientY - mouseUpClientY < 0) {
-      navAnimation.start("bottom");
-    }
-  }, [mouseUpClientY]);
+  const { routeTo } = useRouter();
 
   return (
-    <Wrapper onMouseUp={onMouseUp} onMouseDown={onMouseDown}>
+    <Wrapper>
       <Header>
         <Title>
           <span>마이 굳잉</span>
@@ -97,31 +65,12 @@ const MyRecord = () => {
           ></Button>
         </div>
       </Profile>
-      <Tabs variants={navVariants} animate={navAnimation} initial={"bottom"}>
-        <TabTitle>
-          <Tab
-            className={
-              currentPath === "/my/record/timeline" ||
-              currentPath === "/my/record"
-                ? "selected"
-                : ""
-            }
-          >
-            <Link to="timeline">타임라인</Link>
-            {currentPath === "/my/record/timeline" && (
-              <TabIndicator layoutId="tabIndicator" />
-            )}
-          </Tab>
-          <Tab className={currentPath === "/my/record/save" ? "selected" : ""}>
-            <Link to="save">저장</Link>
-            {currentPath === "/my/record/save" && (
-              <TabIndicator layoutId="tabIndicator" />
-            )}
-          </Tab>
-        </TabTitle>
-        <Divider className="line"></Divider>
-        <Outlet />
-      </Tabs>
+      <Tab
+        tabItem={[
+          { index: 0, tabTitle: "타임라인", tabItem: <MyTimeLine /> },
+          { index: 1, tabTitle: "저장", tabItem: <MySave /> },
+        ]}
+      />
     </Wrapper>
   );
 };

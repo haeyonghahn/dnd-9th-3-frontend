@@ -12,10 +12,7 @@ const sidebar: IBasicProps = {
     const { currentPath } = useRouter();
 
     const handleColor = () => {
-      if (
-        currentPath === "/my/record/timeline" ||
-        currentPath === "/my/record/save"
-      ) {
+      if (currentPath === "/my/record") {
         setColor(colors.white);
       } else {
         setColor(colors.gray650);

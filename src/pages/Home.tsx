@@ -33,7 +33,7 @@ const Home = () => {
         {getAccessTokenFromLocalStorage() ? (
           <Button
             width="100%"
-            onClick={() => routeTo("/my/record/timeline")}
+            onClick={() => routeTo("/my/record")}
             text="페이지로 이동"
           />
         ) : (

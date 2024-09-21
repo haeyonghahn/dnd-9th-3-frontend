@@ -1,20 +1,5 @@
-import { colors } from "@/_shared/colors";
 import { fontWeight } from "@/_shared/typography";
-import { motion } from "framer-motion";
 import styled from "styled-components";
-
-interface PositionProps {
-  position: string;
-}
-
-interface VariantsProps {
-  top: PositionProps;
-  bottom: PositionProps;
-}
-
-interface TabsProps {
-  variants?: VariantsProps;
-}
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -85,40 +70,4 @@ export const ProfileInfo = styled.div`
 
 export const ProfileName = styled.div`
   padding-left: 10px;
-`;
-
-export const Tabs = styled(motion.div)<TabsProps>`
-  height: 100%;
-  width: 100%;
-  background-color: #282932;
-  border-radius: 24px 24px 0px 0px;
-  position: relative;
-  overflow: auto;
-`;
-
-export const TabTitle = styled.div`
-  display: flex;
-  color: #75777b;
-`;
-
-export const Tab = styled.div`
-  margin: 20px 20px 0px 20px;
-  font-weight: 600;
-  font-size: 16px;
-  transition: color 0.3s ease-in-out;
-  &.selected {
-    color: ${colors.white};
-  }
-`;
-
-export const TabIndicator = styled(motion.div)`
-  height: 4px;
-  width: 100%;
-  margin-top: 20px;
-  background-color: ${colors.white};
-`;
-
-export const Divider = styled.div`
-  height: 1px;
-  background-color: #3e4049;
 `;
