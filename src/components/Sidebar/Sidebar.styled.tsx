@@ -2,7 +2,7 @@ import { colors } from "@/_shared/colors";
 import { fontSize, fontWeight } from "@/_shared/typography";
 import styled from "styled-components";
 
-export const SideBar = styled.div`
+export const Container = styled.div`
   width: 500px;
   height: 100%;
   background-color: ${(props) => props.theme.bgColor};
@@ -11,30 +11,23 @@ export const SideBar = styled.div`
   flex-direction: column;
 `;
 
-export const SideBarContent = styled.div`
+export const Content = styled.div`
   height: 100%;
   overflow: auto;
 `;
 
-export const SideBarFooter = styled.div`
+export const Footer = styled.div`
   background-color: ${colors.gray900};
 `;
 
-export const SideBarList = styled.ul`
+export const List = styled.ul`
   height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 `;
 
-export const SideBarTitle = styled.h3`
-  padding: 18px;
-  background-color: ${(props) => props.theme.bgColor};
-  color: ${(props) => props.theme.textColor};
-  margin: 0 0;
-`;
-
-export const SideBarMenu = styled.li`
+export const Menu = styled.li`
   width: 110px;
   color: ${colors.gray650};
   font-size: ${fontSize.cpation3};

@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   user-select: none;
 `;
 
-export const MyRecordWrapper = styled.div`
+export const Header = styled.div`
   margin: 10% 0px 10% 0px;
   display: flex;
   align-items: center;
@@ -33,13 +33,13 @@ export const MyRecordWrapper = styled.div`
   font-size: 18px;
 `;
 
-export const MyRecordWrapperTitle = styled.div`
+export const Title = styled.div`
   flex: 1;
   text-align: center;
   margin-left: 50px;
 `;
 
-export const MyRecordWrapperImage = styled.div`
+export const SettingImage = styled.div`
   float: right;
   margin-right: 30px;
   cursor: pointer;
@@ -71,25 +71,21 @@ export const LevelTitleText = styled.div`
   padding: 5px;
 `;
 
-export const MyRecordProfile = styled.div`
+export const Profile = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
 `;
 
-export const MyRecordProfileInfo = styled.div`
+export const ProfileInfo = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const MyRecordProfileName = styled.div`
+export const ProfileName = styled.div`
   padding-left: 10px;
 `;
-
-export const MyRecordProfileButton = styled.div``;
-
-export const MyRecordContents = styled.div``;
 
 export const Tabs = styled(motion.div)<TabsProps>`
   height: 100%;

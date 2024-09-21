@@ -8,16 +8,16 @@ export const ButtonBox = styled.div`
   gap: 1rem;
 `;
 
-export const LoginContent = styled.div`
+export const Content = styled.div`
   padding-top: 60px;
   height: 60%;
 `;
 
-export const LoginTitle = styled.h1`
+export const Title = styled.h1`
   text-align: center;
 `;
 
-export const LoginDescription = styled.p`
+export const Description = styled.p`
   text-align: center;
   font-weight: ${fontWeight.semiBold};
   font-size: ${fontSize.body1};

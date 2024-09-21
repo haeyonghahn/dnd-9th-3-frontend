@@ -6,18 +6,19 @@ import { colors } from "@/_shared/colors";
 import { IFeed } from "@/types/feed";
 import {
   BookMark,
-  EllipseWrapper,
-  FeedBottomWrapper,
-  FeedContentWrapper,
-  FeedDescription,
+  Container,
+  Contents,
+  Description,
+  DescriptWrapper,
+  Ellipse,
   FeedImage,
-  FeedItemWrapper,
-  FeedLocation,
-  FeedLocationName,
-  FeedLocationWrapper,
-  FeedProfile,
-  FeedProfileName,
-  FeedTitle,
+  Place,
+  PlaceName,
+  PlaceWrapper,
+  Profile,
+  ProfileName,
+  Title,
+  Wrapper,
 } from "./FeedItem.styled";
 
 interface FeedItemProps {
@@ -32,20 +33,20 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
 
   return (
     <>
-      <FeedContentWrapper>
-        <FeedItemWrapper>
-          <FeedProfile>
+      <Container>
+        <Wrapper>
+          <Profile>
             <Avatar size="large" theme="isDark" src={feed.imageUrl}></Avatar>
-            <FeedProfileName>
+            <ProfileName>
               <Typography text={feed.name} type="body2" />
-            </FeedProfileName>
-          </FeedProfile>
-        </FeedItemWrapper>
+            </ProfileName>
+          </Profile>
+        </Wrapper>
 
-        <FeedItemWrapper>
-          <div style={{ width: "100%" }}>
-            <FeedLocationWrapper>
-              <FeedLocation>
+        <Wrapper>
+          <Contents>
+            <PlaceWrapper>
+              <Place>
                 <Icon
                   icon="locationOn"
                   width="12"
@@ -56,23 +57,23 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
                   viewBoxHeight="12"
                   fill={colors.white}
                 />
-                <FeedLocationName>
+                <PlaceName>
                   <Typography text={feed.placeTitle} type="body2" />
-                </FeedLocationName>
-              </FeedLocation>
+                </PlaceName>
+              </Place>
               <BookMark>
                 <Icon icon="bookmark" />
               </BookMark>
-            </FeedLocationWrapper>
+            </PlaceWrapper>
 
-            <FeedBottomWrapper>
-              <FeedTitle>
+            <DescriptWrapper>
+              <Title>
                 <Typography text={feed.title} type="h3" />
-              </FeedTitle>
-              <FeedDescription>
+              </Title>
+              <Description>
                 <Typography text={feed.description} type="body1" />
-              </FeedDescription>
-              <EllipseWrapper>
+              </Description>
+              <Ellipse>
                 {feed.images.map((_, index) => (
                   <span
                     key={index}
@@ -89,11 +90,11 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
                     />
                   </span>
                 ))}
-              </EllipseWrapper>
-            </FeedBottomWrapper>
-          </div>
-        </FeedItemWrapper>
-      </FeedContentWrapper>
+              </Ellipse>
+            </DescriptWrapper>
+          </Contents>
+        </Wrapper>
+      </Container>
       <FeedImage src={feed.images[imageIndex].path} />
     </>
   );

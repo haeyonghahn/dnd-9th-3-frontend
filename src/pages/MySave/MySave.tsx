@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { MySaveImage, MySaveRowWrapper } from "./MySave.styled";
+import { MySaveImage, Wrapper } from "./MySave.styled";
 import { getMyRecord } from "@/api/record";
 import { IRecord } from "@/types/record";
 
@@ -14,7 +14,7 @@ const MySave = () => {
     <>
       {myRecordData && myRecordData.length > 0 ? (
         <>
-          <MySaveRowWrapper>
+          <Wrapper>
             <MySaveImage>
               <img src="/images/desert.jpg" />
             </MySaveImage>
@@ -24,8 +24,8 @@ const MySave = () => {
             <MySaveImage>
               <img src="/images/ocean.jpg" />
             </MySaveImage>
-          </MySaveRowWrapper>
-          <MySaveRowWrapper>
+          </Wrapper>
+          <Wrapper>
             <MySaveImage>
               <img src="/images/desert.jpg" />
             </MySaveImage>
@@ -35,7 +35,7 @@ const MySave = () => {
             <MySaveImage>
               <img src="/images/ocean.jpg" />
             </MySaveImage>
-          </MySaveRowWrapper>
+          </Wrapper>
         </>
       ) : (
         <div

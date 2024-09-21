@@ -1,9 +1,9 @@
 import {
-  FeedHeaderCol,
-  FeedHeaderItem,
-  FeedHeaderItems,
-  FeedHeaderSearch,
-  FeedInfoWrapper,
+  Header,
+  HeaderCol,
+  HeaderItem,
+  HeaderItems,
+  Search,
   Wrapper,
 } from "./Feed.styled";
 import { Link } from "react-router-dom";
@@ -45,34 +45,34 @@ const Feed = () => {
       return (
         <>
           <Wrapper>
-            <FeedInfoWrapper>
-              <FeedHeaderCol>
-                <FeedHeaderItems>
-                  <FeedHeaderItem
+            <Header>
+              <HeaderCol>
+                <HeaderItems>
+                  <HeaderItem
                     className={feedTab ? "selected" : ""}
                     onClick={handleHeaderItem}
                   >
                     <Link to="">최신</Link>
-                  </FeedHeaderItem>
-                  <FeedHeaderItem
+                  </HeaderItem>
+                  <HeaderItem
                     className={feedTab ? "" : "selected"}
                     onClick={handleHeaderItem}
                   >
                     <Link to="recommend">추천</Link>
-                  </FeedHeaderItem>
-                </FeedHeaderItems>
-              </FeedHeaderCol>
-              <FeedHeaderCol>
-                <FeedHeaderSearch>
+                  </HeaderItem>
+                </HeaderItems>
+              </HeaderCol>
+              <HeaderCol>
+                <Search>
                   <Icon
                     icon="search"
                     fill="currentColor"
                     viewBoxWidth="20"
                     viewBoxHeight="20"
                   />
-                </FeedHeaderSearch>
-              </FeedHeaderCol>
-            </FeedInfoWrapper>
+                </Search>
+              </HeaderCol>
+            </Header>
           </Wrapper>
           {/* 스크롤 컨테이너 */}
           {feedTab ? (

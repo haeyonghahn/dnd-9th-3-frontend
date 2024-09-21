@@ -1,14 +1,14 @@
 import Icon from "@/foundations/Icon";
 import {
-  RecordCardWrapper,
-  RecordCardLine,
-  RecordContent,
-  RecordPlace,
-  RecordContentHeader,
-  RecordImageBox,
-  RecordDescription,
-  RecordDescriptionMore,
-  RecordImageWrapper,
+  Container,
+  Line,
+  Content,
+  ContentHeader,
+  Place,
+  ImageWrapper,
+  ImageBox,
+  Description,
+  DescriptionMore,
 } from "./TimeLineCard.styled";
 import Typography from "@/foundations/Typography/Typography";
 import TimeLineImage from "./TimeLineImage";
@@ -53,8 +53,8 @@ const TimeLineCard = ({
   };
 
   return (
-    <RecordCardWrapper>
-      <RecordCardLine>
+    <Container>
+      <Line>
         <Icon icon="start" />
         <Icon
           icon="verticalLine"
@@ -65,9 +65,9 @@ const TimeLineCard = ({
           viewBoxWidth="2"
           viewBoxHeight="504"
         />
-      </RecordCardLine>
-      <RecordContent>
-        <RecordContentHeader>
+      </Line>
+      <Content>
+        <ContentHeader>
           <Typography text={date} type="h0" />
           <Button
             width="15%"
@@ -79,8 +79,8 @@ const TimeLineCard = ({
             none="true"
             theme={theme}
           />
-        </RecordContentHeader>
-        <RecordPlace>
+        </ContentHeader>
+        <Place>
           <Icon
             icon="locationOn"
             fill="#3CEFA3"
@@ -92,30 +92,30 @@ const TimeLineCard = ({
             viewBoxHeight="12"
           />
           <Typography text={placeName} type="h3" />
-        </RecordPlace>
-        <RecordImageWrapper>
-          <RecordImageBox>
+        </Place>
+        <ImageWrapper>
+          <ImageBox>
             <TimeLineImage src={src} />
-          </RecordImageBox>
+          </ImageBox>
           <Typography
             text={`${images.length > 1 ? "+" + (images.length - 1) : ""} `}
             type="body2"
           />
-        </RecordImageWrapper>
+        </ImageWrapper>
         <Typography text={title} type="h3" />
-        <RecordDescription>
+        <Description>
           <Typography
             text={description}
             type="body2"
             textover={String(textOver)}
             textoverwidth="268px"
           />
-          <RecordDescriptionMore onClick={handleTextOver}>
+          <DescriptionMore onClick={handleTextOver}>
             <Typography text={`더보기 ${textOver ? "▼" : "▲"} `} type="body2" />
-          </RecordDescriptionMore>
-        </RecordDescription>
-      </RecordContent>
-    </RecordCardWrapper>
+          </DescriptionMore>
+        </Description>
+      </Content>
+    </Container>
   );
 };
 

@@ -7,11 +7,11 @@ import { useRouter } from "@/hooks/useRouter";
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
-  ButtonWarpper,
-  CardGridWrapper,
-  OnboardingCategory,
-  OnboardingDescription,
-  OnboardingHeader,
+  ButtonBox,
+  Category,
+  Description,
+  Header,
+  Wrapper,
 } from "./Onboarding.styled";
 import { CATEGORIES } from "@/api/const";
 import { IInterest, IUser } from "@/types/user";
@@ -69,14 +69,12 @@ const Onboarding = () => {
   };
   return (
     <>
-      <OnboardingDescription>
-        <OnboardingHeader>
+      <Header>
+        <Description>
           굳잉에서 사용할 닉네임과 <br></br> 관심있는 활동 카테고리를
           선택해주세요.
-        </OnboardingHeader>
-        <OnboardingCategory>
-          관심있는 카테고리를 3가지 이상 선택해주세요.
-        </OnboardingCategory>
+        </Description>
+        <Category>관심있는 카테고리를 3가지 이상 선택해주세요.</Category>
         <Input
           status={status}
           message={errorMessage}
@@ -85,20 +83,20 @@ const Onboarding = () => {
           handleChange={(event) => handleChange(event)}
           value={userProfile?.name}
         ></Input>
-      </OnboardingDescription>
-      <CardGridWrapper>
+      </Header>
+      <Wrapper>
         <OnboardCardGrid
           data={CATEGORIES.filter((category) => category.interestCode !== "10")}
         />
-      </CardGridWrapper>
-      <ButtonWarpper>
+      </Wrapper>
+      <ButtonBox>
         <Button
           theme={isDark ? "dark" : "light"}
           text="다음"
           width="-webkit-fill-available"
           onClick={() => handleClick()}
         />
-      </ButtonWarpper>
+      </ButtonBox>
     </>
   );
 };

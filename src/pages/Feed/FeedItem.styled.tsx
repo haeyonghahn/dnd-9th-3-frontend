@@ -1,7 +1,7 @@
 import { fontSize, fontWeight } from "@/_shared/typography";
 import styled from "styled-components";
 
-export const FeedContentWrapper = styled.div`
+export const Container = styled.div`
   position: absolute;
   top: calc(4vh + 25px);
   height: 80%;
@@ -12,7 +12,7 @@ export const FeedContentWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const FeedItemWrapper = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -23,30 +23,27 @@ export const FeedItemWrapper = styled.div`
   margin: 0% 0% 2% 0%;
 `;
 
-export const FeedImage = styled.img`
-  height: 100%;
-  width: 100%;
-  display: block;
-  object-fit: cover;
-`;
-
-export const FeedProfile = styled.div`
+export const Profile = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const FeedProfileName = styled.div`
+export const ProfileName = styled.div`
   padding-left: 10px;
 `;
 
-export const FeedLocationWrapper = styled.div`
+export const Contents = styled.div`
+  width: 100%;
+`;
+
+export const PlaceWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const FeedLocation = styled.div`
+export const Place = styled.div`
   display: flex;
   align-items: center;
   background-color: rgba(128, 118, 118, 0.5);
@@ -54,7 +51,7 @@ export const FeedLocation = styled.div`
   border-radius: 10px;
 `;
 
-export const FeedLocationName = styled.div`
+export const PlaceName = styled.div`
   padding-left: 3px;
 `;
 
@@ -62,24 +59,31 @@ export const BookMark = styled.div`
   cursor: pointer;
 `;
 
-export const FeedBottomWrapper = styled.div`
+export const DescriptWrapper = styled.div`
   width: 100%;
 `;
 
-export const FeedTitle = styled.div`
+export const Title = styled.div`
   margin-top: 20px;
 `;
 
-export const FeedDescription = styled.div`
+export const Description = styled.div`
   margin-top: 10px;
   white-space: nowrap; /* 텍스트가 줄바꿈 없이 한 줄로 유지되도록 설정 */
   overflow: hidden; /* 넘치는 텍스트를 숨김 */
   text-overflow: ellipsis; /* 넘치는 텍스트를 '...'로 처리 */
 `;
 
-export const EllipseWrapper = styled.div`
+export const Ellipse = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
   text-align: center;
+`;
+
+export const FeedImage = styled.img`
+  height: 100%;
+  width: 100%;
+  display: block;
+  object-fit: cover;
 `;

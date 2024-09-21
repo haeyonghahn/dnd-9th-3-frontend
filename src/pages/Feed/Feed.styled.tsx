@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
   z-index: 1;
 `;
 
-export const FeedInfoWrapper = styled.div`
+export const Header = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -22,28 +22,17 @@ export const FeedInfoWrapper = styled.div`
   margin: 0% 0% 2% 0%;
 `;
 
-export const FeedHeaderCol = styled.div`
+export const HeaderCol = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const FeedHeaderSearch = styled.form`
-  color: white;
-  display: flex;
-  align-items: center;
-  position: relative;
-  svg {
-    height: 25px;
-  }
-  cursor: pointer;
-`;
-
-export const FeedHeaderItems = styled.div`
+export const HeaderItems = styled.div`
   display: flex;
   align-items: center;
 `;
 
-export const FeedHeaderItem = styled.li`
+export const HeaderItem = styled.li`
   margin-right: 20px;
   color: ${colors.gray500};
   transition: color 0.3s ease-in-out;
@@ -53,6 +42,17 @@ export const FeedHeaderItem = styled.li`
   flex-direction: column;
   &.selected {
     color: ${colors.white};
+  }
+  cursor: pointer;
+`;
+
+export const Search = styled.form`
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+  svg {
+    height: 25px;
   }
   cursor: pointer;
 `;

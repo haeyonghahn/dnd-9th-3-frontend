@@ -4,12 +4,7 @@ import { Link } from "react-router-dom";
 import { getAccessTokenFromLocalStorage } from "@/utils/accessTokenHandler";
 import { useRouter } from "@/hooks/useRouter";
 import { useEffect } from "react";
-import {
-  ButtonBox,
-  LoginContent,
-  LoginDescription,
-  LoginTitle,
-} from "./Login.styled";
+import { ButtonBox, Content, Description, Title } from "./Login.styled";
 import Spinner from "@/components/Spinner";
 import IconSocial from "@/foundations/IconSocial";
 
@@ -29,12 +24,12 @@ const Login = () => {
         <Spinner />
       ) : (
         <div className="non-logged-in-body">
-          <LoginContent>
-            <LoginTitle>Gooding</LoginTitle>
-            <LoginDescription>
+          <Content>
+            <Title>Gooding</Title>
+            <Description>
               굳잉과 함께 나만의 굳이데이 기록을 남겨보세요!
-            </LoginDescription>
-          </LoginContent>
+            </Description>
+          </Content>
           <ButtonBox>
             <IconSocial icon={social.google} />
             <Link to={kakaoUrl}>

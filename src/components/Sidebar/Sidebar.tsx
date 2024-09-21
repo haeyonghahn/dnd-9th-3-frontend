@@ -1,12 +1,6 @@
 import { useRouter } from "@/hooks/useRouter";
 import { SidebarElement } from "@/types/sidebar";
-import {
-  SideBar,
-  SideBarMenu,
-  SideBarFooter,
-  SideBarContent,
-  SideBarList,
-} from "./Sidebar.styled";
+import { Container, Content, Footer, List, Menu } from "./Sidebar.styled";
 import Typography from "@/foundations/Typography/Typography";
 import React from "react";
 import { IUser } from "@/types/user";
@@ -30,14 +24,14 @@ const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {
 
   return (
     <>
-      <SideBar>
-        <SideBarContent>{children}</SideBarContent>
-        <SideBarFooter>
-          <SideBarList>
+      <Container>
+        <Content>{children}</Content>
+        <Footer>
+          <List>
             {sidebarContent.map((element) => {
               if (element.withSidebar) {
                 return (
-                  <SideBarMenu
+                  <Menu
                     key={element.path}
                     className={
                       currentPath.startsWith(element.path) ? "selected" : ""
@@ -46,15 +40,15 @@ const Sidebar: React.FC<SidebarProps> = ({ children, sidebarContent }) => {
                   >
                     {element.image}
                     <Typography text={element.label} type="body2" />
-                  </SideBarMenu>
+                  </Menu>
                 );
               } else {
                 return null;
               }
             })}
-          </SideBarList>
-        </SideBarFooter>
-      </SideBar>
+          </List>
+        </Footer>
+      </Container>
     </>
   );
 };

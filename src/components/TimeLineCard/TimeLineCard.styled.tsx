@@ -1,13 +1,13 @@
 import { colors } from "@/_shared/colors";
 import styled from "styled-components";
 
-export const RecordCardWrapper = styled.div`
+export const Container = styled.div`
   display: flex;
   gap: 20px;
   margin-bottom: 5%;
 `;
 
-export const RecordCardLine = styled.div`
+export const Line = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,21 +15,21 @@ export const RecordCardLine = styled.div`
   padding-left: 3%;
 `;
 
-export const RecordContent = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 100%;
 `;
 
-export const RecordContentHeader = styled.div`
+export const ContentHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-right: 3%;
 `;
 
-export const RecordPlace = styled.div`
+export const Place = styled.div`
   display: flex;
   flex-direction: row;
   gap: 5px;
@@ -37,27 +37,27 @@ export const RecordPlace = styled.div`
   color: ${colors.green50};
 `;
 
-export const RecordImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 10px;
   color: ${colors.gray500};
 `;
 
-export const RecordImageBox = styled.div`
+export const ImageBox = styled.div`
   width: 300px;
   height: 400px;
   background-color: red;
 `;
 
-export const RecordDescription = styled.div`
+export const Description = styled.div`
   width: 268px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 
-export const RecordDescriptionMore = styled.div`
+export const DescriptionMore = styled.div`
   cursor: pointer;
   color: ${colors.gray500};
 `;

@@ -5,20 +5,19 @@ import { useRouter } from "@/hooks/useRouter";
 import { Link, Outlet } from "react-router-dom";
 import {
   Divider,
+  Header,
   LevelTitle,
   LevelTitleText,
   LevelWrapper,
-  MyRecordProfile,
-  MyRecordProfileButton,
-  MyRecordProfileInfo,
-  MyRecordProfileName,
-  MyRecordWrapper,
-  MyRecordWrapperImage,
-  MyRecordWrapperTitle,
+  Profile,
+  ProfileInfo,
+  ProfileName,
+  SettingImage,
   Tab,
   TabIndicator,
   TabTitle,
   Tabs,
+  Title,
   Wrapper,
 } from "./MyRecord.styled";
 import { useEffect, useState } from "react";
@@ -61,32 +60,32 @@ const MyRecord = () => {
 
   return (
     <Wrapper onMouseUp={onMouseUp} onMouseDown={onMouseDown}>
-      <MyRecordWrapper>
-        <MyRecordWrapperTitle>
+      <Header>
+        <Title>
           <span>마이 굳잉</span>
-        </MyRecordWrapperTitle>
-        <MyRecordWrapperImage onClick={() => routeTo("/setting")}>
+        </Title>
+        <SettingImage onClick={() => routeTo("/setting")}>
           <img src="/images/settings.svg" />
-        </MyRecordWrapperImage>
-      </MyRecordWrapper>
+        </SettingImage>
+      </Header>
       <LevelWrapper>
         <img src="/images/level.svg" />
         <LevelTitle>
           <LevelTitleText>LV1. 초보 낭만러</LevelTitleText>
         </LevelTitle>
       </LevelWrapper>
-      <MyRecordProfile>
-        <MyRecordProfileInfo>
+      <Profile>
+        <ProfileInfo>
           <Avatar
             size="large"
             theme="isDark"
             src={user ? user.imageUrl : ""}
           ></Avatar>
-          <MyRecordProfileName>
+          <ProfileName>
             <Typography text={user ? user.name : ""} type="h3" />
-          </MyRecordProfileName>
-        </MyRecordProfileInfo>
-        <MyRecordProfileButton>
+          </ProfileName>
+        </ProfileInfo>
+        <div>
           <Button
             text="프로필 수정"
             width="100%"
@@ -96,8 +95,8 @@ const MyRecord = () => {
             backgroundcolor="#3E4049"
             none="true"
           ></Button>
-        </MyRecordProfileButton>
-      </MyRecordProfile>
+        </div>
+      </Profile>
       <Tabs variants={navVariants} animate={navAnimation} initial={"bottom"}>
         <TabTitle>
           <Tab

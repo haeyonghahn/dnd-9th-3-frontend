@@ -1,10 +1,10 @@
 import Button from "@/components/Button";
 import {
-  ButtonWrapper,
-  TimeLineArrow,
-  TimeLineDescription,
-  TimeLineMonth,
-  TimeLineWrapper,
+  Arrow,
+  ButtonBox,
+  Description,
+  Month,
+  Wrapper,
 } from "./MyTimeLine.styled";
 import TimeLineCard from "@/components/TimeLineCard";
 import { colors } from "@/_shared/colors";
@@ -68,14 +68,14 @@ const MyTimeLine = () => {
 
   return (
     <>
-      <TimeLineMonth onClick={handleTimeLineMonthPopUp}>
+      <Month onClick={handleTimeLineMonthPopUp}>
         {earliestRecordDate
           ? format(earliestRecordDate, "yyyy.MM", { locale: ko })
           : ""}
-        <TimeLineArrow src="/images/vector.svg" />
-      </TimeLineMonth>
+        <Arrow src="/images/vector.svg" />
+      </Month>
       {myRecordData && myRecordData.length > 0 ? (
-        <TimeLineWrapper>
+        <Wrapper>
           {myRecordData
             .filter((record, _) =>
               earliestRecordDate
@@ -96,13 +96,11 @@ const MyTimeLine = () => {
                 theme="dark"
               ></TimeLineCard>
             ))}
-        </TimeLineWrapper>
+        </Wrapper>
       ) : (
         <>
-          <TimeLineDescription>
-            이번달의 첫번째 굳이데이 기록을 남겨보세요.
-          </TimeLineDescription>
-          <ButtonWrapper>
+          <Description>이번달의 첫번째 굳이데이 기록을 남겨보세요.</Description>
+          <ButtonBox>
             <Button
               width="100%"
               text="기록하기"
@@ -112,7 +110,7 @@ const MyTimeLine = () => {
               none="true"
               onClick={() => routeTo("/record")}
             ></Button>
-          </ButtonWrapper>
+          </ButtonBox>
         </>
       )}
       {timeLineMonth ? (
