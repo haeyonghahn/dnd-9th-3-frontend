@@ -1,16 +1,11 @@
 import styled from "styled-components";
 
-export const SettingWrapper = styled.div`
-  margin-top: 5%;
-  margin-bottom: 5%;
-`;
-
-export const SettingHeaderWrapper = styled.div`
+export const HeaderWrapper = styled.div`
   margin-top: 5%;
   text-align: center;
 `;
 
-export const SettingHeader = styled.div`
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 5%;
@@ -23,19 +18,24 @@ export const IconWrapper = styled.div`
   left: 10px;
 `;
 
-export const TitleWrapper = styled.div`
+export const Title = styled.div`
   flex: 1;
   text-align: center;
 `;
 
-export const SettingIndicator = styled.div`
+export const Indicator = styled.div`
   height: 2px;
   width: 100%;
   margin-top: 20px;
   background-color: #282932;
 `;
 
-export const SettingBox = styled.div`
+export const Container = styled.div`
+  margin-top: 5%;
+  margin-bottom: 5%;
+`;
+
+export const Box = styled.div`
   height: 80px;
   width: calc(100% - 10%);
   background-color: #282932;
@@ -45,7 +45,7 @@ export const SettingBox = styled.div`
   margin-bottom: 5%;
 `;
 
-export const SettingContent = styled.div`
+export const Content = styled.div`
   height: 100%;
   padding-left: 5%;
   padding-top: 40px;
