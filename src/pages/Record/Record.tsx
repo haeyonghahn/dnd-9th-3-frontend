@@ -118,12 +118,7 @@ const Record = () => {
       <RecordIndicator />
       <RecordImageWrapper>
         {recordImage.map((file, index) => (
-          <RecordImage
-            key={file.id}
-            fileId={file.id}
-            id={index}
-            file={file.file}
-          />
+          <RecordImage key={file.id} id={index} file={file.file} />
         ))}
       </RecordImageWrapper>
       <RecordWrapper>

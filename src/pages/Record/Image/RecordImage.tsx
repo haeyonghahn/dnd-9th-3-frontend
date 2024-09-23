@@ -5,15 +5,9 @@ import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { recordImageAtom } from "@/atoms/record";
 import React from "react";
-import { Draggable } from "react-beautiful-dnd";
+import { IRecordImage } from "@/types/record";
 
-export interface RecordImageProps {
-  id: number;
-  fileId: number;
-  file: File | null;
-}
-
-const RecordImage = React.memo(({ id, fileId, file }: RecordImageProps) => {
+const RecordImage = React.memo(({ id, file }: IRecordImage) => {
   const previewRef = useRef<HTMLImageElement | null>(null);
   const [isActive, setActive] = useState(false);
   const [uploadFile, setUploadFile] = useRecoilState(recordImageAtom);
