@@ -1,13 +1,19 @@
 import Icon from "@/foundations/Icon";
 import Typography from "@/foundations/Typography";
-import { FileImage, FileInput, Preview } from "./RecordImage.styled";
+import { Box, FileImage, FileInput, Preview } from "./RecordImage.styled";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 import { recordImageAtom } from "@/atoms/record";
-import { IRecordImage } from "@/types/record";
 import React from "react";
+import { Draggable } from "react-beautiful-dnd";
 
-const RecordImage = React.memo(({ id, file }: IRecordImage) => {
+export interface RecordImageProps {
+  id: number;
+  fileId: number;
+  file: File | null;
+}
+
+const RecordImage = React.memo(({ id, fileId, file }: RecordImageProps) => {
   const previewRef = useRef<HTMLImageElement | null>(null);
   const [isActive, setActive] = useState(false);
   const [uploadFile, setUploadFile] = useRecoilState(recordImageAtom);
@@ -73,35 +79,44 @@ const RecordImage = React.memo(({ id, file }: IRecordImage) => {
     }
   };
   return (
-    <>
-      <Preview
-        className={`${isActive ? " active" : ""}`}
-        onDragEnter={handleDragStart}
-        onDragLeave={handleDragEnd}
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-      >
-        <FileInput
-          type="file"
-          onChange={handleUpload}
-          accept=".svg, .jpg, .jpeg, .mp4"
-        />
+    <Draggable draggableId={fileId + ""} index={id}>
+      {(provided, snapshot) => (
+        <Box
+          isDragging={snapshot.isDragging}
+          ref={provided.innerRef}
+          {...provided.dragHandleProps}
+          {...provided.draggableProps}
+        >
+          <Preview
+            className={`${isActive ? " active" : ""}`}
+            onDragEnter={handleDragStart}
+            onDragLeave={handleDragEnd}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+          >
+            <FileInput
+              type="file"
+              onChange={handleUpload}
+              accept=".svg, .jpg, .jpeg, .mp4"
+            />
 
-        {uploadFile[id].file ? (
-          <></>
-        ) : (
-          <>
-            <Icon icon="plusCircle" />
-            <Typography text="사진 추가" type="h3" color="#575860" />
-          </>
-        )}
-        <FileImage
-          ref={previewRef}
-          src={file ? URL.createObjectURL(file) : ""}
-          className={`${uploadFile[id].file ? "" : "hide"}`}
-        />
-      </Preview>
-    </>
+            {uploadFile[id].file ? (
+              <></>
+            ) : (
+              <>
+                <Icon icon="plusCircle" />
+                <Typography text="사진 추가" type="h3" color="#575860" />
+              </>
+            )}
+            <FileImage
+              ref={previewRef}
+              src={file ? URL.createObjectURL(file) : ""}
+              className={`${uploadFile[id].file ? "" : "hide"}`}
+            />
+          </Preview>
+        </Box>
+      )}
+    </Draggable>
   );
 });
 

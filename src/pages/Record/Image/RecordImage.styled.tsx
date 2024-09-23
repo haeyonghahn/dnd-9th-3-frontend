@@ -1,6 +1,20 @@
 import { colors } from "@/_shared/colors";
 import styled from "styled-components";
 
+export const Box = styled.div<{ isDragging: boolean }>`
+  height: 100%;
+  min-width: 250px;
+  background-color: ${colors.black};
+  margin-right: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &:last-child {
+    margin-right: 0px;
+  }
+`;
+
 export const Preview = styled.label`
   width: 100%;
   height: 100%;

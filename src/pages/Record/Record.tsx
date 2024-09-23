@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   RecordButtonBox,
   RecordDescription,
-  RecordImageBox,
   RecordImageWrapper,
   RecordIndicator,
   RecordInputBox,
@@ -40,36 +39,17 @@ import Category from "./Category/Category";
 import RecordPlace from "./Place/RecordPlace";
 import Score from "./Score/Score";
 import { PopUp } from "@/components/PopUp";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 type Status = "default" | "error" | "success";
 
 const Record = () => {
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const scrollRef = useRef<HTMLDivElement | null>(null);
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (scrollRef.current) {
-      setIsDragging(true);
-      setStartX(e.pageX - scrollRef.current.offsetLeft);
-      setScrollLeft(scrollRef.current.scrollLeft);
-    }
-  };
-
-  const handleMouseLeaveOrUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (!isDragging || !scrollRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = (x - startX) * 1; // 드래그 속도 조정 (2는 배율)
-    scrollRef.current.scrollLeft = scrollLeft - walk;
-  };
-
   const recordImage = useRecoilValue(recordImageAtom);
+  const onDragEnd = (info: DropResult) => {
+    console.log(info);
+    const { destination, draggableId, source } = info;
+    if (!destination) return;
+  };
 
   const [title, setTitle] = useRecoilState(recordTitleAtom);
   const [titleStatus, setStatus] = useState<Status>("default");
@@ -143,19 +123,28 @@ const Record = () => {
   return (
     <RecrodContainer>
       <RecordIndicator />
-      <RecordImageWrapper
-        ref={scrollRef}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseLeaveOrUp}
-        onMouseUp={handleMouseLeaveOrUp}
-        onMouseMove={handleMouseMove}
-      >
-        {recordImage.map((file, index) => (
-          <RecordImageBox key={index}>
-            <RecordImage id={index} file={file.file}></RecordImage>
-          </RecordImageBox>
-        ))}
-      </RecordImageWrapper>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable droppableId="fileImages">
+          {(provided, info) => (
+            <RecordImageWrapper
+              ref={provided.innerRef}
+              isDraggingOver={info.isDraggingOver}
+              isDraggingFromThis={Boolean(info.draggingFromThisWith)}
+              {...provided.droppableProps}
+            >
+              {recordImage.map((file, index) => (
+                <RecordImage
+                  key={file.id}
+                  fileId={file.id}
+                  id={index}
+                  file={file.file}
+                />
+              ))}
+              {provided.placeholder}
+            </RecordImageWrapper>
+          )}
+        </Droppable>
+      </DragDropContext>
       <RecordWrapper>
         <Typography text="어떤 굳이데이를 보내셨나요?" type="h3" />
         <RecordInputBox>
