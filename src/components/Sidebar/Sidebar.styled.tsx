@@ -3,7 +3,7 @@ import { fontSize, fontWeight } from "@/_shared/typography";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 500px;
+  width: 100%;
   height: 100%;
   background-color: ${(props) => props.theme.bgColor};
   box-shadow: 4px 0 8px 0 rgba(0, 0, 0, 0.2);

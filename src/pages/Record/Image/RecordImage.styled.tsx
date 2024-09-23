@@ -1,7 +1,7 @@
 import { colors } from "@/_shared/colors";
 import styled from "styled-components";
 
-export const Box = styled.div<{ isDragging: boolean }>`
+export const Box = styled.div`
   height: 100%;
   min-width: 250px;
   background-color: ${colors.black};

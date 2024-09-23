@@ -39,18 +39,11 @@ import Category from "./Category/Category";
 import RecordPlace from "./Place/RecordPlace";
 import Score from "./Score/Score";
 import { PopUp } from "@/components/PopUp";
-import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 
 type Status = "default" | "error" | "success";
 
 const Record = () => {
   const recordImage = useRecoilValue(recordImageAtom);
-  const onDragEnd = (info: DropResult) => {
-    console.log(info);
-    const { destination, draggableId, source } = info;
-    if (!destination) return;
-  };
-
   const [title, setTitle] = useRecoilState(recordTitleAtom);
   const [titleStatus, setStatus] = useState<Status>("default");
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,28 +116,16 @@ const Record = () => {
   return (
     <RecrodContainer>
       <RecordIndicator />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="fileImages">
-          {(provided, info) => (
-            <RecordImageWrapper
-              ref={provided.innerRef}
-              isDraggingOver={info.isDraggingOver}
-              isDraggingFromThis={Boolean(info.draggingFromThisWith)}
-              {...provided.droppableProps}
-            >
-              {recordImage.map((file, index) => (
-                <RecordImage
-                  key={file.id}
-                  fileId={file.id}
-                  id={index}
-                  file={file.file}
-                />
-              ))}
-              {provided.placeholder}
-            </RecordImageWrapper>
-          )}
-        </Droppable>
-      </DragDropContext>
+      <RecordImageWrapper>
+        {recordImage.map((file, index) => (
+          <RecordImage
+            key={file.id}
+            fileId={file.id}
+            id={index}
+            file={file.file}
+          />
+        ))}
+      </RecordImageWrapper>
       <RecordWrapper>
         <Typography text="어떤 굳이데이를 보내셨나요?" type="h3" />
         <RecordInputBox>

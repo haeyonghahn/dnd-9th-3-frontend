@@ -79,44 +79,35 @@ const RecordImage = React.memo(({ id, fileId, file }: RecordImageProps) => {
     }
   };
   return (
-    <Draggable draggableId={fileId + ""} index={id}>
-      {(provided, snapshot) => (
-        <Box
-          isDragging={snapshot.isDragging}
-          ref={provided.innerRef}
-          {...provided.dragHandleProps}
-          {...provided.draggableProps}
-        >
-          <Preview
-            className={`${isActive ? " active" : ""}`}
-            onDragEnter={handleDragStart}
-            onDragLeave={handleDragEnd}
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-          >
-            <FileInput
-              type="file"
-              onChange={handleUpload}
-              accept=".svg, .jpg, .jpeg, .mp4"
-            />
+    <Box>
+      <Preview
+        className={`${isActive ? " active" : ""}`}
+        onDragEnter={handleDragStart}
+        onDragLeave={handleDragEnd}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+      >
+        <FileInput
+          type="file"
+          onChange={handleUpload}
+          accept=".svg, .jpg, .jpeg, .mp4"
+        />
 
-            {uploadFile[id].file ? (
-              <></>
-            ) : (
-              <>
-                <Icon icon="plusCircle" />
-                <Typography text="사진 추가" type="h3" color="#575860" />
-              </>
-            )}
-            <FileImage
-              ref={previewRef}
-              src={file ? URL.createObjectURL(file) : ""}
-              className={`${uploadFile[id].file ? "" : "hide"}`}
-            />
-          </Preview>
-        </Box>
-      )}
-    </Draggable>
+        {uploadFile[id].file ? (
+          <></>
+        ) : (
+          <>
+            <Icon icon="plusCircle" />
+            <Typography text="사진 추가" type="h3" color="#575860" />
+          </>
+        )}
+        <FileImage
+          ref={previewRef}
+          src={file ? URL.createObjectURL(file) : ""}
+          className={`${uploadFile[id].file ? "" : "hide"}`}
+        />
+      </Preview>
+    </Box>
   );
 });
 

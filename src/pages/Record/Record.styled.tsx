@@ -2,11 +2,6 @@ import { colors } from "@/_shared/colors";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-interface RecordImageWrapperProps {
-  isDraggingFromThis: boolean;
-  isDraggingOver: boolean;
-}
-
 export const RecrodContainer = styled.div`
   overflow: auto;
 `;
@@ -23,15 +18,10 @@ export const RecordWrapper = styled.div`
   margin-right: 20px;
 `;
 
-export const RecordImageWrapper = styled.div<RecordImageWrapperProps>`
+export const RecordImageWrapper = styled.div`
   width: calc(100% - 20px);
   height: 300px;
-  background-color: ${(props) =>
-    props.isDraggingOver
-      ? colors.errorOpacity200
-      : props.isDraggingFromThis
-      ? colors.black
-      : "transparent"};
+  background-color: ${colors.black};
   margin-top: 7%;
   margin-left: 20px;
   margin-bottom: 7%;
@@ -39,10 +29,11 @@ export const RecordImageWrapper = styled.div<RecordImageWrapperProps>`
   flex-direction: row;
   overflow-x: auto;
   white-space: nowrap;
-  cursor: grab;
+  cursor: pointer;
 
+  -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
-    height: 3px;
+    height: 10px;
   }
 `;
 
