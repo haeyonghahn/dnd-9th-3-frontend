@@ -13,7 +13,7 @@ export interface IRecord {
   images: IImage[];
 }
 
-export interface IRecordImage {
+export interface IFile {
   id: number;
   file: File | null;
 }

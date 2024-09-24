@@ -1,8 +1,8 @@
-import { IRecordImage, IRecordPlace } from "@/types/record";
+import { IFile, IRecordPlace } from "@/types/record";
 import { IInterest } from "@/types/user";
 import { atom } from "recoil";
 
-export const recordImageAtom = atom<IRecordImage[]>({
+export const recordImageAtom = atom<IFile[]>({
   key: "recordImageAtom",
   default: [
     {

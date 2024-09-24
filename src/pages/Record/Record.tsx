@@ -1,14 +1,14 @@
 import { useState } from "react";
 import {
-  RecordButtonBox,
-  RecordDescription,
-  RecordImageWrapper,
-  RecordIndicator,
-  RecordInputBox,
-  RecordStateBox,
-  RecordStateMessageBox,
-  RecordWrapper,
-  RecrodContainer,
+  Container,
+  ButtonBox,
+  Description,
+  FileWrapper,
+  Indicator,
+  InputBox,
+  StateBox,
+  StateMessageBox,
+  Wrapper,
 } from "./Record.styled";
 import Typography from "@/foundations/Typography";
 import Input from "@/components/Input";
@@ -16,7 +16,6 @@ import TextArea from "@/components/TextArea";
 import Switch from "@/components/Switch";
 import Button from "@/components/Button";
 import { colors } from "@/_shared/colors";
-import RecordImage from "./Image/RecordImage";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   categoryPopUpAtom,
@@ -39,6 +38,7 @@ import Category from "./Category/Category";
 import RecordPlace from "./Place/RecordPlace";
 import Score from "./Score/Score";
 import { PopUp } from "@/components/PopUp";
+import File from "./File/File";
 
 type Status = "default" | "error" | "success";
 
@@ -114,16 +114,16 @@ const Record = () => {
   };
 
   return (
-    <RecrodContainer>
-      <RecordIndicator />
-      <RecordImageWrapper>
+    <Container>
+      <Indicator />
+      <FileWrapper>
         {recordImage.map((file, index) => (
-          <RecordImage key={file.id} id={index} file={file.file} />
+          <File key={file.id} id={index} file={file.file} />
         ))}
-      </RecordImageWrapper>
-      <RecordWrapper>
+      </FileWrapper>
+      <Wrapper>
         <Typography text="어떤 굳이데이를 보내셨나요?" type="h3" />
-        <RecordInputBox>
+        <InputBox>
           <Input
             status={titleStatus}
             placeholder="제목을 입력해주세요."
@@ -132,8 +132,8 @@ const Record = () => {
             value={title}
             messageBoxShow={false}
           />
-        </RecordInputBox>
-        <RecordDescription>
+        </InputBox>
+        <Description>
           <TextArea
             status={descriptStatus}
             placeholder="굳이데이 활동과 계기에 대해 작성해주세요."
@@ -142,9 +142,9 @@ const Record = () => {
             value={descript}
             messageBoxShow={false}
           />
-        </RecordDescription>
+        </Description>
         <Typography text="활동 날짜" type="h3" />
-        <RecordInputBox>
+        <InputBox>
           <Input
             status="default"
             placeholder="YY / MM / DD"
@@ -160,9 +160,9 @@ const Record = () => {
             handleClick={handleDayClick}
             disabled={true}
           />
-        </RecordInputBox>
+        </InputBox>
         <Typography text="활동 장소" type="h3" />
-        <RecordInputBox>
+        <InputBox>
           <Input
             status="default"
             placeholder="장소를 설정해주세요.(선택)"
@@ -186,9 +186,9 @@ const Record = () => {
             handleClick={handlePlaceClick}
             disabled={true}
           />
-        </RecordInputBox>
+        </InputBox>
         <Typography text="활동 카테고리" type="h3" />
-        <RecordInputBox>
+        <InputBox>
           <Input
             status="default"
             placeholder="카테고리를 설정해주세요.(선택)"
@@ -208,8 +208,8 @@ const Record = () => {
             handleClick={handleCategoryClick}
             disabled={true}
           />
-        </RecordInputBox>
-        <RecordStateBox>
+        </InputBox>
+        <StateBox>
           <Typography text="공개 여부 설정" type="h3" />
           <Switch
             handleHeight="25px"
@@ -219,14 +219,14 @@ const Record = () => {
             padding="0px"
             callback={handleSateClick}
           />
-        </RecordStateBox>
-        <RecordStateMessageBox>
+        </StateBox>
+        <StateMessageBox>
           <Typography
             text="기록을 공개하면, 다른 사람들도 나의 기록을 볼 수 있습니다."
             type="body3"
           />
-        </RecordStateMessageBox>
-        <RecordButtonBox>
+        </StateMessageBox>
+        <ButtonBox>
           <Button
             text="다음"
             width="100%"
@@ -235,8 +235,8 @@ const Record = () => {
             backgroundcolor={colors.gray850}
             onClick={handleScoreClick}
           />
-        </RecordButtonBox>
-      </RecordWrapper>
+        </ButtonBox>
+      </Wrapper>
       {recordDayPopUp ? (
         <>
           <PopUp
@@ -269,7 +269,7 @@ const Record = () => {
           <PopUp state={scorePopUpAtom} height="100%" children={<Score />} />
         </>
       ) : null}
-    </RecrodContainer>
+    </Container>
   );
 };
 
