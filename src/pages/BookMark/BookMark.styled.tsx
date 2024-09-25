@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
   display: flex;
 `;
 
-export const MySaveImage = styled.div`
+export const ImageBox = styled.div`
   height: 200px;
   width: 300px;
 

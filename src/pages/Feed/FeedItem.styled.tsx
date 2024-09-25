@@ -26,6 +26,7 @@ export const Wrapper = styled.div`
 export const Profile = styled.div`
   display: flex;
   align-items: center;
+  z-index: 1;
 `;
 
 export const ProfileName = styled.div`
@@ -34,6 +35,7 @@ export const ProfileName = styled.div`
 
 export const Contents = styled.div`
   width: 100%;
+  z-index: 1;
 `;
 
 export const PlaceWrapper = styled.div`
@@ -86,12 +88,4 @@ export const Image = styled.img`
   width: 100%;
   display: block;
   object-fit: cover;
-`;
-
-export const Video = styled.video`
-  height: auto;
-  width: 100%;
-  display: block;
-  object-fit: cover;
-  pointer-events: none;
 `;

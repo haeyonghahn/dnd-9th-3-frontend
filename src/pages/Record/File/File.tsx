@@ -9,7 +9,9 @@ import { IFile } from "@/types/record";
 
 const File = React.memo(({ id, file }: IFile) => {
   const [uploadFile, setUploadFile] = useRecoilState(recordImageAtom);
-  const [fileUrl, setFileUrl] = useState<string | null>(file ?  URL.createObjectURL(file) : null);
+  const [fileUrl, setFileUrl] = useState<string | null>(
+    file ? URL.createObjectURL(file) : null
+  );
 
   const [isActive, setActive] = useState(false);
   const handleDragStart = () => setActive(true);

@@ -18,9 +18,9 @@ import {
   Profile,
   ProfileName,
   Title,
-  Video,
   Wrapper,
 } from "./FeedItem.styled";
+import Video from "@/components/Video";
 
 interface FeedItemProps {
   feed: IFeed;
@@ -97,7 +97,7 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
         </Wrapper>
       </Container>
       {feed.images[imageIndex].type.startsWith("video") ? (
-        <Video autoPlay src={feed.images[imageIndex].path} />
+        <Video src={feed.images[imageIndex].path} />
       ) : (
         <Image src={feed.images[imageIndex].path} />
       )}

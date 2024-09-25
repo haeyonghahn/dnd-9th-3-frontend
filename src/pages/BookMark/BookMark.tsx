@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { MySaveImage, Wrapper } from "./MySave.styled";
 import { getMyRecord } from "@/api/record";
 import { IRecord } from "@/types/record";
+import { ImageBox, Wrapper } from "./BookMark.styled";
 
-const MySave = () => {
+const BookMark = () => {
   const { data: myRecordData } = useQuery<IRecord[] | null>({
     queryKey: ["myRecord"],
     queryFn: getMyRecord,
@@ -15,26 +15,26 @@ const MySave = () => {
       {myRecordData && myRecordData.length > 0 ? (
         <>
           <Wrapper>
-            <MySaveImage>
+            <ImageBox>
               <img src="/images/desert.jpg" />
-            </MySaveImage>
-            <MySaveImage>
+            </ImageBox>
+            <ImageBox>
               <img src="/images/puppy.jpg" />
-            </MySaveImage>
-            <MySaveImage>
+            </ImageBox>
+            <ImageBox>
               <img src="/images/ocean.jpg" />
-            </MySaveImage>
+            </ImageBox>
           </Wrapper>
           <Wrapper>
-            <MySaveImage>
+            <ImageBox>
               <img src="/images/desert.jpg" />
-            </MySaveImage>
-            <MySaveImage>
+            </ImageBox>
+            <ImageBox>
               <img src="/images/puppy.jpg" />
-            </MySaveImage>
-            <MySaveImage>
+            </ImageBox>
+            <ImageBox>
               <img src="/images/ocean.jpg" />
-            </MySaveImage>
+            </ImageBox>
           </Wrapper>
         </>
       ) : (
@@ -54,4 +54,4 @@ const MySave = () => {
   );
 };
 
-export default MySave;
+export default BookMark;

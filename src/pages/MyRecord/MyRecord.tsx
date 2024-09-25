@@ -19,8 +19,8 @@ import { fontSize } from "@/_shared/typography";
 import Typography from "@/foundations/Typography";
 import { useRecoilValue } from "recoil";
 import Tab from "@/components/Tab/Tab";
-import MyTimeLine from "../MyTimeLine/MyTimeLine";
-import MySave from "../MySave/MySave";
+import BookMark from "../BookMark";
+import MyTimeLine from "../MyTimeLine";
 
 const MyRecord = () => {
   const user = useRecoilValue(userAtom);
@@ -68,7 +68,7 @@ const MyRecord = () => {
       <Tab
         tabItem={[
           { index: 0, tabTitle: "타임라인", tabItem: <MyTimeLine /> },
-          { index: 1, tabTitle: "저장", tabItem: <MySave /> },
+          { index: 1, tabTitle: "저장", tabItem: <BookMark /> },
         ]}
       />
     </Wrapper>
