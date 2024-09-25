@@ -81,9 +81,17 @@ export const Ellipse = styled.div`
   text-align: center;
 `;
 
-export const FeedImage = styled.img`
+export const Image = styled.img`
   height: 100%;
   width: 100%;
   display: block;
   object-fit: cover;
+`;
+
+export const Video = styled.video`
+  height: auto;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  pointer-events: none;
 `;

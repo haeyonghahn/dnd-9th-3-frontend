@@ -11,13 +11,14 @@ import {
   Description,
   DescriptWrapper,
   Ellipse,
-  FeedImage,
+  Image,
   Place,
   PlaceName,
   PlaceWrapper,
   Profile,
   ProfileName,
   Title,
+  Video,
   Wrapper,
 } from "./FeedItem.styled";
 
@@ -95,7 +96,11 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
           </Contents>
         </Wrapper>
       </Container>
-      <FeedImage src={feed.images[imageIndex].path} />
+      {feed.images[imageIndex].type.startsWith("video") ? (
+        <Video autoPlay src={feed.images[imageIndex].path} />
+      ) : (
+        <Image src={feed.images[imageIndex].path} />
+      )}
     </>
   );
 });

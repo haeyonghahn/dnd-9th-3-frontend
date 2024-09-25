@@ -37,7 +37,15 @@ export const Input = styled.input`
   display: none;
 `;
 
-export const FileImage = styled.img`
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  &.hide {
+    display: none;
+  }
+`;
+
+export const Vide = styled.video`
   width: 100%;
   height: 100%;
   &.hide {

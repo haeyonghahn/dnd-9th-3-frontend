@@ -1,16 +1,17 @@
 import Icon from "@/foundations/Icon";
 import Typography from "@/foundations/Typography";
-import { Box, FileImage, Input, Preview } from "./File.styled";
-import { useRef, useState } from "react";
+import { Box, Image, Input, Preview, Vide } from "./File.styled";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { recordImageAtom } from "@/atoms/record";
 import React from "react";
 import { IFile } from "@/types/record";
 
 const File = React.memo(({ id, file }: IFile) => {
-  const previewRef = useRef<HTMLImageElement | null>(null);
-  const [isActive, setActive] = useState(false);
   const [uploadFile, setUploadFile] = useRecoilState(recordImageAtom);
+  const [fileUrl, setFileUrl] = useState<string | null>(file ?  URL.createObjectURL(file) : null);
+
+  const [isActive, setActive] = useState(false);
   const handleDragStart = () => setActive(true);
   const handleDragEnd = (event: React.DragEvent<HTMLLabelElement>) => {
     event.preventDefault();
@@ -18,28 +19,20 @@ const File = React.memo(({ id, file }: IFile) => {
   };
   const handleDrop = (event: React.DragEvent<HTMLLabelElement>) => {
     event.preventDefault();
-    const files = event.dataTransfer.files;
-    if (files && files.length > 0) {
-      const reader = new FileReader();
-      if (previewRef.current) {
-        reader.onload = ({ target }) => {
-          if (previewRef.current) {
-            setUploadFile((oldFiles) => {
-              const newFiles = [...oldFiles];
-              const targetIndex = oldFiles.findIndex((file) => file.id === id);
-              if (targetIndex !== -1) {
-                newFiles[targetIndex] = {
-                  ...newFiles[targetIndex],
-                  file: files[0],
-                };
-              }
-              return newFiles;
-            });
-            previewRef.current.src = target?.result as string;
-          }
-        };
-        reader.readAsDataURL(files[0]);
-      }
+    const selectedFile = event.dataTransfer.files?.[0];
+    if (selectedFile) {
+      setUploadFile((oldFiles) => {
+        const newFiles = [...oldFiles];
+        const targetIndex = oldFiles.findIndex((file) => file.id === id);
+        if (targetIndex !== -1) {
+          newFiles[targetIndex] = {
+            ...newFiles[targetIndex],
+            file: selectedFile,
+          };
+        }
+        return newFiles;
+      });
+      setFileUrl(URL.createObjectURL(selectedFile));
     }
     setActive(false);
   };
@@ -48,28 +41,20 @@ const File = React.memo(({ id, file }: IFile) => {
     setActive(true);
   };
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = event.target;
-    if (files && files.length > 0) {
-      const reader = new FileReader();
-      if (previewRef.current) {
-        reader.onload = ({ target }) => {
-          if (previewRef.current) {
-            setUploadFile((oldFiles) => {
-              const newFiles = [...oldFiles];
-              const targetIndex = oldFiles.findIndex((file) => file.id === id);
-              if (targetIndex !== -1) {
-                newFiles[targetIndex] = {
-                  ...newFiles[targetIndex],
-                  file: files[0],
-                };
-              }
-              return newFiles;
-            });
-            previewRef.current.src = target?.result as string;
-          }
-        };
-        reader.readAsDataURL(files[0]);
-      }
+    const selectedFile = event.target.files?.[0];
+    if (selectedFile) {
+      setUploadFile((oldFiles) => {
+        const newFiles = [...oldFiles];
+        const targetIndex = oldFiles.findIndex((file) => file.id === id);
+        if (targetIndex !== -1) {
+          newFiles[targetIndex] = {
+            ...newFiles[targetIndex],
+            file: selectedFile,
+          };
+        }
+        return newFiles;
+      });
+      setFileUrl(URL.createObjectURL(selectedFile));
     }
   };
   return (
@@ -95,11 +80,18 @@ const File = React.memo(({ id, file }: IFile) => {
             <Typography text="사진 추가" type="h3" color="#575860" />
           </>
         )}
-        <FileImage
-          ref={previewRef}
-          src={file ? URL.createObjectURL(file) : ""}
-          className={`${uploadFile[id].file ? "" : "hide"}`}
-        />
+        {file?.type.startsWith("video") ? (
+          <Vide
+            autoPlay
+            src={fileUrl ? fileUrl : ""}
+            className={`${uploadFile[id].file ? "" : "hide"}`}
+          />
+        ) : (
+          <Image
+            src={fileUrl ? fileUrl : ""}
+            className={`${uploadFile[id].file ? "" : "hide"}`}
+          />
+        )}
       </Preview>
     </Box>
   );
