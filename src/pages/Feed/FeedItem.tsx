@@ -1,7 +1,7 @@
 import Avatar from "@/components/Avatar";
 import Typography from "@/foundations/Typography";
 import Icon from "@/foundations/Icon";
-import { memo, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { colors } from "@/_shared/colors";
 import { IFeed } from "@/types/feed";
 import {
@@ -21,6 +21,7 @@ import {
   Wrapper,
 } from "./FeedItem.styled";
 import Video from "@/components/Video";
+import { getBookMark, saveBookMark } from "@/api/record";
 
 interface FeedItemProps {
   feed: IFeed;
@@ -28,10 +29,22 @@ interface FeedItemProps {
 
 const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
   const [imageIndex, setImageIndex] = useState(0);
+  const [bookmarkYn, setBookMarkYn] = useState("");
   const handleImage = (index: number) => {
     setImageIndex(index);
   };
+  const handleBookMark = async (recordNo: string) => {
+    const bookMarkRes = await saveBookMark(recordNo);
+    setBookMarkYn(bookMarkRes);
+  };
+  const fetchBookMark = useCallback(async (recordNo: string) => {
+    const bookMarkRes = await getBookMark(recordNo);
+    setBookMarkYn(bookMarkRes);
+  }, []);
 
+  useEffect(() => {
+    fetchBookMark(feed.recordNumber);
+  }, []);
   return (
     <>
       <Container>
@@ -62,8 +75,8 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
                   <Typography text={feed.placeTitle} type="body2" />
                 </PlaceName>
               </Place>
-              <BookMark>
-                <Icon icon="bookmark" />
+              <BookMark onClick={() => handleBookMark(feed.recordNumber)}>
+                <Icon icon="bookmark" fill={bookmarkYn === "Y" ? "white" : "none"}/>
               </BookMark>
             </PlaceWrapper>
 

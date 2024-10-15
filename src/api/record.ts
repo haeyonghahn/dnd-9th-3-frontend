@@ -125,3 +125,33 @@ export const getFeeds = async (): Promise<IFeed[] | null> => {
   }
   return feedRes.json();
 };
+
+export const getBookMark = async (recordNo: string): Promise<string> => {
+  const bookMarkRes = await fetch(
+    `${BASE_URL}/api/v1/bookmark?recordNo=${recordNo}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+      },
+    }
+  );
+  if (!bookMarkRes.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return bookMarkRes.text();
+};
+
+export const saveBookMark = async (recordNo: string): Promise<string> => {
+  const bookMarkRes = await fetch(`${BASE_URL}/api/v1/bookmark`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+    },
+    body: recordNo,
+  });
+  if (!bookMarkRes.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return bookMarkRes.text();
+};
