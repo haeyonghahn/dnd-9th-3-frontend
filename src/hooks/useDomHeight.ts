@@ -1,6 +1,6 @@
 import { RefObject, useSyncExternalStore } from "react";
 
-const useDomHeight = (ref: RefObject<HTMLElement>) => {
+export const useDomHeight = (ref: RefObject<HTMLElement>) => {
   return useSyncExternalStore(
     (callback) => {
       const observer = new ResizeObserver(callback);

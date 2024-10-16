@@ -1,3 +1,5 @@
+import { Input } from "./ProgressBar.styled";
+
 interface ProgressBarProps {
   max: number;
   value: number;
@@ -16,19 +18,16 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   const percentNum = (value / max || 0) * 100;
   const percent = `${percentNum}%`;
   return (
-    <div style={{ width: "100%" }}>
-      <input
-        onChange={(e) => onChange(parseInt(e.target.value, 10))}
-        onTouchStart={onMouseDown}
-        onTouchEnd={onMouseUp}
-        type="range"
-        min="0"
-        max="100"
-        step="1"
-        value={percentNum}
-        style={{ width: "100%", margin: 0 }}
-      />
-    </div>
+    <Input
+      onChange={(e) => onChange(parseInt(e.target.value, 10))}
+      onTouchStart={onMouseDown}
+      onTouchEnd={onMouseUp}
+      type="range"
+      min="0"
+      max="100"
+      step="1"
+      value={percentNum}
+    />
   );
 };
 
