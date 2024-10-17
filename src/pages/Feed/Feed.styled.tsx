@@ -1,6 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors } from "@/_shared/colors";
 import { fontSize, fontWeight } from "@/_shared/typography";
+import { loadings } from "@/_shared/animations";
+
+interface LoadingProps {
+  isloading: string;
+}
 
 export const Wrapper = styled.div`
   position: fixed;
@@ -32,7 +37,7 @@ export const HeaderItems = styled.div`
   align-items: center;
 `;
 
-export const HeaderItem = styled.li`
+export const HeaderItem = styled.li<LoadingProps>`
   margin-right: 20px;
   color: ${colors.gray500};
   transition: color 0.3s ease-in-out;
@@ -44,9 +49,19 @@ export const HeaderItem = styled.li`
     color: ${colors.white};
   }
   cursor: pointer;
+  ${(props) =>
+    props.isloading === "true"
+      ? css`
+          backdrop-filter: blur(4px);
+          width: 50px;
+          height: 20px;
+          cursor: progress;
+          ${loadings.dark}
+        `
+      : null}
 `;
 
-export const Search = styled.form`
+export const Search = styled.form<LoadingProps>`
   color: white;
   display: flex;
   align-items: center;
@@ -55,4 +70,14 @@ export const Search = styled.form`
     height: 25px;
   }
   cursor: pointer;
+  ${(props) =>
+    props.isloading === "true"
+      ? css`
+          backdrop-filter: blur(4px);
+          width: 20px;
+          height: 20px;
+          cursor: progress;
+          ${loadings.dark}
+        `
+      : null}
 `;

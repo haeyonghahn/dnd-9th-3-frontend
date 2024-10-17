@@ -1,5 +1,10 @@
+import { loadings } from "@/_shared/animations";
 import { fontSize, fontWeight } from "@/_shared/typography";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface LoadingProps {
+  isloading: string;
+}
 
 export const Container = styled.div`
   position: absolute;
@@ -45,12 +50,21 @@ export const PlaceWrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const Place = styled.div`
+export const Place = styled.div<LoadingProps>`
   display: flex;
   align-items: center;
   background-color: rgba(128, 118, 118, 0.5);
   padding: 5px;
   border-radius: 10px;
+  ${(props) =>
+    props.isloading === "true"
+      ? css`
+          backdrop-filter: blur(4px);
+          width: 50px;
+          cursor: progress;
+          ${loadings.dark}
+        `
+      : null}
 `;
 
 export const PlaceName = styled.div`
@@ -65,15 +79,35 @@ export const DescriptWrapper = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<LoadingProps>`
   margin-top: 20px;
+  ${(props) =>
+    props.isloading === "true"
+      ? css`
+          backdrop-filter: blur(4px);
+          width: 100px;
+          height: 20px;
+          cursor: progress;
+          ${loadings.dark}
+        `
+      : null}
 `;
 
-export const Description = styled.div`
+export const Description = styled.div<LoadingProps>`
   margin-top: 10px;
   white-space: nowrap; /* 텍스트가 줄바꿈 없이 한 줄로 유지되도록 설정 */
   overflow: hidden; /* 넘치는 텍스트를 숨김 */
   text-overflow: ellipsis; /* 넘치는 텍스트를 '...'로 처리 */
+  ${(props) =>
+    props.isloading === "true"
+      ? css`
+          backdrop-filter: blur(4px);
+          width: 170px;
+          height: 30px;
+          cursor: progress;
+          ${loadings.dark}
+        `
+      : null}
 `;
 
 export const Ellipse = styled.div`

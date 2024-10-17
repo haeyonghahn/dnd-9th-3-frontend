@@ -18,6 +18,20 @@ export const getMyRecord = async (): Promise<IRecord[] | null> => {
   return recordRes.json();
 };
 
+export const getRecordByBookMark = async (): Promise<IRecord[] | null> => {
+  const recordRes = await fetch(`${BASE_URL}/api/v1/my/bookmark`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${getAccessTokenFromLocalStorage()}`,
+    },
+  });
+  if (!recordRes.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return recordRes.json();
+}
+
 export const createRecord = async (
   files: File[],
   title: string,

@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 export const ImageBox = styled.div`
   height: 200px;
-  width: 300px;
+  width: 100%;
 
   img {
     height: 100%;

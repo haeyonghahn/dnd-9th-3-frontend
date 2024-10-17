@@ -2,19 +2,6 @@ import { colors } from "@/_shared/colors";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-interface PositionProps {
-  position: string;
-}
-
-interface VariantsProps {
-  top: PositionProps;
-  bottom: PositionProps;
-}
-
-interface TabsProps {
-  variants?: VariantsProps;
-}
-
 interface TabItemProps {
   isactive: string;
 }
@@ -25,13 +12,31 @@ interface DividerProps {
   left: number;
 }
 
-export const Container = styled(motion.div)<TabsProps>`
+export const Container = styled(motion.div)`
   height: 100%;
   width: 100%;
   background-color: #282932;
   border-radius: 24px 24px 0px 0px;
   position: relative;
   overflow: auto;
+  &.expanded {
+    position: absolute;
+  }
+`;
+
+export const BarWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Bar = styled.div`
+  background-color: #d3d3d3;
+  width: 60px;
+  margin-top: 12px;
+  padding: 2px;
+  border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const Wrapper = styled.div`

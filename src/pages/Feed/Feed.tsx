@@ -108,19 +108,21 @@ const Feed = () => {
                   <HeaderItem
                     className={feedTab ? "selected" : ""}
                     onClick={handleHeaderItem}
+                    isloading=""
                   >
                     <Link to="">최신</Link>
                   </HeaderItem>
                   <HeaderItem
                     className={feedTab ? "" : "selected"}
                     onClick={handleHeaderItem}
+                    isloading=""
                   >
                     <Link to="recommend">추천</Link>
                   </HeaderItem>
                 </HeaderItems>
               </HeaderCol>
               <HeaderCol>
-                <Search>
+                <Search isloading="">
                   <Icon
                     icon="search"
                     fill="currentColor"
@@ -162,7 +164,7 @@ const Feed = () => {
                         position: "relative",
                       }}
                     >
-                      <FeedItem feed={feed} />
+                      <FeedItem feed={feed} isloading="" />
                     </div>
                   ))}
               </div>
@@ -171,7 +173,67 @@ const Feed = () => {
         </>
       );
     case "loading":
-      return <>loading</>;
+      return (
+        <>
+          <Wrapper>
+            <Header>
+              <HeaderCol>
+                <HeaderItems>
+                  <HeaderItem
+                    className={feedTab ? "selected" : ""}
+                    isloading={feeds.state === "loading" ? "true" : ""}
+                  />
+                  <HeaderItem
+                    className={feedTab ? "" : "selected"}
+                    isloading={feeds.state === "loading" ? "true" : ""}
+                  />
+                </HeaderItems>
+              </HeaderCol>
+              <HeaderCol>
+                <Search
+                  isloading={feeds.state === "loading" ? "true" : ""}
+                ></Search>
+              </HeaderCol>
+            </Header>
+          </Wrapper>
+          {/* 스크롤 컨테이너 */}
+          {feedTab ? (
+            <div
+              ref={containerRef}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              style={{
+                width: "100%",
+                height: "100%",
+                overflowY: "hidden",
+                scrollSnapType: "y mandatory",
+              }}
+            >
+              {/* 자식 요소들을 이동 처리하기 위한 컨테이너 */}
+              <div
+                style={{
+                  height: "100%",
+                  transform: `translateY(${scrollPosition * height}px)`,
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    scrollSnapAlign: "start",
+                    position: "relative",
+                  }}
+                >
+                  <FeedItem
+                    feed={null}
+                    isloading={feeds.state === "loading" ? "true" : ""}
+                  />
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </>
+      );
     case "hasError":
       return feeds.contents;
   }

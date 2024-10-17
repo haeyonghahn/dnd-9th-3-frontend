@@ -1,5 +1,7 @@
 import { useDomWidth } from "@/hooks/useDomWidth";
 import {
+  Bar,
+  BarWrapper,
   Container,
   Divider,
   DividerWrapper,
@@ -29,6 +31,10 @@ const Tab: React.FC<TabProps> = ({ tabItem }) => {
       setLeft(tabRefs.current[index].offsetLeft);
     }
   };
+  const [isExpanded, setExpanded] = useState(false);
+  const handleExpand = () => {
+    setExpanded((prev) => !prev);
+  };
 
   useEffect(() => {
     if (tabRefs.current[0]) {
@@ -37,7 +43,10 @@ const Tab: React.FC<TabProps> = ({ tabItem }) => {
   }, []);
   return (
     <>
-      <Container>
+      <Container className={isExpanded ? 'expanded' : ''}>
+        <BarWrapper>
+          <Bar onClick={handleExpand} />
+        </BarWrapper>
         <Wrapper>
           {tabItem.map((section, index) => {
             return (

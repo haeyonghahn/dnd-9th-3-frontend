@@ -24,10 +24,11 @@ import Video from "@/components/Video";
 import { getBookMark, saveBookMark } from "@/api/record";
 
 interface FeedItemProps {
-  feed: IFeed;
+  feed: IFeed | null;
+  isloading: string;
 }
 
-const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
+const FeedItem: React.FC<FeedItemProps> = memo(({ feed, isloading }) => {
   const [imageIndex, setImageIndex] = useState(0);
   const [bookmarkYn, setBookMarkYn] = useState("");
   const handleImage = (index: number) => {
@@ -43,16 +44,23 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
   }, []);
 
   useEffect(() => {
-    fetchBookMark(feed.recordNumber);
+    if (feed) {
+      fetchBookMark(feed.recordNumber);
+    }
   }, []);
   return (
     <>
       <Container>
         <Wrapper>
           <Profile>
-            <Avatar size="large" theme="isDark" src={feed.imageUrl}></Avatar>
+            <Avatar
+              size="large"
+              theme="isDark"
+              src={feed ? feed.imageUrl : ""}
+              isloading={isloading}
+            ></Avatar>
             <ProfileName>
-              <Typography text={feed.name} type="body2" />
+              <Typography text={feed ? feed.name : ""} type="body2" />
             </ProfileName>
           </Profile>
         </Wrapper>
@@ -60,60 +68,76 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed }) => {
         <Wrapper>
           <Contents>
             <PlaceWrapper>
-              <Place>
-                <Icon
-                  icon="locationOn"
-                  width="12"
-                  height="12"
-                  minX="0"
-                  minY="0"
-                  viewBoxWidth="12"
-                  viewBoxHeight="12"
-                  fill={colors.white}
-                />
-                <PlaceName>
-                  <Typography text={feed.placeTitle} type="body2" />
-                </PlaceName>
+              <Place isloading={isloading}>
+                {feed ? (
+                  <>
+                    <Icon
+                      icon="locationOn"
+                      width="12"
+                      height="12"
+                      minX="0"
+                      minY="0"
+                      viewBoxWidth="12"
+                      viewBoxHeight="12"
+                      fill={colors.white}
+                    />
+                    <PlaceName>
+                      <Typography
+                        text={feed ? feed.placeTitle : ""}
+                        type="body2"
+                      />
+                    </PlaceName>
+                  </>
+                ) : null}
               </Place>
-              <BookMark onClick={() => handleBookMark(feed.recordNumber)}>
-                <Icon icon="bookmark" fill={bookmarkYn === "Y" ? "white" : "none"}/>
+              <BookMark
+                onClick={() => handleBookMark(feed ? feed.recordNumber : "")}
+              >
+                <Icon
+                  icon="bookmark"
+                  fill={bookmarkYn === "Y" ? "white" : "none"}
+                />
               </BookMark>
             </PlaceWrapper>
 
             <DescriptWrapper>
-              <Title>
-                <Typography text={feed.title} type="h3" />
+              <Title isloading={isloading}>
+                <Typography text={feed ? feed.title : ""} type="h3" />
               </Title>
-              <Description>
-                <Typography text={feed.description} type="body1" />
+              <Description isloading={isloading}>
+                <Typography text={feed ? feed.description : ""} type="body1" />
               </Description>
-              <Ellipse>
-                {feed.images.map((_, index) => (
-                  <span
-                    key={index}
-                    onClick={() => handleImage(index)}
-                    style={{ cursor: "pointer" }}
-                  >
-                    <Icon
-                      icon="ellipse"
-                      viewBoxWidth="10"
-                      viewBoxHeight="10"
-                      width="10"
-                      height="10"
-                      fill={imageIndex === index ? "#FFFFFF" : colors.gray600}
-                    />
-                  </span>
-                ))}
-              </Ellipse>
+              {feed ? (
+                <Ellipse>
+                  {feed.images.map((_, index) => (
+                    <span
+                      key={index}
+                      onClick={() => handleImage(index)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <Icon
+                        icon="ellipse"
+                        viewBoxWidth="10"
+                        viewBoxHeight="10"
+                        width="10"
+                        height="10"
+                        fill={imageIndex === index ? "#FFFFFF" : colors.gray600}
+                      />
+                    </span>
+                  ))}
+                </Ellipse>
+              ) : null}
             </DescriptWrapper>
           </Contents>
         </Wrapper>
       </Container>
-      {feed.images[imageIndex].type.startsWith("video") ? (
-        <Video src={feed.images[imageIndex].path} />
-      ) : (
-        <Image src={feed.images[imageIndex].path} />
-      )}
+      {feed ? (
+        feed.images[imageIndex].type.startsWith("video") ? (
+          <Video src={feed.images[imageIndex].path} />
+        ) : (
+          <Image src={feed.images[imageIndex].path} />
+        )
+      ) : null}
     </>
   );
 });

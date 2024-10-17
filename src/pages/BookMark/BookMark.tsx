@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMyRecord } from "@/api/record";
+import { getRecordByBookMark } from "@/api/record";
 import { IRecord } from "@/types/record";
 import { ImageBox, Wrapper } from "./BookMark.styled";
 
 const BookMark = () => {
   const { data: myRecordData } = useQuery<IRecord[] | null>({
-    queryKey: ["myRecord"],
-    queryFn: getMyRecord,
+    queryKey: ["recordByBookMark"],
+    queryFn: getRecordByBookMark,
     throwOnError: true,
   });
 
@@ -15,26 +15,11 @@ const BookMark = () => {
       {myRecordData && myRecordData.length > 0 ? (
         <>
           <Wrapper>
-            <ImageBox>
-              <img src="/images/desert.jpg" />
+          {myRecordData.map((record, index) => (
+            <ImageBox key={index}>
+              <img src={record.images[0].path} />
             </ImageBox>
-            <ImageBox>
-              <img src="/images/puppy.jpg" />
-            </ImageBox>
-            <ImageBox>
-              <img src="/images/ocean.jpg" />
-            </ImageBox>
-          </Wrapper>
-          <Wrapper>
-            <ImageBox>
-              <img src="/images/desert.jpg" />
-            </ImageBox>
-            <ImageBox>
-              <img src="/images/puppy.jpg" />
-            </ImageBox>
-            <ImageBox>
-              <img src="/images/ocean.jpg" />
-            </ImageBox>
+          ))}
           </Wrapper>
         </>
       ) : (
