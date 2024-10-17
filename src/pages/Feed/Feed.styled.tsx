@@ -37,7 +37,7 @@ export const HeaderItems = styled.div`
   align-items: center;
 `;
 
-export const HeaderItem = styled.li<LoadingProps>`
+export const HeaderItem = styled.li`
   margin-right: 20px;
   color: ${colors.gray500};
   transition: color 0.3s ease-in-out;
@@ -49,16 +49,6 @@ export const HeaderItem = styled.li<LoadingProps>`
     color: ${colors.white};
   }
   cursor: pointer;
-  ${(props) =>
-    props.isloading === "true"
-      ? css`
-          backdrop-filter: blur(4px);
-          width: 50px;
-          height: 20px;
-          cursor: progress;
-          ${loadings.dark}
-        `
-      : null}
 `;
 
 export const Search = styled.form<LoadingProps>`

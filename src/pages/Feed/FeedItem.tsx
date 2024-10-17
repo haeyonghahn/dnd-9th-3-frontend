@@ -55,7 +55,7 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed, isloading }) => {
           <Profile>
             <Avatar
               size="large"
-              theme="isDark"
+              theme="dark"
               src={feed ? feed.imageUrl : ""}
               isloading={isloading}
             ></Avatar>
@@ -91,12 +91,17 @@ const FeedItem: React.FC<FeedItemProps> = memo(({ feed, isloading }) => {
                 ) : null}
               </Place>
               <BookMark
-                onClick={() => handleBookMark(feed ? feed.recordNumber : "")}
+                isloading={isloading}
+                onClick={() =>
+                  feed ? handleBookMark(feed ? feed.recordNumber : "") : ""
+                }
               >
-                <Icon
-                  icon="bookmark"
-                  fill={bookmarkYn === "Y" ? "white" : "none"}
-                />
+                {feed ? (
+                  <Icon
+                    icon="bookmark"
+                    fill={bookmarkYn === "Y" ? "white" : "none"}
+                  />
+                ) : null}
               </BookMark>
             </PlaceWrapper>
 

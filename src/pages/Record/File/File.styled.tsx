@@ -45,7 +45,7 @@ export const Image = styled.img`
   }
 `;
 
-export const Vide = styled.video`
+export const Video = styled.video`
   width: 100%;
   height: 100%;
   &.hide {

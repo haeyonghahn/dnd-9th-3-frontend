@@ -28,7 +28,7 @@ export const FileWrapper = styled.div`
 
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
-    height: 10px;
+    height: 3px;
   }
 `;
 

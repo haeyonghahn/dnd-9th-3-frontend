@@ -71,8 +71,18 @@ export const PlaceName = styled.div`
   padding-left: 3px;
 `;
 
-export const BookMark = styled.div`
+export const BookMark = styled.div<LoadingProps>`
   cursor: pointer;
+  ${(props) =>
+    props.isloading === "true"
+      ? css`
+          backdrop-filter: blur(4px);
+          width: 30px;
+          height: 30px;
+          cursor: progress;
+          ${loadings.dark}
+        `
+      : null}
 `;
 
 export const DescriptWrapper = styled.div`

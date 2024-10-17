@@ -108,14 +108,12 @@ const Feed = () => {
                   <HeaderItem
                     className={feedTab ? "selected" : ""}
                     onClick={handleHeaderItem}
-                    isloading=""
                   >
                     <Link to="">최신</Link>
                   </HeaderItem>
                   <HeaderItem
                     className={feedTab ? "" : "selected"}
                     onClick={handleHeaderItem}
-                    isloading=""
                   >
                     <Link to="recommend">추천</Link>
                   </HeaderItem>
@@ -181,18 +179,27 @@ const Feed = () => {
                 <HeaderItems>
                   <HeaderItem
                     className={feedTab ? "selected" : ""}
-                    isloading={feeds.state === "loading" ? "true" : ""}
-                  />
+                    onClick={handleHeaderItem}
+                  >
+                    <Link to="">최신</Link>
+                  </HeaderItem>
                   <HeaderItem
                     className={feedTab ? "" : "selected"}
-                    isloading={feeds.state === "loading" ? "true" : ""}
-                  />
+                    onClick={handleHeaderItem}
+                  >
+                    <Link to="recommend">추천</Link>
+                  </HeaderItem>
                 </HeaderItems>
               </HeaderCol>
               <HeaderCol>
-                <Search
-                  isloading={feeds.state === "loading" ? "true" : ""}
-                ></Search>
+                <Search isloading="">
+                  <Icon
+                    icon="search"
+                    fill="currentColor"
+                    viewBoxWidth="20"
+                    viewBoxHeight="20"
+                  />
+                </Search>
               </HeaderCol>
             </Header>
           </Wrapper>

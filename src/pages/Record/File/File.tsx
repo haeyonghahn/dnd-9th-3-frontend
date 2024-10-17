@@ -1,6 +1,6 @@
 import Icon from "@/foundations/Icon";
 import Typography from "@/foundations/Typography";
-import { Box, Image, Input, Preview, Vide } from "./File.styled";
+import { Box, Image, Input, Preview, Video } from "./File.styled";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { recordImageAtom } from "@/atoms/record";
@@ -83,7 +83,7 @@ const File = React.memo(({ id, file }: IFile) => {
           </>
         )}
         {file?.type.startsWith("video") ? (
-          <Vide
+          <Video
             autoPlay
             src={fileUrl ? fileUrl : ""}
             className={`${uploadFile[id].file ? "" : "hide"}`}
